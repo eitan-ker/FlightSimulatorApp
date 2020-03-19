@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="FlightSimulatorApp.controls.Dashboard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:FlightSimulatorApp.controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <ProgressBar Grid.Row="0" Grid.Column="6" Width="700" Height="15" Minimum="0" Maximum="100" Value="55"></ProgressBar>
+        <ProgressBar Grid.Row="1" Grid.Column="6" Width="700" Height="15" Minimum="0" Maximum="100" Value="55"></ProgressBar>
+        <ProgressBar Grid.Row="2" Grid.Column="6" Width="700" Height="15" Minimum="0" Maximum="100" Value="55"></ProgressBar>
+        <ProgressBar Grid.Row="3" Grid.Column="6" Width="700" Height="15" Minimum="0" Maximum="100" Value="55"></ProgressBar>
+        <ProgressBar Grid.Row="4" Grid.Column="6" Width="700" Height="15" Minimum="0" Maximum="100" Value="55"></ProgressBar>
+        <ProgressBar Grid.Row="5" Grid.Column="6" Width="700" Height="15" Minimum="0" Maximum="100" Value="55"></ProgressBar>
+        <ProgressBar Grid.Row="6" Grid.Column="6" Width="700" Height="15" Minimum="0" Maximum="100" Value="55"></ProgressBar>
+        <ProgressBar Grid.Row="7" Grid.Column="6" Width="700" Height="15" Minimum="0" Maximum="100" Value="55"></ProgressBar>
+    </Grid>
+</UserControl>
