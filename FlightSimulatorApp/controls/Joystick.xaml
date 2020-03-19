@@ -12,6 +12,7 @@
                     <RadialGradientBrush>
                         <GradientStop Color="#FF2C2A2A" Offset="1" />
                         <GradientStop Color="#FF3A3737" />
+                    <!--masheu-->
                     </RadialGradientBrush>
                 </Ellipse.Fill>
             </Ellipse>
