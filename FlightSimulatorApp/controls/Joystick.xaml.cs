@@ -8,6 +8,9 @@ namespace FlightSimulatorApp.controls
 {
     public partial class Joystick : UserControl
     {
-
+        public Joystick()
+        {
+            InitializeComponent();
+        }
     }
 }
