@@ -20,20 +20,20 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Grid.Column="0" Width="Auto" Height="Auto" HorizontalAlignment="Left"><Run Text="indicated-heading-deg" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="0" Grid.Column="7" Width="Auto" Height="Auto" HorizontalAlignment="Right" ><Run Text="700" FontSize="8"  Background="White"/></TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="7" Width="Auto" Height="Auto" HorizontalAlignment="Right" ><Run Text="10000" FontSize="10"  Background="White"/></TextBlock>
         <TextBlock Grid.Row="1" Grid.Column="0" Width="Auto" Height="Auto" HorizontalAlignment="Left"><Run Text="gps_indicated-vertical-speed" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="1" Grid.Column="7" Width="Auto" Height="Auto" HorizontalAlignment="Right"><Run Text="700" FontSize="8"  Background="White"/></TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="7" Width="Auto" Height="Auto" HorizontalAlignment="Right"><Run Text="10000" FontSize="10"  Background="White"/></TextBlock>
         <TextBlock Grid.Row="2" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Left"><Run Text="gps_indicated-ground-speed-kt" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="2" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right"><Run Text="700" FontSize="8"  Background="White"/></TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right"><Run Text="10000" FontSize="10"  Background="White"/></TextBlock>
         <TextBlock Grid.Row="3" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Left"><Run Text="airspeed-indicator_indicated-speed-kt" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="3" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right"><Run Text="700" FontSize="8"  Background="White"/></TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right"><Run Text="10000" FontSize="10"  Background="White"/></TextBlock>
         <TextBlock Grid.Row="4" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Left"><Run Text="gps_indicated-altitude-ft" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="4" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right"><Run Text="700" FontSize="8"  Background="White"/></TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right"><Run Text="10000" FontSize="10"  Background="White"/></TextBlock>
         <TextBlock Grid.Row="5" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Left"><Run Text="attitude-indicator_internal-roll-deg" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="5" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right"><Run Text="700" FontSize="8"  Background="White"/></TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right"><Run Text="10000" FontSize="10"  Background="White"/></TextBlock>
         <TextBlock Grid.Row="6" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Left"><Run Text="attitude-indicator_internal-pitch-deg" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="6" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right"><Run Text="700" FontSize="8"  Background="White"/></TextBlock>
+        <TextBlock Grid.Row="6" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right"><Run Text="10000" FontSize="10"  Background="White"/></TextBlock>
         <TextBlock Grid.Row="7" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Left"><Run Text="altimeter_indicated-altitude-ft" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="7" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right"><Run Text="700" FontSize="8"  Background="White"/></TextBlock>
+        <TextBlock Grid.Row="7" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right"><Run Text="10000" FontSize="10"  Background="White"/></TextBlock>
     </Grid>
 </UserControl>
