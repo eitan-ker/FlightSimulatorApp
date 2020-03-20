@@ -17,7 +17,10 @@
             <ColumnDefinition Width="*"/>
             
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="2" Margin="0.2,0,-0.4,0.4">
+      <Grid Grid.Column="0" Grid.ColumnSpan="3">
+            <Controls:map />
+        </Grid>
+        <Grid Grid.Column="3" Margin="0.2,0,-0.4,0.4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
