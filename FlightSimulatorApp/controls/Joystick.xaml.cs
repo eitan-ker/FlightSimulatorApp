@@ -12,5 +12,10 @@ namespace FlightSimulatorApp.controls
         {
             InitializeComponent();
         }
+
+        private void centerKnob_Completed(object sender, EventArgs e)
+        {
+
+        }
     }
 }
