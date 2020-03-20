@@ -1,0 +1,14 @@
+﻿<UserControl x:Class="FlightSimulatorApp.controls.map"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:m="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+             xmlns:local="clr-namespace:FlightSimulatorApp.controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <m:Map CredentialsProvider="ie23jE5sEoMv7YdPxCne~3eZIR-IykSa6AksvPxWgvg~AvQb0KdfUln5H_9QQwyhOsxzDjg8kOJVoS5dbFGJo72LNUfc4KvJDAFqz2Y5aS17"
+               Center="32.068529, 34.842030" ZoomLevel="17" Margin="-10,-10,9.6,10" Mode="AerialWithLabels" x:Name="simMap"/>
+    </Grid>
+</UserControl>
