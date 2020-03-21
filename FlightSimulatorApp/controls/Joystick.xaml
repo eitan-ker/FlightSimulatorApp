@@ -16,7 +16,7 @@
                     </RadialGradientBrush>
                 </Ellipse.Fill>
             </Ellipse>
-            <Ellipse HorizontalAlignment="Left" Height="90" VerticalAlignment="Top" Width="90" Canvas.Left="53" Canvas.Top="55">
+            <Ellipse x:Name="blackBase" HorizontalAlignment="Left" Height="90" VerticalAlignment="Top" Width="90" Canvas.Left="53" Canvas.Top="55">
                 <Ellipse.Fill>
                     <RadialGradientBrush>
                         <GradientStop Color="#FF0E0E0E" Offset="1" />
@@ -52,7 +52,7 @@
 
             <Canvas  x:Name="Knob" VerticalAlignment="Top" HorizontalAlignment="Left" Width="0" Height="0" RenderTransformOrigin="0.5,0.5" Canvas.Left="125" Canvas.Top="125">
                 <!--<Ellipse x:Name="Shadow" HorizontalAlignment="Left" Height="88" VerticalAlignment="Top" Width="86" Fill="#52131212" Canvas.Left="22" Canvas.Top="18" />-->
-                <Ellipse x:Name="KnobBase" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.5" Canvas.Top="-45" Canvas.Left="-50">
+                <Ellipse x:Name="KnobBase" AllowDrop="True" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.5" Canvas.Top="-45" Canvas.Left="-50">
                     <Ellipse.Fill>
                         <RadialGradientBrush>
                             <GradientStop Color="#FF8A8A8A" />
@@ -102,7 +102,7 @@
                         <RotateTransform Angle="-31.733"></RotateTransform>
                     </Ellipse.RenderTransform>
                 </Ellipse>
-                <Ellipse HorizontalAlignment="Left" Height="37" VerticalAlignment="Top" Width="39" RenderTransformOrigin="0.5,0.5" Canvas.Left="-49" Canvas.Top="-42">
+                <Ellipse x:Name="mainEllipse" AllowDrop="True" HorizontalAlignment="Left" Height="37" VerticalAlignment="Top" Width="39" RenderTransformOrigin="0.5,0.5" Canvas.Left="-49" Canvas.Top="-42" MouseMove="Ellipse_MouseMove" MouseUp="mainEllipse_MouseUp">
                     <Ellipse.RenderTransform>
                         <SkewTransform CenterX="-8"></SkewTransform>
                     </Ellipse.RenderTransform>
