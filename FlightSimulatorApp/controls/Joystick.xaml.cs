@@ -37,11 +37,19 @@ namespace FlightSimulatorApp.controls
             {
                 double x = e.GetPosition(this).X - knobLocation.X;
                 double y = e.GetPosition(this).Y - knobLocation.Y;
-                knobPosition.X = x;
-                knobPosition.Y = y;
-                if(Math.Sqrt(x*x + y*y) < Base.Width/2)
+                //knobPosition.X = x;
+                //knobPosition.Y = y;
+                /*if(Math.Sqrt(x*x + y*y) < Base.Width/2)
                 {
                     knobPosition.X = x;
+                    knobPosition.Y = y;
+                }*/
+                if(Math.Abs(x) < (blackBase.Width / 2))
+                {
+                    knobPosition.X = x;
+                }
+                if (Math.Abs(y) < (blackBase.Height / 2))
+                {
                     knobPosition.Y = y;
                 }
             }
