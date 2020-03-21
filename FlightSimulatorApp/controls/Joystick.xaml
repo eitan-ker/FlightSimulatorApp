@@ -50,7 +50,7 @@
                 </Path.RenderTransform>
             </Path>
 
-            <Canvas  x:Name="Knob" VerticalAlignment="Top" HorizontalAlignment="Left" Width="0" Height="0" RenderTransformOrigin="0.5,0.5" Canvas.Left="125" Canvas.Top="125">
+            <Canvas  x:Name="Knob" VerticalAlignment="Top" HorizontalAlignment="Left" Width="0" Height="0" RenderTransformOrigin="0.5,0.5" Canvas.Left="125" Canvas.Top="125" MouseUp="Knob_MouseUp">
                 <!--<Ellipse x:Name="Shadow" HorizontalAlignment="Left" Height="88" VerticalAlignment="Top" Width="86" Fill="#52131212" Canvas.Left="22" Canvas.Top="18" />-->
                 <Ellipse x:Name="KnobBase" AllowDrop="True" HorizontalAlignment="Left" Height="40" VerticalAlignment="Top" Width="40" RenderTransformOrigin="0.5,0.5" Canvas.Top="-45" Canvas.Left="-50">
                     <Ellipse.Fill>
@@ -102,7 +102,7 @@
                         <RotateTransform Angle="-31.733"></RotateTransform>
                     </Ellipse.RenderTransform>
                 </Ellipse>
-                <Ellipse x:Name="mainEllipse" AllowDrop="True" HorizontalAlignment="Left" Height="37" VerticalAlignment="Top" Width="39" RenderTransformOrigin="0.5,0.5" Canvas.Left="-49" Canvas.Top="-42" MouseMove="Ellipse_MouseMove" MouseUp="mainEllipse_MouseUp">
+                <Ellipse x:Name="mainEllipse" AllowDrop="True" HorizontalAlignment="Left" Height="37" VerticalAlignment="Top" Width="39" RenderTransformOrigin="0.5,0.5" Canvas.Left="-49" Canvas.Top="-42" MouseMove="Ellipse_MouseMove" >
                     <Ellipse.RenderTransform>
                         <SkewTransform CenterX="-8"></SkewTransform>
                     </Ellipse.RenderTransform>
