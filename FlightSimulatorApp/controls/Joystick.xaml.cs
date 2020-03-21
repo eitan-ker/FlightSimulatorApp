@@ -18,32 +18,39 @@ namespace FlightSimulatorApp.controls
             InitializeComponent();
         }
 
-        private void Ellipse_MouseMove(object sender, System.Windows.Input.MouseEventArgs e)
-        {
-            if(e.LeftButton== System.Windows.Input.MouseButtonState.Pressed)
-            {
-                Point mousePoint = e.GetPosition(sender as Ellipse);
-                double posY = mousePoint.Y;
-                double actualHeight = Base.Height - 50;
-                double marginBottom = actualHeight - (posY + KnobBase.Height);
-                double posX = mousePoint.X ;
-                double actualWidth = Base.Width - 20;
-                double marginRight = actualWidth - (posX + KnobBase.Width);
-                KnobBase.Margin = new Thickness(posX, posY, marginRight, marginBottom); //changing margin gives the ability for control to move
-                /*knobPosition.X = e.MouseDevice.GetPosition(sender as Ellipse).X;
-                knobPosition.Y = e.MouseDevice.GetPosition(sender as Ellipse).Y;*/
-            }
-        }
-
         private void centerKnob_Completed(object sender, EventArgs e)
         {
 
         }
 
+        private void Knob_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if(e.ChangedButton == MouseButton.Left)
+            {
+                knobLocation = e.GetPosition(this);
+            }
+        }
+
+        private void Knob_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(e.LeftButton == MouseButtonState.Pressed)
+            {
+                double x = e.GetPosition(this).X - knobLocation.X;
+                double y = e.GetPosition(this).Y - knobLocation.Y;
+                knobPosition.X = x;
+                knobPosition.Y = y;
+                if(Math.Sqrt(x*x + y*y) < Base.Width/2)
+                {
+                    knobPosition.X = x;
+                    knobPosition.Y = y;
+                }
+            }
+        }
+
         private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
         {
-            knobLocation.X = 0;
-            knobLocation.Y = 0;
+            knobPosition.X = 0;
+            knobPosition.Y = 0;
         }
     }
 }
