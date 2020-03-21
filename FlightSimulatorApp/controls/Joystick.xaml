@@ -102,7 +102,7 @@
                         <RotateTransform Angle="-31.733"></RotateTransform>
                     </Ellipse.RenderTransform>
                 </Ellipse>
-                <Ellipse x:Name="mainEllipse" AllowDrop="True" HorizontalAlignment="Left" Height="37" VerticalAlignment="Top" Width="39" RenderTransformOrigin="0.5,0.5" Canvas.Left="-49" Canvas.Top="-42" MouseMove="Ellipse_MouseMove">
+                <Ellipse x:Name="mainEllipse" AllowDrop="True" HorizontalAlignment="Left" Height="37" VerticalAlignment="Top" Width="39" RenderTransformOrigin="0.5,0.5" Canvas.Left="-49" Canvas.Top="-42" MouseMove="Ellipse_MouseMove" MouseUp="mainEllipse_MouseUp">
                     <Ellipse.RenderTransform>
                         <SkewTransform CenterX="-8"></SkewTransform>
                     </Ellipse.RenderTransform>
