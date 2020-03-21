@@ -23,10 +23,11 @@ namespace FlightSimulatorApp.controls
         {
             if(e.LeftButton== System.Windows.Input.MouseButtonState.Pressed)
             {
-                double posY = e.MouseDevice.GetPosition(sender as Ellipse).Y; ;
+                Point mousePoint = e.GetPosition(sender as Ellipse);
+                double posY = mousePoint.Y-20;
                 double actualHeight = Base.Height;
                 double marginBottom = actualHeight - (posY + KnobBase.Height);
-                double posX = e.MouseDevice.GetPosition(sender as Ellipse).X;
+                double posX = mousePoint.X - 20;
                 double actualWidth = Base.Width;
                 double marginRight = actualWidth - (posX + KnobBase.Width);
                 KnobBase.Margin = new Thickness(posX, posY, marginRight, marginBottom);
