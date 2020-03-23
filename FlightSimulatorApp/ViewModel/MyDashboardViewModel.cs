@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FlightSimulatorApp.ViewModel
 {
-    class SimAppVmodel
+    class MyDashboardViewModel
     {
     }
 }
