@@ -64,7 +64,10 @@
     <Compile Include="controls\Joystick.xaml.cs">
       <DependentUpon>Joystick.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewModel\SimAppVmodel.cs" />
+    <Compile Include="Model\IconnectionToserver.cs" />
+    <Compile Include="ViewModel\MyDashboardViewModel.cs" />
+    <Compile Include="ViewModel\MyJoystickViewModel.cs" />
+    <Compile Include="ViewModel\MyMapViewModel.cs" />
     <Page Include="controls\Dashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
