@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace FlightSimulatorApp.Model
 {
-    interface IdashBoardModel :INotifyPropertyChanged
+    interface IdashBoardModel :INotifyPropertyChanged,IconnectionToserver
     {
+        
     }
 }

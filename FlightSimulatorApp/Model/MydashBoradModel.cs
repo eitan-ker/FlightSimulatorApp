@@ -15,5 +15,20 @@ namespace FlightSimulatorApp.Model
         {
             this.telnetClient = telnetclient;
         }
+
+        public void connect(string ip, int port)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void disconnect()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void start()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
