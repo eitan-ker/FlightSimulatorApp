@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FlightSimulatorApp.ViewModel
+namespace FlightSimulatorApp.Model
 {
-    class FlightSimulatorAppViewModel
+    interface ItelnetClient
     {
     }
 }
