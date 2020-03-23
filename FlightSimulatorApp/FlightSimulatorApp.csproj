@@ -64,8 +64,7 @@
     <Compile Include="controls\Joystick.xaml.cs">
       <DependentUpon>Joystick.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\FlightSimulatorAppModel.cs" />
-    <Compile Include="ViewModel\FlightSimulatorAppViewModel.cs" />
+    <Compile Include="ViewModel\SimAppVmodel.cs" />
     <Page Include="controls\Dashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -98,6 +97,14 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\IdashBoardModel.cs" />
+    <Compile Include="Model\IjoystickModel.cs" />
+    <Compile Include="Model\ImapModel.cs" />
+    <Compile Include="Model\ItelnetClient.cs" />
+    <Compile Include="Model\MydashBoradModel.cs" />
+    <Compile Include="Model\MyjoystickModel.cs" />
+    <Compile Include="Model\MyMapModel.cs" />
+    <Compile Include="Model\MytelnetClient.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FlightSimulatorApp.Model
 {
-    class FlightSimulatorAppModel
+    interface IdashBoardModel
     {
     }
 }
