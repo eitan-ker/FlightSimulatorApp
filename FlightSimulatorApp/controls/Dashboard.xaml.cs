@@ -24,7 +24,7 @@ namespace FlightSimulatorApp.controls
         public Dashboard()
         {
             InitializeComponent();
-            DataContext = new VM_Dashboard();
+            //DataContext = new VM_Dashboard();
         }
     }
 }

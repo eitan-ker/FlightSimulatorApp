@@ -124,8 +124,7 @@ namespace FlightSimulatorApp.ViewModel
             model = simApp;
             model.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
              {
-                 NotifyPropertyChanged("VM_" + e.PropertyName);
- 
+                 //NotifyPropertyChanged("VM_" + e.PropertyName);
              };
         }
     }

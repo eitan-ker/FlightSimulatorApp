@@ -1,4 +1,5 @@
-﻿using FlightSimulatorApp.Model;
+﻿using FlightSimulatorApp.controls;
+using FlightSimulatorApp.Model;
 using FlightSimulatorApp.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -7,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -22,13 +24,27 @@ namespace FlightSimulatorApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MytelnetClient mytelnet;
         private VM_Dashboard dashboardVM;
         public MainWindow()
         {
-            
             InitializeComponent();
-            this.dashboardVM = new VM_Dashboard(new MySimApp(MytelnetClient.Instance));
+            mytelnet = new MytelnetClient();
+            this.dashboardVM = new VM_Dashboard(new MySimApp(new MytelnetClient()));
+            disconnect.Click -= Button_Click;
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            mytelnet.disconnect();
+        }
+
+        private void connect_Click(object sender, RoutedEventArgs e)
+        {
+            StackPanelFixed_SP.Children.Clear();
+            UserControl1 UC1 = new UserControl1();
+            StackPanelFixed_SP.Children.Add(UC1);
+            UC1.Visibility = System.Windows.Visibility.Visible;
+        }
     }
 }
