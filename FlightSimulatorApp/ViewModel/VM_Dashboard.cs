@@ -1,14 +1,28 @@
-﻿using System;
+﻿using FlightSimulatorApp.Model;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace FlightSimulatorApp.ViewModel
 {
-    class VM_Dashboard
+    class VM_Dashboard : INotifyPropertyChanged
     {
+        private ISimApp model;
         private int VM_indicated_heading_deg;
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertChanged(string propName)
+        {
+            /*var handler = PropertyChanged;
+            if(handler!=null)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }*/
+
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
+        }
         public int VM_Indicated_heading_deg
         {
             get
@@ -93,6 +107,7 @@ namespace FlightSimulatorApp.ViewModel
             }
         }
         private int VM_altimeter_indicated_altitude_ft;
+
         public int VM_Altimeter_indicated_altitude_ft
         {
             get
@@ -104,9 +119,14 @@ namespace FlightSimulatorApp.ViewModel
 
             }
         }
-        public VM_Dashboard()
+        public VM_Dashboard(ISimApp simApp)
         {
-            
+            model = simApp;
+            model.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
+             {
+                 NotifyPropertyChanged("VM_" + e.PropertyName);
+ 
+             };
         }
     }
 }
