@@ -12,11 +12,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="446*"/>
+            <ColumnDefinition Width="446*"/>
+            <ColumnDefinition Width="31*"/>
+            <ColumnDefinition Width="414*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" Grid.ColumnSpan="2">
+        <Grid Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,31.1,0.4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="142*"/>
                 <RowDefinition Height="25*"/>
@@ -24,7 +25,7 @@
             </Grid.RowDefinitions>
             <Controls:map Margin="31,20,29.6,0" Grid.RowSpan="3"/>
         </Grid>
-        <Grid Grid.Column="3" Margin="0.2,0,-0.4,0.4">
+        <Grid Grid.Column="2" Margin="0.2,0,-0.6,0.4" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
