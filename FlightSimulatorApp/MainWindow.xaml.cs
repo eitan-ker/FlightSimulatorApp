@@ -31,12 +31,6 @@ namespace FlightSimulatorApp
             InitializeComponent();
             mytelnet = new MytelnetClient();
             this.dashboardVM = new VM_Dashboard(new MySimApp(new MytelnetClient()));
-            disconnect.Click -= Button_Click;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            mytelnet.disconnect();
         }
 
         private void connect_Click(object sender, RoutedEventArgs e)
@@ -45,6 +39,11 @@ namespace FlightSimulatorApp
             UserControl1 UC1 = new UserControl1();
             StackPanelFixed_SP.Children.Add(UC1);
             UC1.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void disconnect_Click(object sender, RoutedEventArgs e)
+        {
+            mytelnet.disconnect();
         }
     }
 }
