@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FlightSimulatorApp.Model;
+using FlightSimulatorApp.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,11 @@ namespace FlightSimulatorApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        private VM_Dashboard dashboardVM;
         public MainWindow()
         {
             InitializeComponent();
+            this.dashboardVM = new VM_Dashboard(new MySimApp(new MytelnetClient()));
         }
 
     }
