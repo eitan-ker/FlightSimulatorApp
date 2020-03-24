@@ -106,7 +106,7 @@ namespace FlightSimulatorApp.ViewModel
         }
         public VM_Dashboard()
         {
-
+            
         }
     }
 }
