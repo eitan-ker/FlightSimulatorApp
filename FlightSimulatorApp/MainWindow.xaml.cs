@@ -25,8 +25,9 @@ namespace FlightSimulatorApp
         private VM_Dashboard dashboardVM;
         public MainWindow()
         {
+            
             InitializeComponent();
-            this.dashboardVM = new VM_Dashboard(new MySimApp(new MytelnetClient()));
+            this.dashboardVM = new VM_Dashboard(new MySimApp(MytelnetClient.Instance));
         }
 
     }
