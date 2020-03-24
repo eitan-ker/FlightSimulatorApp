@@ -12,11 +12,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="446*"/>
+            <ColumnDefinition Width="446*"/>
+            <ColumnDefinition Width="31*"/>
+            <ColumnDefinition Width="414*"/>
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0" Grid.ColumnSpan="2">
+        <Grid Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,31.1,0.4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="142*"/>
                 <RowDefinition Height="25*"/>
@@ -24,13 +25,16 @@
             </Grid.RowDefinitions>
             <Controls:map Margin="31,20,29.6,0" Grid.RowSpan="3"/>
         </Grid>
-        <Grid Grid.Column="3" Margin="0.2,0,-0.4,0.4">
+        <Grid Grid.Column="2" Margin="0.2,0,-0.6,0.4" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Controls:Dashboard Grid.Row="0" x:Name="dashboard" Margin="-17,20,30,40"/>
             <Controls:Joystick x:Name="joystick" Margin="-10,-90,-10,0.2" Grid.Row="1"  />
+            <Button x:Name="disconnect" Content="disconnect" HorizontalAlignment="Left" Margin="253,200,0,0" VerticalAlignment="Top" Width="75" Click="disconnect_Click"/>
         </Grid>
+        <Button Content="connect" Grid.Column="3" HorizontalAlignment="Left" Margin="26,200,200,0" VerticalAlignment="Top" Width="76" Click="connect_Click"/>
+        <StackPanel x:Name="StackPanelFixed_SP" Margin="20,20,20,80"/>
     </Grid>
 </Window>

@@ -8,6 +8,7 @@ namespace FlightSimulatorApp.Model
 {
     class MytelnetClient : ItelnetClient
     {
+        
         public void connect(string ip, int port)
         {
             throw new NotImplementedException();

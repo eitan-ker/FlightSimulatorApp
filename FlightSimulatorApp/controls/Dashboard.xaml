@@ -19,20 +19,20 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Grid.Column="0" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center"><Run Text="indicated-heading-deg" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="0" Grid.Column="7" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="#####" FontSize="10"  Background="White"/></TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="7" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="{Binding VM_Indicated_heading_deg}"  FontSize="10"  Background="White"/></TextBlock>
         <TextBlock Grid.Row="1" Grid.Column="0" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center"><Run Text="gps_indicated-vertical-speed" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="1" Grid.Column="7" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="#####" FontSize="10"  Background="White"/></TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="7" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="{Binding VM_Gps_indicated_vertical_speed}" FontSize="10"  Background="White"/></TextBlock>
         <TextBlock Grid.Row="2" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center"><Run Text="gps_indicated-ground-speed-kt" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="2" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="#####" FontSize="10"  Background="White"/></TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="{Binding VM_Gps_indicated_ground_speed_kt}" FontSize="10"  Background="White"/></TextBlock>
         <TextBlock Grid.Row="3" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center"><Run Text="airspeed-indicator_indicated-speed-kt" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="3" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="#####" FontSize="10"  Background="White"/></TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="{Binding VM_Airspeed_indicator_indicated_speed_kt}" FontSize="10"  Background="White"/></TextBlock>
         <TextBlock Grid.Row="4" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center"><Run Text="gps_indicated-altitude-ft" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="4" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="#####" FontSize="10"  Background="White"/></TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="{Binding VM_Gps_indicated_altitude_ft}" FontSize="10"  Background="White"/></TextBlock>
         <TextBlock Grid.Row="5" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center"><Run Text="attitude-indicator_internal-roll-deg" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="5" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="#####" FontSize="10"  Background="White"/></TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="{Binding VM_Attitude_indicator_internal_roll_deg}" FontSize="10"  Background="White"/></TextBlock>
         <TextBlock Grid.Row="6" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center"><Run Text="attitude-indicator_internal-pitch-deg" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="6" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="#####" FontSize="10"  Background="White"/></TextBlock>
+        <TextBlock Grid.Row="6" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="{Binding VM_Attitude_indicator_internal_pitch_deg}" FontSize="10"  Background="White"/></TextBlock>
         <TextBlock Grid.Row="7" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center"><Run Text="altimeter_indicated-altitude-ft" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="7" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="#####" FontSize="10"  Background="White"/></TextBlock>
+        <TextBlock Grid.Row="7" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="{Binding VM_Altimeter_indicated_altitude_ft}" FontSize="10"  Background="White"/></TextBlock>
     </Grid>
 </UserControl>
