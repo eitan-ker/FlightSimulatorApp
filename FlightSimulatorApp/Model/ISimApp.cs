@@ -9,8 +9,17 @@ namespace FlightSimulatorApp.Model
 {
     interface ISimApp : INotifyPropertyChanged
     {
+        int Indicated_heading_deg { get; set; }
+        int Gps_indicated_vertical_speed { get; set; }
+        int Gps_indicated_ground_speed_kt { get; set; }
+        int Airspeed_indicator_indicated_speed_kt { get; set; }
+        int Gps_indicated_altitude_ft { get; set; }
+        int Attitude_indicator_internal_roll_deg { get; set; }
+        int Attitude_indicator_internal_pitch_deg { get; set; }
+        int Altimeter_indicated_altitude_ft { get; set; }
         void connect(string ip, int port);
         void disconnect();
         void start();
+
     }
 }
