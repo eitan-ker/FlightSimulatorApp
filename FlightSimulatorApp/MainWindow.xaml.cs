@@ -24,13 +24,11 @@ namespace FlightSimulatorApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MytelnetClient mytelnet;
-        private VM_Dashboard dashboardVM;
+        VM_Joystick JoystickVM;
         public MainWindow()
         {
             InitializeComponent();
-            mytelnet = new MytelnetClient();
-            this.dashboardVM = new VM_Dashboard(new MySimApp(new MytelnetClient()));
+            this.JoystickVM = new VM_Joystick(new MySimApp(new MytelnetClient()));
         }
 
         private void connect_Click(object sender, RoutedEventArgs e)
@@ -43,12 +41,25 @@ namespace FlightSimulatorApp
 
         private void disconnect_Click(object sender, RoutedEventArgs e)
         {
-            mytelnet.disconnect();
+            this.JoystickVM.getModel().disconnect();
+            disconnect.IsChecked = false;
         }
 
         private void dashboard_Loaded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void disconnect_Checked(object sender, RoutedEventArgs e) //toggle button - if there wansnt attempt to connect yet, this button will be grey and not clickable
+        {
+            if((sender as ToggleButton).IsChecked == false)
+            {
+                /*need to implement that button will be clickable when connection established successfully*/
+            } else
+            {
+                disconnect.IsChecked = false;
+                disconnect.IsEnabled = false;
+            }
         }
     }
 }

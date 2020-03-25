@@ -11,6 +11,18 @@ namespace FlightSimulatorApp.Model
     {
         TcpClient client;
         NetworkStream stream;
+        bool Connectenabled;
+        public bool ConnectEnabled
+        {
+            get
+            {
+                return Connectenabled;
+            }
+            set
+            {
+                Connectenabled = value;
+            }
+        }
 
         public void connect(string ip, int port)
         {

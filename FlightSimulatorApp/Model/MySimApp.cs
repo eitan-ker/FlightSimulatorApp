@@ -29,43 +29,108 @@ namespace FlightSimulatorApp.Model
             stop = false;
         }
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void NotifyPropertyChanged(string propName)
+        {
+            if(this.PropertyChanged!=null)
+            {
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+            }
+        }
+
         public int Indicated_heading_deg {
             get {
-                throw new NotImplementedException()
+                return this.indicated_heading_deg;
              }
             set {
-                throw new NotImplementedException();
+                this.indicated_heading_deg = value;
+                NotifyPropertyChanged("Indicated_heading_deg");
             }
         }
         public int Gps_indicated_vertical_speed
         {
             get
             {
-                throw new NotImplementedException();
+                return this.gps_indicated_vertical_speed;
             }
             set
             {
-                throw new NotImplementedException();
+                this.gps_indicated_vertical_speed = value;
+                NotifyPropertyChanged("Gps_indicated_vertical_speed");
             }
         }
         public int Gps_indicated_ground_speed_kt
         {
             get
             {
-                throw new NotImplementedException();
+                return this.gps_indicated_ground_speed_kt;
             }
             set
             {
-                throw new NotImplementedException();
+                this.gps_indicated_ground_speed_kt = value;
+                NotifyPropertyChanged("Gps_indicated_ground_speed_kt");
             }
         }
-        public int Airspeed_indicator_indicated_speed_kt { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int Gps_indicated_altitude_ft { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int Attitude_indicator_internal_roll_deg { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int Attitude_indicator_internal_pitch_deg { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-        public int Altimeter_indicated_altitude_ft { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        public int Airspeed_indicator_indicated_speed_kt
+        {
+            get
+            {
+                return this.airspeed_indicator_indicated_speed_kt;
+            }
+            set
+            {
+                this.airspeed_indicator_indicated_speed_kt = value;
+                NotifyPropertyChanged("Airspeed_indicator_indicated_speed_kt");
+            }
+        }
+        public int Gps_indicated_altitude_ft
+        {
+            get
+            {
+                return this.gps_indicated_altitude_ft;
+            }
+            set
+            {
+                this.gps_indicated_altitude_ft = value;
+                NotifyPropertyChanged("Gps_indicated_altitude_ft");
+            }
+        }
+        public int Attitude_indicator_internal_roll_deg
+        {
+            get
+            {
+                return this.attitude_indicator_internal_roll_deg;
+            }
+            set
+            {
+                this.attitude_indicator_internal_roll_deg = value;
+                NotifyPropertyChanged("Attitude_indicator_internal_roll_deg");
+            }
+        }
+        public int Attitude_indicator_internal_pitch_deg
+        {
+            get
+            {
+                return this.attitude_indicator_internal_pitch_deg;
+            }
+            set
+            {
+                this.attitude_indicator_internal_pitch_deg = value;
+                NotifyPropertyChanged("Attitude_indicator_internal_pitch_deg");
+            }
+        }
+        public int Altimeter_indicated_altitude_ft
+        {
+            get
+            {
+                return this.altimeter_indicated_altitude_ft;
+            }
+            set
+            {
+                this.altimeter_indicated_altitude_ft = value;
+                NotifyPropertyChanged("Altimeter_indicated_altitude_ft");
+            }
+        }
 
         public void connect(string ip, int port)
         {
@@ -84,6 +149,16 @@ namespace FlightSimulatorApp.Model
             sb = new StringBuilder("set /controls/flight/rudder " + rudder + "/n"); //build the command to set the rudder value in sim
             string rudderCommand = sb.ToString();
             this._telnetClient.write(rudderCommand);
+        }
+
+        public void moveAileron(int aileron)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void moveThrottle(int throttle)
+        {
+            throw new NotImplementedException();
         }
 
         public void start()

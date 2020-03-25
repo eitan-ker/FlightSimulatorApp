@@ -32,7 +32,7 @@
             </Grid.RowDefinitions>
             <Controls:Dashboard Grid.Row="0" x:Name="dashboard" Margin="-17,20,30,40" Loaded="dashboard_Loaded"/>
             <Controls:Joystick x:Name="joystick" Margin="-10,-90,-10,0.2" Grid.Row="1"  />
-            <Button x:Name="disconnect" Content="disconnect" HorizontalAlignment="Left" Margin="253,200,0,0" VerticalAlignment="Top" Width="75" Click="disconnect_Click"/>
+            <ToggleButton x:Name="disconnect"  IsEnabled="False"  Content="disconnect" HorizontalAlignment="Left" Margin="253,200,0,0" VerticalAlignment="Top" Width="75" Click="disconnect_Click" Checked="disconnect_Checked"/>
         </Grid>
         <Button Content="connect" Grid.Column="3" HorizontalAlignment="Left" Margin="26,200,200,0" VerticalAlignment="Top" Width="76" Click="connect_Click"/>
         <StackPanel x:Name="StackPanelFixed_SP" Margin="20,20,20,80"/>
