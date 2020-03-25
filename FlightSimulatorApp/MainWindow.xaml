@@ -7,7 +7,7 @@
         xmlns:Controls="clr-namespace:FlightSimulatorApp.controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1345">
-    <Grid>
+    <Grid Background="LightGray">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -30,7 +30,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Controls:Dashboard Grid.Row="0" x:Name="dashboard" Margin="-17,20,30,40"/>
+            <Controls:Dashboard Grid.Row="0" x:Name="dashboard" Margin="-17,20,30,40" Loaded="dashboard_Loaded"/>
             <Controls:Joystick x:Name="joystick" Margin="-10,-90,-10,0.2" Grid.Row="1"  />
             <Button x:Name="disconnect" Content="disconnect" HorizontalAlignment="Left" Margin="253,200,0,0" VerticalAlignment="Top" Width="75" Click="disconnect_Click"/>
         </Grid>

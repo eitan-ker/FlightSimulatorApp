@@ -45,5 +45,10 @@ namespace FlightSimulatorApp
         {
             mytelnet.disconnect();
         }
+
+        private void dashboard_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
