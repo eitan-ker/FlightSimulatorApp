@@ -37,7 +37,15 @@ namespace FlightSimulatorApp.Model
             stop = false;
             CodeMap = new Dictionary<string, object>();
             CodeMap.Add("/instrumentation/heading-indicator/indicated-heading-deg", this.Indicated_heading_deg);
-            CodeMap.Add("/instrumentation/heading-indicator/indicated-heading-deg", this.Gps_indicated_vertical_speed);
+            CodeMap.Add("/instrumentation/gps/indicated-vertical-speed", this.Gps_indicated_vertical_speed);
+            CodeMap.Add("/instrumentation/gps/indicated-ground-speed-kt", this.Gps_indicated_ground_speed_kt);
+            CodeMap.Add("/instrumentation/airspeed-indicator/indicated-speed-kt", this.Airspeed_indicator_indicated_speed_kt);
+            CodeMap.Add("/instrumentation/altimeter/indicated-altitude-ft", this.Gps_indicated_altitude_ft);
+            CodeMap.Add("/instrumentation/attitude-indicator/internal-roll-deg", this.Attitude_indicator_internal_roll_deg);
+            CodeMap.Add("/instrumentation/attitude-indicator/internal-pitch-deg", this.Attitude_indicator_internal_pitch_deg);
+            CodeMap.Add("/instrumentation/gps/indicated-altitude-ft", this.Altimeter_indicated_altitude_ft);
+            CodeMap.Add("/position/latitude-deg", this.Gps_indicated_vertical_speed);
+            CodeMap.Add("/position/longitude-deg", this.Gps_indicated_vertical_speed);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -48,7 +56,25 @@ namespace FlightSimulatorApp.Model
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
-
+        public double Latitude_deg
+        {
+            get
+            {
+                if (Double.TryParse(CodeMap["/position/latitude-deg"].ToString(), out latitude_deg))
+                {
+                    return this.latitude_deg;
+                }
+                else
+                {
+                    throw new Exception("Indicated_heading_deg has a non-numeric value");
+                }
+            }
+            set
+            {
+                CodeMap["/position/latitude-deg"] = value;
+                NotifyPropertyChanged("Latitude_deg");
+            }
+        }
         public int Indicated_heading_deg {
 
             get {
