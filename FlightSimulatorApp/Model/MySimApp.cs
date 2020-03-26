@@ -10,7 +10,8 @@ namespace FlightSimulatorApp.Model
 {
     class MySimApp : ISimApp
     {
-        public Dictionary<string, object> CodeMap;
+        public Dictionary<string, object> CodeMapsend;
+        public Dictionary<string, object> CodeMaprecieve;
         string[] var_locations_in_simulator_send = {"/controls/engines/current-engine/throttle", "/controls/flight/rudder", "/controls/flight/elevator",
         "/controls/flight/aileron"};
         string[] var_locations_in_simulator_recieve = {"/instrumentation/heading-indicator/indicated-heading-deg", "/instrumentation/gps/indicated-vertical-speed",
@@ -25,7 +26,7 @@ namespace FlightSimulatorApp.Model
         private int attitude_indicator_internal_pitch_deg;
         private int altimeter_indicated_altitude_ft;
         private double latitude_deg; //latitude of the plane
-        private double longitude_deg //logtitude of the plane
+        private double longitude_deg; //logtitude of the plane
 
 
         ItelnetClient _telnetClient;
@@ -35,23 +36,24 @@ namespace FlightSimulatorApp.Model
         {
             this._telnetClient = telnetClient;
             stop = false;
-            CodeMap = new Dictionary<string, object>();
-            CodeMap.Add("/instrumentation/heading-indicator/indicated-heading-deg", this.Indicated_heading_deg);
-            CodeMap.Add("/instrumentation/gps/indicated-vertical-speed", this.Gps_indicated_vertical_speed);
-            CodeMap.Add("/instrumentation/gps/indicated-ground-speed-kt", this.Gps_indicated_ground_speed_kt);
-            CodeMap.Add("/instrumentation/airspeed-indicator/indicated-speed-kt", this.Airspeed_indicator_indicated_speed_kt);
-            CodeMap.Add("/instrumentation/altimeter/indicated-altitude-ft", this.Gps_indicated_altitude_ft);
-            CodeMap.Add("/instrumentation/attitude-indicator/internal-roll-deg", this.Attitude_indicator_internal_roll_deg);
-            CodeMap.Add("/instrumentation/attitude-indicator/internal-pitch-deg", this.Attitude_indicator_internal_pitch_deg);
-            CodeMap.Add("/instrumentation/gps/indicated-altitude-ft", this.Altimeter_indicated_altitude_ft);
-            CodeMap.Add("/position/latitude-deg", this.Gps_indicated_vertical_speed);
-            CodeMap.Add("/position/longitude-deg", this.Gps_indicated_vertical_speed);
+            CodeMapsend = new Dictionary<string, object>();
+            CodeMapsend.Add("get /instrumentation/heading-indicator/indicated-heading-deg", this.Indicated_heading_deg);
+            CodeMapsend.Add("get /instrumentation/gps/indicated-vertical-speed", this.Gps_indicated_vertical_speed);
+            CodeMapsend.Add("get /instrumentation/gps/indicated-ground-speed-kt", this.Gps_indicated_ground_speed_kt);
+            CodeMapsend.Add("get /instrumentation/airspeed-indicator/indicated-speed-kt", this.Airspeed_indicator_indicated_speed_kt);
+            CodeMapsend.Add("get /instrumentation/altimeter/indicated-altitude-ft", this.Gps_indicated_altitude_ft);
+            CodeMapsend.Add("get /instrumentation/attitude-indicator/internal-roll-deg", this.Attitude_indicator_internal_roll_deg);
+            CodeMapsend.Add("get /instrumentation/attitude-indicator/internal-pitch-deg", this.Attitude_indicator_internal_pitch_deg);
+            CodeMapsend.Add("get /instrumentation/gps/indicated-altitude-ft", this.Altimeter_indicated_altitude_ft);
+            CodeMapsend.Add("get /position/latitude-deg", this.Latitude_deg);
+            CodeMapsend.Add("get /position/longitude-deg", this.Longitude_deg);
+
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {
-            if(this.PropertyChanged!=null)
+            if (this.PropertyChanged != null)
             {
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
@@ -60,35 +62,78 @@ namespace FlightSimulatorApp.Model
         {
             get
             {
-                if (Double.TryParse(CodeMap["/position/latitude-deg"].ToString(), out latitude_deg))
+                if (CodeMapsend.ContainsKey("get /position/latitude-deg"))
                 {
-                    return this.latitude_deg;
+                    if (Double.TryParse(CodeMapsend["get /position/latitude-deg"].ToString(), out this.latitude_deg))
+                    {
+                        return this.latitude_deg;
+                    }
+                    else
+                    {
+                        throw new Exception("Latitude_deg has a non-numeric value");
+                    }
                 }
                 else
                 {
-                    throw new Exception("Indicated_heading_deg has a non-numeric value");
+                    return this.latitude_deg;
                 }
             }
             set
             {
-                CodeMap["/position/latitude-deg"] = value;
+                CodeMapsend["get /position/latitude-deg"] = value;
                 NotifyPropertyChanged("Latitude_deg");
             }
         }
-        public int Indicated_heading_deg {
-
-            get {
-                if (int.TryParse(CodeMap["stat"].ToString(), out indicated_heading_deg))
+        public double Longitude_deg
+        {
+            get
+            {
+                if (CodeMapsend.ContainsKey("get /position/longitude-deg"))
                 {
-                    return this.indicated_heading_deg;
+                    if (Double.TryParse(CodeMapsend["get /position/longitude-deg"].ToString(), out longitude_deg))
+                    {
+                        return this.longitude_deg;
+                    }
+                    else
+                    {
+                        throw new Exception("Longtitue_deg has a non-numeric value");
+                    }
                 }
                 else
                 {
-                    throw new Exception("Indicated_heading_deg has a non-numeric value");
+                    return this.longitude_deg;
                 }
-             }
-            set {
-                CodeMap["/instrumentation/heading-indicator/indicated-heading-deg"] = value;
+            }
+            set
+            {
+                CodeMapsend["get /position/longitude-deg"] = value;
+                NotifyPropertyChanged("Longitude_deg");
+            }
+        }
+        public int Indicated_heading_deg
+        {
+
+            get
+            {
+                if (CodeMapsend.ContainsKey("get /instrumentation/heading-indicator/indicated-heading-deg"))
+                {
+                    if (int.TryParse(CodeMapsend["get /instrumentation/heading-indicator/indicated-heading-deg"].ToString(), out indicated_heading_deg))
+                    {
+                        return this.indicated_heading_deg;
+                    }
+                    else
+                    {
+                        throw new Exception("Indicated_heading_deg has a non-numeric value");
+                    }
+                }
+                else
+                {
+                    return this.indicated_heading_deg;
+                }
+            }
+            set
+            {
+                CodeMapsend["get /instrumentation/heading-indicator/indicated-heading-deg"] = value;
                 NotifyPropertyChanged("Indicated_heading_deg");
             }
         }
@@ -96,18 +141,25 @@ namespace FlightSimulatorApp.Model
         {
             get
             {
-                if (int.TryParse(CodeMap["/instrumentation/gps/indicated-vertical-speed"].ToString(), out this.gps_indicated_vertical_speed))
+                if (CodeMapsend.ContainsKey("get /instrumentation/gps/indicated-vertical-speed"))
                 {
-                    return this.gps_indicated_vertical_speed;
+                    if (int.TryParse(CodeMapsend["get /instrumentation/gps/indicated-vertical-speed"].ToString(), out this.gps_indicated_vertical_speed))
+                    {
+                        return this.gps_indicated_vertical_speed;
+                    }
+                    else
+                    {
+                        throw new Exception("Gps_indicated_vertical_speed has a non-numeric value");
+                    }
                 }
                 else
                 {
-                    throw new Exception("Indicated_heading_deg has a non-numeric value");
+                    return this.gps_indicated_vertical_speed;
                 }
             }
             set
             {
-                CodeMap["/instrumentation/gps/indicated-vertical-speed"] = value;
+                CodeMapsend["get /instrumentation/gps/indicated-vertical-speed"] = value;
                 NotifyPropertyChanged("Gps_indicated_vertical_speed");
             }
         }
@@ -115,11 +167,25 @@ namespace FlightSimulatorApp.Model
         {
             get
             {
-                return this.gps_indicated_ground_speed_kt;
+                if (CodeMapsend.ContainsKey("get /instrumentation/gps/indicated-ground-speed-kt"))
+                {
+                    if (int.TryParse(CodeMapsend["get /instrumentation/gps/indicated-ground-speed-kt"].ToString(), out this.gps_indicated_ground_speed_kt))
+                    {
+                        return this.gps_indicated_ground_speed_kt;
+                    }
+                    else
+                    {
+                        throw new Exception("Gps_indicated_ground_speed_kt has a non-numeric value");
+                    }
+                }
+                else
+                {
+                    return this.gps_indicated_ground_speed_kt;
+                }
             }
             set
             {
-                this.gps_indicated_ground_speed_kt = value;
+                CodeMapsend["get /instrumentation/gps/indicated-ground-speed-kt"] = value;
                 NotifyPropertyChanged("Gps_indicated_ground_speed_kt");
             }
         }
@@ -127,11 +193,25 @@ namespace FlightSimulatorApp.Model
         {
             get
             {
-                return this.airspeed_indicator_indicated_speed_kt;
+                if (CodeMapsend.ContainsKey("get /instrumentation/airspeed-indicator/indicated-speed-kt"))
+                {
+                    if (int.TryParse(CodeMapsend["get /instrumentation/airspeed-indicator/indicated-speed-kt"].ToString(), out this.airspeed_indicator_indicated_speed_kt))
+                    {
+                        return this.airspeed_indicator_indicated_speed_kt;
+                    }
+                    else
+                    {
+                        throw new Exception("Airspeed_indicator_indicated_speed_kt has a non-numeric value");
+                    }
+                }
+                else
+                {
+                    return this.airspeed_indicator_indicated_speed_kt;
+                }
             }
             set
             {
-                this.airspeed_indicator_indicated_speed_kt = value;
+                CodeMapsend["get /instrumentation/airspeed-indicator/indicated-speed-kt"] = value;
                 NotifyPropertyChanged("Airspeed_indicator_indicated_speed_kt");
             }
         }
@@ -139,11 +219,25 @@ namespace FlightSimulatorApp.Model
         {
             get
             {
-                return this.gps_indicated_altitude_ft;
+                if (CodeMapsend.ContainsKey("get /instrumentation/altimeter/indicated-altitude-ft"))
+                {
+                    if (int.TryParse(CodeMapsend["get /instrumentation/altimeter/indicated-altitude-ft"].ToString(), out this.gps_indicated_altitude_ft))
+                    {
+                        return this.airspeed_indicator_indicated_speed_kt;
+                    }
+                    else
+                    {
+                        throw new Exception("Airspeed_indicator_indicated_speed_kt has a non-numeric value");
+                    }
+                }
+                else
+                {
+                    return this.gps_indicated_altitude_ft;
+                }
             }
             set
             {
-                this.gps_indicated_altitude_ft = value;
+                CodeMapsend["get /instrumentation/altimeter/indicated-altitude-ft"] = value;
                 NotifyPropertyChanged("Gps_indicated_altitude_ft");
             }
         }
@@ -151,11 +245,25 @@ namespace FlightSimulatorApp.Model
         {
             get
             {
-                return this.attitude_indicator_internal_roll_deg;
+                if (CodeMapsend.ContainsKey("get /instrumentation/attitude-indicator/internal-roll-deg"))
+                {
+                    if (int.TryParse(CodeMapsend["get /instrumentation/attitude-indicator/internal-roll-deg"].ToString(), out this.attitude_indicator_internal_roll_deg))
+                    {
+                        return this.attitude_indicator_internal_roll_deg;
+                    }
+                    else
+                    {
+                        throw new Exception("Airspeed_indicator_indicated_speed_kt has a non-numeric value");
+                    }
+                }
+                else
+                {
+                    return this.attitude_indicator_internal_roll_deg;
+                }
             }
             set
             {
-                this.attitude_indicator_internal_roll_deg = value;
+                CodeMapsend["get /instrumentation/attitude-indicator/internal-roll-deg"] = value;
                 NotifyPropertyChanged("Attitude_indicator_internal_roll_deg");
             }
         }
@@ -163,11 +271,25 @@ namespace FlightSimulatorApp.Model
         {
             get
             {
-                return this.attitude_indicator_internal_pitch_deg;
+                if (CodeMapsend.ContainsKey("get /instrumentation/attitude-indicator/internal-pitch-deg"))
+                {
+                    if (int.TryParse(CodeMapsend["get /instrumentation/attitude-indicator/internal-pitch-deg"].ToString(), out this.attitude_indicator_internal_pitch_deg))
+                    {
+                        return this.attitude_indicator_internal_pitch_deg;
+                    }
+                    else
+                    {
+                        throw new Exception("Attitude_indicator_internal_pitch_deg has a non-numeric value");
+                    }
+                }
+                else
+                {
+                    return this.attitude_indicator_internal_pitch_deg;
+                }
             }
             set
             {
-                this.attitude_indicator_internal_pitch_deg = value;
+                CodeMapsend["get /instrumentation/attitude-indicator/internal-pitch-deg"] = value;
                 NotifyPropertyChanged("Attitude_indicator_internal_pitch_deg");
             }
         }
@@ -175,11 +297,22 @@ namespace FlightSimulatorApp.Model
         {
             get
             {
+                if (CodeMapsend.ContainsKey("get /instrumentation/gps/indicated-altitude-ft"))
+                {
+                    if (int.TryParse(CodeMapsend["get /instrumentation/gps/indicated-altitude-ft"].ToString(), out this.altimeter_indicated_altitude_ft))
+                    {
+                        return this.altimeter_indicated_altitude_ft;
+                    }
+                    else
+                    {
+                        throw new Exception("Airspeed_indicator_indicated_speed_kt has a non-numeric value");
+                    }
+                }
                 return this.altimeter_indicated_altitude_ft;
             }
             set
             {
-                this.altimeter_indicated_altitude_ft = value;
+                CodeMapsend["get /instrumentation/gps/indicated-altitude-ft"] = value;
                 NotifyPropertyChanged("Altimeter_indicated_altitude_ft");
             }
         }
@@ -198,7 +331,7 @@ namespace FlightSimulatorApp.Model
             StringBuilder sb = new StringBuilder("set " + this.var_locations_in_simulator_send[2] + " " + elevator + "/n"); //build the command to set the elevator value in sim
             string elevatorCommand = sb.ToString();
             this._telnetClient.write(elevatorCommand);
-            sb = new StringBuilder("set " + this.var_locations_in_simulator_send[1] +" " + rudder + "/n"); //build the command to set the rudder value in sim
+            sb = new StringBuilder("set " + this.var_locations_in_simulator_send[1] + " " + rudder + "/n"); //build the command to set the rudder value in sim
             string rudderCommand = sb.ToString();
             this._telnetClient.write(rudderCommand);
         }
