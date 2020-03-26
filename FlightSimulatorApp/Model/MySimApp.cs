@@ -353,17 +353,15 @@ namespace FlightSimulatorApp.Model
             {
                 while (!stop)
                 {
-
+                    Dictionary<string, object> temp = new Dictionary<string, object>(CodeMapsend);
                     foreach (KeyValuePair<string, object> entry in CodeMapsend)
                     {
                         _telnetClient.write(entry.Key);
 
-                        // using this way is problematic cause enetry.value is read only, can not be changed.
-                        // is this a goos solution?
+                        temp[entry.Key] = Double.Parse(_telnetClient.read());
                         
-                        object temp = entry.Value;
-                        temp = Double.Parse(_telnetClient.read());
                     }
+                    CodeMapsend = temp;
                     Thread.Sleep(250); // read data in 4Hz
                 }
             }).Start();
