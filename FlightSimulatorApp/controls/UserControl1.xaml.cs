@@ -38,7 +38,7 @@ namespace FlightSimulatorApp.controls
             }
             if (passed_In_valid_Port)
             {
-                ItelnetClient myClient = new MytelnetClient();
+                MySimApp myClient = new MySimApp(new MytelnetClient());
                 myClient.connect(ip, port);
                 Window.GetWindow(this).Close();
             }
