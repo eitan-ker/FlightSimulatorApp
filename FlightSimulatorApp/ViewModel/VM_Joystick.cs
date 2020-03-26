@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlightSimulatorApp.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,11 @@ namespace FlightSimulatorApp.ViewModel
 {
     class VM_Joystick
     {
+        MySimApp model;
+        public MySimApp getModel()
+        {
+            return this.model;
+        }
         private int VM_aileron;
         public int VM_Aileron
         {
@@ -58,9 +64,9 @@ namespace FlightSimulatorApp.ViewModel
         }
 
 
-        VM_Joystick()
+        public VM_Joystick(MySimApp simApp)
         {
-
+            this.model = simApp;
         }
     }
 }

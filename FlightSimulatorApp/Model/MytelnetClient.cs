@@ -16,6 +16,7 @@ namespace FlightSimulatorApp.Model
         {
           
              client = new TcpClient(ip, port);
+            
 
             string message = "get /position/latitude-deg\n";
                  // Translate the passed message into ASCII and store it as a Byte array.

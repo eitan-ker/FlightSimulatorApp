@@ -1,4 +1,5 @@
-﻿using FlightSimulatorApp.ViewModel;
+﻿using FlightSimulatorApp.Model;
+using FlightSimulatorApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace FlightSimulatorApp.controls
         public Dashboard()
         {
             InitializeComponent();
-            //DataContext = new VM_Dashboard();
+            DataContext = new VM_Dashboard(new MySimApp(new MytelnetClient()));
         }
     }
 }

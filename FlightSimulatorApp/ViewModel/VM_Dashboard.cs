@@ -11,9 +11,17 @@ namespace FlightSimulatorApp.ViewModel
     class VM_Dashboard : INotifyPropertyChanged
     {
         private ISimApp model;
-        private int VM_indicated_heading_deg;
+
         public event PropertyChangedEventHandler PropertyChanged;
-        public void NotifyPropertChanged(string propName)
+        public VM_Dashboard(ISimApp simApp)
+        {
+            model = simApp;
+            model.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
+            {
+                NotifyPropertyChanged("VM_" + e.PropertyName);
+            };
+        }
+        public void NotifyPropertyChanged(string propName)
         {
             /*var handler = PropertyChanged;
             if(handler!=null)
@@ -23,109 +31,18 @@ namespace FlightSimulatorApp.ViewModel
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
-        public int VM_Indicated_heading_deg
-        {
-            get
-            {
-                return VM_indicated_heading_deg;
-            }
-            set
-            {
+        public int VM_Indicated_heading_deg => model.Indicated_heading_deg;
+        public int VM_Gps_indicated_vertical_speed => model.Gps_indicated_vertical_speed;
+        public int VM_Gps_indicated_ground_speed_kt => model.Gps_indicated_ground_speed_kt;
+        public int VM_Airspeed_indicator_indicated_speed_kt => model.Airspeed_indicator_indicated_speed_kt;
 
-            }
-        }
-        private int VM_gps_indicated_vertical_speed;
-        public int VM_Gps_indicated_vertical_speed
-        {
-            get
-            {
-                return VM_gps_indicated_vertical_speed;
-            }
-            set
-            {
 
-            }
-        }
-        private int VM_gps_indicated_ground_speed_kt;
-        public int VM_Gps_indicated_ground_speed_kt
-        {
-            get
-            {
-                return VM_gps_indicated_ground_speed_kt;
-            }
-            set
-            {
+        public int VM_Gps_indicated_altitude_ft => model.Gps_indicated_altitude_ft;
 
-            }
-        }
-        private int VM_airspeed_indicator_indicated_speed_kt;
-        public int VM_Airspeed_indicator_indicated_speed_kt
-        {
-            get
-            {
-                return VM_airspeed_indicator_indicated_speed_kt;
-            }
-            set
-            {
+        public int VM_Attitude_indicator_internal_roll_deg => model.Attitude_indicator_internal_roll_deg;
 
-            }
-        }
-        private int VM_gps_indicated_altitude_ft;
-        public int VM_Gps_indicated_altitude_ft
-        {
-            get
-            {
-                return VM_gps_indicated_altitude_ft;
-            }
-            set
-            {
+        public int VM_Attitude_indicator_internal_pitch_deg => model.Attitude_indicator_internal_pitch_deg;
 
-            }
-        }
-        private int VM_attitude_indicator_internal_roll_deg;
-        public int VM_Attitude_indicator_internal_roll_deg
-        {
-            get
-            {
-                return VM_attitude_indicator_internal_roll_deg;
-            }
-            set
-            {
-
-            }
-        }
-        private int VM_attitude_indicator_internal_pitch_deg;
-        public int VM_Attitude_indicator_internal_pitch_deg
-        {
-            get
-            {
-                return VM_attitude_indicator_internal_pitch_deg;
-            }
-            set
-            {
-
-            }
-        }
-        private int VM_altimeter_indicated_altitude_ft;
-
-        public int VM_Altimeter_indicated_altitude_ft
-        {
-            get
-            {
-                return VM_altimeter_indicated_altitude_ft;
-            }
-            set
-            {
-
-            }
-        }
-        public VM_Dashboard(ISimApp simApp)
-        {
-            model = simApp;
-            model.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
-             {
-                 //NotifyPropertyChanged("VM_" + e.PropertyName);
-             };
-        }
+        public int VM_Altimeter_indicated_altitude_ft => model.Altimeter_indicated_altitude_ft;
     }
 }
