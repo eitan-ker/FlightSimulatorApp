@@ -39,7 +39,6 @@ namespace FlightSimulatorApp.Model
 
             Console.WriteLine("Sent: {0}", command);
 
-          //  throw new NotImplementedException();
         }
 
         public string read()
@@ -58,7 +57,6 @@ namespace FlightSimulatorApp.Model
 
             return responseData;
 
-           // throw new NotImplementedException();
         }
 
        

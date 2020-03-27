@@ -40,7 +40,9 @@ namespace FlightSimulatorApp.controls
             {
                 MySimApp myClient = new MySimApp(new MytelnetClient());
                 myClient.connect(ip, port);
-                Window.GetWindow(this).Close();
+
+                MainWindow mainWind = Application.Current.MainWindow as MainWindow;
+                mainWind.StackPanelFixed_SP.Children.RemoveAt(0);
             }
         }
     }

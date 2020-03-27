@@ -40,6 +40,7 @@ namespace FlightSimulatorApp
             UserControl1 UC1 = new UserControl1();
             StackPanelFixed_SP.Children.Add(UC1);
             UC1.Visibility = System.Windows.Visibility.Visible;
+           
         }
 
         private void disconnect_Click(object sender, RoutedEventArgs e)
