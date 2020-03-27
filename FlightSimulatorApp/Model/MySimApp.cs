@@ -80,7 +80,8 @@ namespace FlightSimulatorApp.Model
             }
             set
             {
-                CodeMapsend["get /position/latitude-deg\n"] = value;
+                this.latitude_deg = value;
+                //CodeMapsend["get /position/latitude-deg\n"] = value;
                 NotifyPropertyChanged("Latitude_deg");
             }
         }
@@ -106,7 +107,8 @@ namespace FlightSimulatorApp.Model
             }
             set
             {
-                CodeMapsend["get /position/longitude-deg\n"] = value;
+                this.longitude_deg = value;
+                //CodeMapsend["get /position/longitude-deg\n"] = value;
                 NotifyPropertyChanged("Longitude_deg");
             }
         }
@@ -133,7 +135,8 @@ namespace FlightSimulatorApp.Model
             }
             set
             {
-                CodeMapsend["get /instrumentation/heading-indicator/indicated-heading-deg\n"] = value;
+                this.indicated_heading_deg = value;
+               // CodeMapsend["get /instrumentation/heading-indicator/indicated-heading-deg\n"] = value;
                 NotifyPropertyChanged("Indicated_heading_deg");
             }
         }
@@ -159,7 +162,8 @@ namespace FlightSimulatorApp.Model
             }
             set
             {
-                CodeMapsend["get /instrumentation/gps/indicated-vertical-speed\n"] = value;
+                this.gps_indicated_vertical_speed = value;
+                //CodeMapsend["get /instrumentation/gps/indicated-vertical-speed\n"] = value;
                 NotifyPropertyChanged("Gps_indicated_vertical_speed");
             }
         }
@@ -185,7 +189,8 @@ namespace FlightSimulatorApp.Model
             }
             set
             {
-                CodeMapsend["get /instrumentation/gps/indicated-ground-speed-kt\n"] = value;
+                this.gps_indicated_ground_speed_kt = value;
+                //CodeMapsend["get /instrumentation/gps/indicated-ground-speed-kt\n"] = value;
                 NotifyPropertyChanged("Gps_indicated_ground_speed_kt");
             }
         }
@@ -211,7 +216,8 @@ namespace FlightSimulatorApp.Model
             }
             set
             {
-                CodeMapsend["get /instrumentation/airspeed-indicator/indicated-speed-kt\n"] = value;
+                this.airspeed_indicator_indicated_speed_kt = value;
+                //CodeMapsend["get /instrumentation/airspeed-indicator/indicated-speed-kt\n"] = value;
                 NotifyPropertyChanged("Airspeed_indicator_indicated_speed_kt");
             }
         }
@@ -237,7 +243,8 @@ namespace FlightSimulatorApp.Model
             }
             set
             {
-                CodeMapsend["get /instrumentation/altimeter/indicated-altitude-ft\n"] = value;
+                this.gps_indicated_altitude_ft = value;
+                //CodeMapsend["get /instrumentation/altimeter/indicated-altitude-ft\n"] = value;
                 NotifyPropertyChanged("Gps_indicated_altitude_ft");
             }
         }
@@ -263,7 +270,8 @@ namespace FlightSimulatorApp.Model
             }
             set
             {
-                CodeMapsend["get /instrumentation/attitude-indicator/internal-roll-deg\n"] = value;
+                this.attitude_indicator_internal_roll_deg = value;
+                //CodeMapsend["get /instrumentation/attitude-indicator/internal-roll-deg\n"] = value;
                 NotifyPropertyChanged("Attitude_indicator_internal_roll_deg");
             }
         }
@@ -289,7 +297,8 @@ namespace FlightSimulatorApp.Model
             }
             set
             {
-                CodeMapsend["get /instrumentation/attitude-indicator/internal-pitch-deg\n"] = value;
+                this.attitude_indicator_internal_pitch_deg = value;
+               // CodeMapsend["get /instrumentation/attitude-indicator/internal-pitch-deg\n"] = value;
                 NotifyPropertyChanged("Attitude_indicator_internal_pitch_deg");
             }
         }
@@ -312,7 +321,8 @@ namespace FlightSimulatorApp.Model
             }
             set
             {
-                CodeMapsend["get /instrumentation/gps/indicated-altitude-ft\n"] = value;
+                this.altimeter_indicated_altitude_ft = value;
+              //  CodeMapsend["get /instrumentation/gps/indicated-altitude-ft\n"] = value;
                 NotifyPropertyChanged("Altimeter_indicated_altitude_ft");
             }
         }
@@ -362,8 +372,6 @@ namespace FlightSimulatorApp.Model
                         
                     }
                     CodeMapsend = temp;
-                    /*double helo = this.indicated_heading_deg;
-                    Console.WriteLine("*****************************************" + helo);*/
                     Thread.Sleep(250); // read data in 4Hz
                 }
             }).Start();
