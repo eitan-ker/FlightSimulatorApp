@@ -25,10 +25,13 @@ namespace FlightSimulatorApp
     public partial class MainWindow : Window
     {
         VM_Joystick JoystickVM;
+        VM_Dashboard dashboard_VM;
+        VM_Map vm_map;
         public MainWindow()
         {
             InitializeComponent();
-            this.JoystickVM = new VM_Joystick(new MySimApp(new MytelnetClient()));
+            dashboard_VM = (VM_Dashboard)this.DataContext;
+            //this.JoystickVM = new VM_Joystick(new MySimApp(new MytelnetClient()));
         }
 
         private void connect_Click(object sender, RoutedEventArgs e)
