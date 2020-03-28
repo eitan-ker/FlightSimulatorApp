@@ -349,12 +349,16 @@ namespace FlightSimulatorApp.Model
 
         public void moveAileron(int aileron)
         {
-            throw new NotImplementedException();
+            StringBuilder sb = new StringBuilder("set " + this.var_locations_in_simulator_send[3] + " " + aileron + "\n"); //build the command to set the aileron value in sim
+            string aileronCommand = sb.ToString();
+            this._telnetClient.write(aileronCommand);
         }
 
         public void moveThrottle(int throttle)
         {
-            throw new NotImplementedException();
+            StringBuilder sb = new StringBuilder("set " + this.var_locations_in_simulator_send[0] + " " + throttle + "\n"); //build the command to set the aileron value in sim
+            string throttleCommand = sb.ToString();
+            this._telnetClient.write(throttleCommand);
         }
 
         public void start()
@@ -366,10 +370,11 @@ namespace FlightSimulatorApp.Model
                     Dictionary<string, object> temp = new Dictionary<string, object>(CodeMapsend);
                     foreach (KeyValuePair<string, object> entry in CodeMapsend)
                     {
-                        _telnetClient.write(entry.Key);
+                        _telnetClient.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
 
                         temp[entry.Key] = Double.Parse(_telnetClient.read());
                         
+
                     }
                     CodeMapsend = temp;
                     Thread.Sleep(250); // read data in 4Hz
