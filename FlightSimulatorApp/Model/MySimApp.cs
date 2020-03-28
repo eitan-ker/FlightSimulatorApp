@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Maps.MapControl.WPF;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -60,6 +61,19 @@ namespace FlightSimulatorApp.Model
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
+        private Location locations = new Location(0,0);
+
+        public Location Locations
+        {
+            get
+            {
+                   return this.locations;
+            }
+            set
+            {
+                NotifyPropertyChanged("Locations");
+            }
+        }
         public double Latitude_deg
         {
             get
@@ -84,6 +98,7 @@ namespace FlightSimulatorApp.Model
             {
                 //this.latitude_deg = value;
                 CodeMapsend["get /position/latitude-deg\n"] = value;
+                Locations.Latitude = value;
                 NotifyPropertyChanged("Latitude_deg");
             }
         }
@@ -111,6 +126,7 @@ namespace FlightSimulatorApp.Model
             {
                 //this.longitude_deg = value;
                 CodeMapsend["get /position/longitude-deg\n"] = value;
+                Locations.Longitude = value;
                 NotifyPropertyChanged("Longitude_deg");
             }
         }
