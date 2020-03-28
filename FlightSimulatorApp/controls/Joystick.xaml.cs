@@ -1,4 +1,5 @@
 ﻿using FlightSimulatorApp.Model;
+using FlightSimulatorApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,15 @@ namespace FlightSimulatorApp.controls
 {
     public partial class Joystick : UserControl
     {
+        ViewModelClass _vm;
         private Point knobLocation;
         public Joystick()
         {
             InitializeComponent();
+            
         }
+        public ViewModelClass Status { get; set; }
+        
 
         private void centerKnob_Completed(object sender, EventArgs e)
         {

@@ -355,7 +355,7 @@ namespace FlightSimulatorApp.Model
             stop = true;
             _telnetClient.disconnect();
         }
-        public void FlyPlane(int elevator, int rudder)
+        public void FlyPlane(double elevator, double rudder)
         {
             StringBuilder sb = new StringBuilder("set " + this.var_locations_in_simulator_send[2] + " " + elevator + "\n"); //build the command to set the elevator value in sim
             string elevatorCommand = sb.ToString();
@@ -365,14 +365,14 @@ namespace FlightSimulatorApp.Model
             this._telnetClient.write(rudderCommand);
         }
 
-        public void moveAileron(int aileron)
+        public void moveAileron(double aileron)
         {
             StringBuilder sb = new StringBuilder(this.var_locations_in_simulator_send[3] + " " + aileron + "\n"); //build the command to set the aileron value in sim
             string aileronCommand = sb.ToString();
             this._telnetClient.write(aileronCommand);
         }
 
-        public void moveThrottle(int throttle)
+        public void moveThrottle(double throttle)
         {
             StringBuilder sb = new StringBuilder(this.var_locations_in_simulator_send[0] + " " + throttle + "\n"); //build the command to set the aileron value in sim
             string throttleCommand = sb.ToString();

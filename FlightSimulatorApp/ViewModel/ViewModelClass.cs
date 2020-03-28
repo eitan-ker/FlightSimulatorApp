@@ -61,8 +61,8 @@ namespace FlightSimulatorApp.ViewModel
 
 
         /*********************************************this belongs to Joystick*/
-        private int VM_aileron;
-        public int VM_Aileron
+        private double VM_aileron;
+        public double VM_Aileron
         {
             get
             {
@@ -74,8 +74,8 @@ namespace FlightSimulatorApp.ViewModel
                 model.moveAileron(VM_aileron);
             }
         }
-        private int VM_throttle;
-        public int VM_Throttle
+        private double VM_throttle;
+        public double VM_Throttle
         {
             get
             {
@@ -84,33 +84,14 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 VM_throttle = value;
-                model.moveAileron(VM_throttle);
+                model.moveThrottle(VM_throttle);
             }
         }
-        private int VM_elevator;
-        public int VM_Elevator
+        public void FlyPlane(double elevator, double aileron)
         {
-            get
-            {
-                return VM_elevator;
-            }
-            set
-            {
-
-            }
+            model.FlyPlane(elevator, aileron);
         }
-        private int VM_rudder;
-        public int VM_Rudder
-        {
-            get
-            {
-                return VM_rudder;
-            }
-            set
-            {
-
-            }
-        }
+        
         /*****************************************/
 
         /************************ this belongs to map*/

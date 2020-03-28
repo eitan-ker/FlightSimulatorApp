@@ -21,9 +21,9 @@ namespace FlightSimulatorApp.Model
         double Latitude_deg { get; set; }
         double Longitude_deg { get; set; }
         Location Locations { get; set; }
-        void FlyPlane(int elevator, int rudder);
-        void moveThrottle(int throttle);
-        void moveAileron(int aileron);
+        void FlyPlane(double elevator, double rudder);
+        void moveThrottle(double throttle);
+        void moveAileron(double aileron);
         void connect(string ip, int port);
         void disconnect();
         void start();
