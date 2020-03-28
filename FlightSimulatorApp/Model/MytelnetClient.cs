@@ -31,32 +31,46 @@ namespace FlightSimulatorApp.Model
 
         public void write(string command)
         {
-            Byte[] data = System.Text.Encoding.ASCII.GetBytes(command);
+            if (client != null)
+            {
+                Byte[] data = System.Text.Encoding.ASCII.GetBytes(command);
 
 
-            // Send the message to the connected TcpServer. 
-            stream.Write(data, 0, data.Length);
+                // Send the message to the connected TcpServer. 
+                stream.Write(data, 0, data.Length);
 
-            Console.WriteLine("Sent: {0}", command);
+                Console.WriteLine("Sent: {0}", command);
+            }
+            else
+            {
+                Console.WriteLine("not connected to tcp")
+            }
 
         }
 
         public string read()
         {
+            if (client != null)
+            {
 
-            Byte[] data = new Byte[256];
+                Byte[] data = new Byte[256];
 
-            // String to store the response ASCII representation.
-            String responseData = String.Empty;
+                // String to store the response ASCII representation.
+                String responseData = String.Empty;
 
-            // Read the first batch of the TcpServer response bytes.
-            int bytes = stream.Read(data, 0, data.Length);
-            responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
-            
-            Console.WriteLine("Received: {0}", responseData);
+                // Read the first batch of the TcpServer response bytes.
+                int bytes = stream.Read(data, 0, data.Length);
+                responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
 
-            return responseData;
+                Console.WriteLine("Received: {0}", responseData);
 
+                return responseData;
+            }
+            else
+            {
+                Console.WriteLine("not connected to tcp");
+                    return "";
+            }
         }
 
        
