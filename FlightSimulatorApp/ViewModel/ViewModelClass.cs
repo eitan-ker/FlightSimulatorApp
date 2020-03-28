@@ -84,7 +84,7 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 VM_throttle = value;
-                model.moveAileron(throttle);
+                model.moveAileron(VM_throttle);
             }
         }
         private int VM_elevator;
@@ -114,43 +114,41 @@ namespace FlightSimulatorApp.ViewModel
         /*****************************************/
 
         /************************ this belongs to map*/
-        private double longtitude;
-        public double Longtitude
+        /*private double longtitude;
+        public double VM_Longtitude_deg
         {
             get
             {
-                return longtitude;
+                return model.Longitude_deg;
             }
             set
             {
-                longtitude = value;
                 location.Longitude = value;
             }
         }
-        private double latitude;
-        public double Latitude
+        public double VM_Latitude_deg
         {
             get
             {
-                return latitude;
+                return model.Latitude_deg;
             }
             set
             {
-                latitude = value;
+                
                 location.Latitude = value;
             }
         }
-        private Location location;
-        public Location VM_Location
+        private Location location;*/
+        public Location VM_Locations
         {
             get
             {
-                return location;
+                Console.WriteLine(model.Locations);
+                return model.Locations;
             }
             set
             {
-                location = value;
-                NotifyPropertyChanged("Location");
+                
             }
         }
 

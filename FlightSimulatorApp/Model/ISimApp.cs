@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Maps.MapControl.WPF;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace FlightSimulatorApp.Model
         double Altimeter_indicated_altitude_ft { get; set; }
         double Latitude_deg { get; set; }
         double Longitude_deg { get; set; }
+        Location Locations { get; set; }
         void FlyPlane(int elevator, int rudder);
         void moveThrottle(int throttle);
         void moveAileron(int aileron);
