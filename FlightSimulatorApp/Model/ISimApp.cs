@@ -17,6 +17,8 @@ namespace FlightSimulatorApp.Model
         double Attitude_indicator_internal_roll_deg { get; set; }
         double Attitude_indicator_internal_pitch_deg { get; set; }
         double Altimeter_indicated_altitude_ft { get; set; }
+        double Latitude_deg { get; set; }
+        double Longitude_deg { get; set; }
         void FlyPlane(int elevator, int rudder);
         void moveThrottle(int throttle);
         void moveAileron(int aileron);

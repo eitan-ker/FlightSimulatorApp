@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FlightSimulatorApp.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,11 @@ namespace FlightSimulatorApp.controls
     /// </summary>
     public partial class map : UserControl
     {
+        private ViewModelClass vm;
         public map()
         {
             InitializeComponent();
+            vm = (ViewModelClass)this.DataContext;
         }
     }
 }

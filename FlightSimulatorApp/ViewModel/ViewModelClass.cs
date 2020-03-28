@@ -1,4 +1,5 @@
 ﻿using FlightSimulatorApp.Model;
+using Microsoft.Maps.MapControl.WPF;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -69,7 +70,8 @@ namespace FlightSimulatorApp.ViewModel
             }
             set
             {
-
+                VM_aileron = value;
+                model.moveAileron(VM_aileron);
             }
         }
         private int VM_throttle;
@@ -81,7 +83,8 @@ namespace FlightSimulatorApp.ViewModel
             }
             set
             {
-
+                VM_throttle = value;
+                model.moveAileron(throttle);
             }
         }
         private int VM_elevator;
@@ -111,8 +114,45 @@ namespace FlightSimulatorApp.ViewModel
         /*****************************************/
 
         /************************ this belongs to map*/
-
-
+        private double longtitude;
+        public double Longtitude
+        {
+            get
+            {
+                return longtitude;
+            }
+            set
+            {
+                longtitude = value;
+                location.Longitude = value;
+            }
+        }
+        private double latitude;
+        public double Latitude
+        {
+            get
+            {
+                return latitude;
+            }
+            set
+            {
+                latitude = value;
+                location.Latitude = value;
+            }
+        }
+        private Location location;
+        public Location VM_Location
+        {
+            get
+            {
+                return location;
+            }
+            set
+            {
+                location = value;
+                NotifyPropertyChanged("Location");
+            }
+        }
 
     }
 }
