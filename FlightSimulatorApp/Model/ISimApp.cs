@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace FlightSimulatorApp.Model
 {
-    interface ISimApp : INotifyPropertyChanged
+    public interface ISimApp : INotifyPropertyChanged
     {
         double Indicated_heading_deg { get; set; }
         double Gps_indicated_vertical_speed { get; set; }

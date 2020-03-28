@@ -24,13 +24,12 @@ namespace FlightSimulatorApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        VM_Joystick JoystickVM;
-        VM_Dashboard dashboard_VM;
-        VM_Map vm_map;
+        ViewModelClass vm;
         public MainWindow()
         {
             InitializeComponent();
-            dashboard_VM = (VM_Dashboard)this.DataContext;
+            vm = new ViewModelClass(new MySimApp(new MytelnetClient()));
+            this.DataContext = vm;
             //this.JoystickVM = new VM_Joystick(new MySimApp(new MytelnetClient()));
         }
 
@@ -40,12 +39,13 @@ namespace FlightSimulatorApp
             UserControl1 UC1 = new UserControl1();
             StackPanelFixed_SP.Children.Add(UC1);
             UC1.Visibility = System.Windows.Visibility.Visible;
+            UC1.Status = vm;
            
         }
 
         private void disconnect_Click(object sender, RoutedEventArgs e)
         {
-            this.JoystickVM.getModel().disconnect();
+            vm.model.disconnect();
             disconnect.IsChecked = false;
         }
 
