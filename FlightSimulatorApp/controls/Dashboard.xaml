@@ -18,21 +18,69 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center"><Run Text="indicated-heading-deg" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="0" Grid.Column="7" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="{Binding VM_Indicated_heading_deg,Mode=OneWay}"  FontSize="10"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="1" Grid.Column="0" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center"><Run Text="gps_indicated-vertical-speed" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="1" Grid.Column="7" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="{Binding VM_Gps_indicated_vertical_speed,Mode=OneWay}" FontSize="10"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="2" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center"><Run Text="gps_indicated-ground-speed-kt" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="2" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="{Binding VM_Gps_indicated_ground_speed_kt,Mode=OneWay}" FontSize="10"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="3" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center"><Run Text="airspeed-indicator_indicated-speed-kt" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="3" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="{Binding VM_Airspeed_indicator_indicated_speed_kt,Mode=OneWay}" FontSize="10"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="4" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center"><Run Text="gps_indicated-altitude-ft" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="4" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="{Binding VM_Gps_indicated_altitude_ft,Mode=OneWay}" FontSize="10"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="5" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center"><Run Text="attitude-indicator_internal-roll-deg" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="5" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="{Binding VM_Attitude_indicator_internal_roll_deg,Mode=OneWay}" FontSize="10"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="6" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center"><Run Text="attitude-indicator_internal-pitch-deg" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="6" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="{Binding VM_Attitude_indicator_internal_pitch_deg,Mode=OneWay}" FontSize="10"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="7" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center"><Run Text="altimeter_indicated-altitude-ft" FontSize="13"  Background="White"/></TextBlock>
-        <TextBlock Grid.Row="7" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="{Binding VM_Altimeter_indicated_altitude_ft,Mode=OneWay}" FontSize="10"  Background="White"/></TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="0" Width="800" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,0,0.4" Foreground="White">
+            <TextBlock.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FF838383" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBlock.Background><Run Text="indicated-heading-deg" FontSize="13"/></TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="7" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White"><Run Text="{Binding VM_Indicated_heading_deg,Mode=OneWay}"  FontSize="10" /></TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="0" Width="800" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0.6,0,0.8" Foreground="White">
+            <TextBlock.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FF838383" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBlock.Background><Run Text="gps_indicated-vertical-speed" FontSize="13"/></TextBlock>
+        <TextBlock Grid.Row="1" Grid.Column="7" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White"><Run Text="{Binding VM_Gps_indicated_vertical_speed,Mode=OneWay}" FontSize="10"/></TextBlock>
+        <TextBlock Grid.Row="2" Width="800" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0.6,0,0.8" Foreground="White">
+            <TextBlock.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FF838383" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBlock.Background><Run Text="gps_indicated-ground-speed-kt" FontSize="13"/></TextBlock>
+        <TextBlock Grid.Row="2" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="{Binding VM_Gps_indicated_ground_speed_kt,Mode=OneWay}" FontSize="10" Foreground="White"/></TextBlock>
+        <TextBlock Grid.Row="3" Width="800" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0.6,0,0.8" Foreground="White">
+            <TextBlock.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FF838383" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBlock.Background><Run Text="airspeed-indicator_indicated-speed-kt" FontSize="13"/></TextBlock>
+        <TextBlock Grid.Row="3" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="{Binding VM_Airspeed_indicator_indicated_speed_kt,Mode=OneWay}" FontSize="10" Foreground="White"/></TextBlock>
+        <TextBlock Grid.Row="4" Width="800" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="0,0.6,0,0.8">
+            <TextBlock.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FF838383" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBlock.Background><Run Text="gps_indicated-altitude-ft" FontSize="13"/></TextBlock>
+        <TextBlock Grid.Row="4" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="{Binding VM_Gps_indicated_altitude_ft,Mode=OneWay}" FontSize="10" Foreground="White"/></TextBlock>
+        <TextBlock Grid.Row="5" Width="800" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0.6,0,0.8" Foreground="White">
+            <TextBlock.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FF838383" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBlock.Background><Run Text="attitude-indicator_internal-roll-deg" FontSize="13"/></TextBlock>
+        <TextBlock Grid.Row="5" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="{Binding VM_Attitude_indicator_internal_roll_deg,Mode=OneWay}" FontSize="10" Foreground="White"/></TextBlock>
+        <TextBlock Grid.Row="6" Width="800" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0.6,0,1.4" Foreground="White">
+            <TextBlock.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FF838383" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBlock.Background><Run Text="attitude-indicator_internal-pitch-deg" FontSize="13"/></TextBlock>
+        <TextBlock Grid.Row="6" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="{Binding VM_Attitude_indicator_internal_pitch_deg,Mode=OneWay}" FontSize="10" Foreground="White"/></TextBlock>
+        <TextBlock Grid.Row="7" Width="800" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0.6,0,0.8" Foreground="White">
+            <TextBlock.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black" Offset="0"/>
+                    <GradientStop Color="#FF838383" Offset="1"/>
+                </LinearGradientBrush>
+            </TextBlock.Background><Run Text="altimeter_indicated-altitude-ft" FontSize="13"/></TextBlock>
+        <TextBlock Grid.Row="7" Grid.Column="6" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center"><Run Text="{Binding VM_Altimeter_indicated_altitude_ft,Mode=OneWay}" FontSize="10" Foreground="White"/></TextBlock>
     </Grid>
 </UserControl>
