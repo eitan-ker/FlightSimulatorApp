@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FlightSimulatorApp.Model
 {
-    class MySimApp : ISimApp
+    public class MySimApp : ISimApp
     {
         public Dictionary<string, object> CodeMapsend;
         public Dictionary<string, object> CodeMaprecieve;

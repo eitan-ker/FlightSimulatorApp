@@ -1,4 +1,5 @@
 ﻿using FlightSimulatorApp.Model;
+using FlightSimulatorApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,7 @@ namespace FlightSimulatorApp.controls
         {
             InitializeComponent();
         }
+        public ViewModelClass Status { get; set; }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -38,8 +40,9 @@ namespace FlightSimulatorApp.controls
             }
             if (passed_In_valid_Port)
             {
-                MySimApp myClient = new MySimApp(new MytelnetClient());
-                myClient.connect(ip, port);
+                /*MySimApp myClient = new MySimApp(new MytelnetClient());
+                myClient.connect(ip, port);*/
+                Status.model.connect(ip, port);
 
                 MainWindow mainWind = Application.Current.MainWindow as MainWindow;
                 mainWind.StackPanelFixed_SP.Children.RemoveAt(0);
