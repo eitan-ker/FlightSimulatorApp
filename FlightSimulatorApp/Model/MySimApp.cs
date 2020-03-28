@@ -62,6 +62,7 @@ namespace FlightSimulatorApp.Model
             }
         }
         private Location locations = new Location(0,0);
+        
 
         public Location Locations
         {
@@ -357,12 +358,12 @@ namespace FlightSimulatorApp.Model
         }
         public void FlyPlane(double elevator, double rudder)
         {
-            StringBuilder sb = new StringBuilder("set " + this.var_locations_in_simulator_send[2] + " " + elevator + "\n"); //build the command to set the elevator value in sim
-            string elevatorCommand = sb.ToString();
-            this._telnetClient.write(elevatorCommand);
-            sb = new StringBuilder("set " + this.var_locations_in_simulator_send[1] + " " + rudder + "\n"); //build the command to set the rudder value in sim
-            string rudderCommand = sb.ToString();
-            this._telnetClient.write(rudderCommand);
+                StringBuilder sb = new StringBuilder("set " + this.var_locations_in_simulator_send[2] + " " + elevator + "\n"); //build the command to set the elevator value in sim
+                string elevatorCommand = sb.ToString();
+                this._telnetClient.write(elevatorCommand);
+                sb = new StringBuilder("set " + this.var_locations_in_simulator_send[1] + " " + rudder + "\n"); //build the command to set the rudder value in sim
+                string rudderCommand = sb.ToString();
+                this._telnetClient.write(rudderCommand);
         }
 
         public void moveAileron(double aileron)
@@ -381,8 +382,10 @@ namespace FlightSimulatorApp.Model
 
         public void start()
         {
+            
             new Thread(delegate ()
             {
+                
                 while (!stop)
                 {
                     //foreach (KeyValuePair<string, object> entry in CodeMapsend)
