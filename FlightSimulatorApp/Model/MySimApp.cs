@@ -13,8 +13,8 @@ namespace FlightSimulatorApp.Model
         public Dictionary<string, object> CodeMapsend;
         public Dictionary<string, object> CodeMaprecieve;
         public Dictionary<string, object> temp;
-        string[] var_locations_in_simulator_send = {"/controls/engines/current-engine/throttle", "/controls/flight/rudder", "/controls/flight/elevator",
-        "/controls/flight/aileron"};
+        string[] var_locations_in_simulator_send = {"set /controls/engines/current-engine/throttle", "set /controls/flight/rudder", "set /controls/flight/elevator",
+        "set /controls/flight/aileron"};
         string[] var_locations_in_simulator_recieve = {"/instrumentation/heading-indicator/indicated-heading-deg", "/instrumentation/gps/indicated-vertical-speed",
             "/instrumentation/gps/indicated-ground-speed-kt", "/instrumentation/airspeed-indicator/indicated-speed-kt", "/instrumentation/attitude-indicator/internal-roll-deg",
             "/instrumentation/attitude-indicator/internal-pitch-deg", "/instrumentation/gps/indicated-altitude-ft", "/position/latitude-deg", "/position/longitude-deg"};
@@ -351,14 +351,14 @@ namespace FlightSimulatorApp.Model
 
         public void moveAileron(int aileron)
         {
-            StringBuilder sb = new StringBuilder("set " + this.var_locations_in_simulator_send[3] + " " + aileron + "\n"); //build the command to set the aileron value in sim
+            StringBuilder sb = new StringBuilder(this.var_locations_in_simulator_send[3] + " " + aileron + "\n"); //build the command to set the aileron value in sim
             string aileronCommand = sb.ToString();
             this._telnetClient.write(aileronCommand);
         }
 
         public void moveThrottle(int throttle)
         {
-            StringBuilder sb = new StringBuilder("set " + this.var_locations_in_simulator_send[0] + " " + throttle + "\n"); //build the command to set the aileron value in sim
+            StringBuilder sb = new StringBuilder(this.var_locations_in_simulator_send[0] + " " + throttle + "\n"); //build the command to set the aileron value in sim
             string throttleCommand = sb.ToString();
             this._telnetClient.write(throttleCommand);
         }
