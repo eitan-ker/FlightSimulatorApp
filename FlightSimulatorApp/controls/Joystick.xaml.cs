@@ -19,7 +19,7 @@ namespace FlightSimulatorApp.controls
         public Joystick()
         {
             InitializeComponent();
-            
+            DataContext = ((MainWindow)Application.Current.MainWindow);
         }
         public ViewModelClass Status { get; set; }
         
@@ -56,6 +56,9 @@ namespace FlightSimulatorApp.controls
                     knobPosition.X = ((Base.Width / 2) / Math.Sqrt(x * x + y * y)) * x;
                     knobPosition.Y = ((Base.Width / 2) / Math.Sqrt(x * x + y * y)) * y;
                 }
+                Window parentWin = Window.GetWindow(this);
+                _vm = ((MainWindow)Application.Current.MainWindow).getVM();
+                _vm.FlyPlane(x, y);
               /*if(Math.Abs(x) < (blackBase.Width / 2))
                 {
                     knobPosition.X = x;
@@ -71,6 +74,9 @@ namespace FlightSimulatorApp.controls
         {
             knobPosition.X = 0;
             knobPosition.Y = 0;
+            Window parentWin = Window.GetWindow(this);
+            _vm = ((MainWindow)Application.Current.MainWindow).getVM();
+            _vm.FlyPlane(0, 0);
         }
     }
 }
