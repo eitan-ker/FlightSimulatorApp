@@ -22,10 +22,11 @@ namespace FlightSimulatorApp.controls
     /// </summary>
     public partial class Dashboard : UserControl
     {
+        ViewModelClass vm;
         public Dashboard()
         {
             InitializeComponent();
-            
+            vm = (ViewModelClass)this.DataContext;
             //DataContext = Status;
             //DataContext = new VM_Dashboard(new MySimApp(new MytelnetClient()));
         }
