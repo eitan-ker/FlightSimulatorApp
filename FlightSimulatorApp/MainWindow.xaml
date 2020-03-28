@@ -7,7 +7,13 @@
         xmlns:Controls="clr-namespace:FlightSimulatorApp.controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="720" Width="1345">
-    <Grid Background="LightGray">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="Black" Offset="0"/>
+                <GradientStop Color="#FF838383" Offset="0.495"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -23,7 +29,7 @@
                 <RowDefinition Height="25*"/>
                 <RowDefinition Height="253*"/>
             </Grid.RowDefinitions>
-            <Controls:map Margin="31,20,29.6,0" Grid.RowSpan="3"/>
+            <Controls:map Margin="10,20,29.9,10.4" Grid.RowSpan="3"/>
         </Grid>
         <Grid Grid.Column="2" Margin="0.2,0,-0.6,0.4" Grid.ColumnSpan="2">
             <Grid.RowDefinitions>
