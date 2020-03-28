@@ -40,7 +40,6 @@ namespace FlightSimulatorApp
             StackPanelFixed_SP.Children.Add(UC1);
             UC1.Visibility = System.Windows.Visibility.Visible;
             UC1.Status = vm;
-           
         }
 
         private void disconnect_Click(object sender, RoutedEventArgs e)
