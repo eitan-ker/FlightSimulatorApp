@@ -14,19 +14,32 @@ namespace FlightSimulatorApp.Model
         private Object _object = new object();
         public void connect(string ip, int port)
         {
-          
-             client = new TcpClient(ip, port);
-            // Get a client stream for reading and writing.
-            //  Stream stream = client.GetStream();
-            stream = client.GetStream();
-            // FINISHED CONNECTION
-        }
+            try
+            {
+                client = new TcpClient(ip, port);
+                // Get a client stream for reading and writing.
+                //  Stream stream = client.GetStream();
+                stream = client.GetStream();
 
+                // FINISHED CONNECTION}
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("could not connect to server.");
+            }
+        }
         public void disconnect()
         {
-            // Close everything.
-            stream.Close();
-            client.Close();
+            try
+            {
+                // Close everything.
+                stream.Close();
+                client.Close();
+            } catch (Exception e)
+            {
+                Console.WriteLine("could not disconnect from server.");
+            }
+            
         }
 
         public void write(string command)

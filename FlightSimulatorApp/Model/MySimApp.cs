@@ -29,6 +29,7 @@ namespace FlightSimulatorApp.Model
         private double altimeter_indicated_altitude_ft;
         private double latitude_deg; //latitude of the plane
         private double longitude_deg; //logtitude of the plane
+        private string connectionStatus = "Disconnected";
 
 
         ItelnetClient _telnetClient;
@@ -50,7 +51,6 @@ namespace FlightSimulatorApp.Model
             CodeMapsend.Add("get /position/latitude-deg\n", this.Latitude_deg);
             CodeMapsend.Add("get /position/longitude-deg\n", this.Longitude_deg);
             temp = new Dictionary<string, object>(CodeMapsend);
-
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -62,7 +62,19 @@ namespace FlightSimulatorApp.Model
             }
         }
         private Location locations = new Location(0,0);
-        
+
+        public string ConnectionStatus
+        {
+            get
+            {
+                return connectionStatus;
+            }
+            set
+            {
+                this.connectionStatus = value;
+                NotifyPropertyChanged("ConnectionStatus");
+            }
+        }
 
         public Location Locations
         {
@@ -348,8 +360,18 @@ namespace FlightSimulatorApp.Model
 
         public void connect(string ip, int port)
         {
-            _telnetClient.connect(ip, port);
-            this.start();
+            try
+            {
+                _telnetClient.connect(ip, port);
+                this.ConnectionStatus = "Connected";
+                this.start();
+            }
+            catch (Exception e)
+            {
+                this.ConnectionStatus = "Disconnected";
+
+                // NEED TO BE IMPLEMENTED THE REST  
+            }
         }
         public void disconnect()
         {
@@ -358,10 +380,10 @@ namespace FlightSimulatorApp.Model
         }
         public void FlyPlane(double elevator, double rudder)
         {
-                StringBuilder sb = new StringBuilder("set " + this.var_locations_in_simulator_send[2] + " " + elevator + "\n"); //build the command to set the elevator value in sim
+                StringBuilder sb = new StringBuilder(this.var_locations_in_simulator_send[2] + " " + elevator + "\n"); //build the command to set the elevator value in sim
                 string elevatorCommand = sb.ToString();
                 this._telnetClient.write(elevatorCommand);
-                sb = new StringBuilder("set " + this.var_locations_in_simulator_send[1] + " " + rudder + "\n"); //build the command to set the rudder value in sim
+                sb = new StringBuilder(this.var_locations_in_simulator_send[1] + " " + rudder + "\n"); //build the command to set the rudder value in sim
                 string rudderCommand = sb.ToString();
                 this._telnetClient.write(rudderCommand);
         }
@@ -385,7 +407,6 @@ namespace FlightSimulatorApp.Model
             
             new Thread(delegate ()
             {
-                
                 while (!stop)
                 {
                     //foreach (KeyValuePair<string, object> entry in CodeMapsend)
