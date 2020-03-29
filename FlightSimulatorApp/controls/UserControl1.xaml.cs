@@ -48,5 +48,11 @@ namespace FlightSimulatorApp.controls
                 mainWind.StackPanelFixed_SP.Children.RemoveAt(0);
             }
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWind = Application.Current.MainWindow as MainWindow;
+            mainWind.StackPanelFixed_SP.Children.RemoveAt(0);
+        }
     }
 }

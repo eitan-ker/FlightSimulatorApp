@@ -12,5 +12,6 @@
         <TextBlock HorizontalAlignment="Left" Margin="231,152,0,0" TextWrapping="Wrap" Text="port" VerticalAlignment="Top"/>
         <TextBox x:Name="IP" HorizontalAlignment="Left" Height="23" Margin="38,188,0,0" TextWrapping="Wrap" Text="127.0.0.1" VerticalAlignment="Top" Width="120"/>
         <TextBox x:Name="Port" HorizontalAlignment="Left" Height="23" Margin="193,188,0,0" TextWrapping="Wrap" Text="5402" VerticalAlignment="Top" Width="120"/>
+        <Button Content="X" HorizontalAlignment="Left" Margin="329,1,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
     </Grid>
 </UserControl>
