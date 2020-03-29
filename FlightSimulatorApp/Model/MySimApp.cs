@@ -67,7 +67,7 @@ namespace FlightSimulatorApp.Model
         {
             get
             {
-                return connectionStatus;
+                return this.connectionStatus;
             }
             set
             {

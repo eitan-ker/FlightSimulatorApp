@@ -27,6 +27,6 @@ namespace FlightSimulatorApp.Model
         void connect(string ip, int port);
         void disconnect();
         void start();
-
+        string ConnectionStatus { get; set; }
     }
 }

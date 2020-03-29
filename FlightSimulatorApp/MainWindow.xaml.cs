@@ -49,7 +49,7 @@ namespace FlightSimulatorApp
 
         private void disconnect_Click(object sender, RoutedEventArgs e)
         {
-            vm.model.disconnect();
+            vm.disconnect();
             disconnect.IsChecked = false;
         }
 
@@ -63,6 +63,11 @@ namespace FlightSimulatorApp
             if((sender as ToggleButton).IsChecked == false)
             {
                 /*need to implement that button will be clickable when connection established successfully*/
+                if(ConnectionStatus.Text == "Connected")
+                {
+                    disconnect.IsChecked = true;
+                    disconnect.IsEnabled = true;
+                }
             } else
             {
                 disconnect.IsChecked = false;
