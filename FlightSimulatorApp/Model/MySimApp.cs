@@ -61,7 +61,7 @@ namespace FlightSimulatorApp.Model
                 this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
         }
-        private Location locations = new Location(0,0);
+        private string locations;
 
         public string ConnectionStatus
         {
@@ -76,7 +76,7 @@ namespace FlightSimulatorApp.Model
             }
         }
 
-        public Location Locations
+        public string Locations
         {
             get
             {
@@ -84,6 +84,7 @@ namespace FlightSimulatorApp.Model
             }
             set
             {
+                this.locations = value;
                 NotifyPropertyChanged("Locations");
             }
         }
@@ -111,7 +112,7 @@ namespace FlightSimulatorApp.Model
             {
                 //this.latitude_deg = value;
                 CodeMapsend["get /position/latitude-deg\n"] = value;
-                Locations.Latitude = value;
+                //Locations.Latitude = value;
                 NotifyPropertyChanged("Latitude_deg");
             }
         }
@@ -139,7 +140,7 @@ namespace FlightSimulatorApp.Model
             {
                 //this.longitude_deg = value;
                 CodeMapsend["get /position/longitude-deg\n"] = value;
-                Locations.Longitude = value;
+                //Locations.Longitude = value;
                 NotifyPropertyChanged("Longitude_deg");
             }
         }
@@ -431,6 +432,7 @@ namespace FlightSimulatorApp.Model
                     this.Latitude_deg = Double.Parse(_telnetClient.read());
                     _telnetClient.write("get /position/longitude-deg\n");
                     this.Longitude_deg = Double.Parse(_telnetClient.read());
+                    this.Locations = this.Latitude_deg + "," + this.Longitude_deg;
 
                     //this.temp["get /instrumentation/heading-indicator/indicated-heading-deg\n"] = Double.Parse(_telnetClient.read());
                     // }
