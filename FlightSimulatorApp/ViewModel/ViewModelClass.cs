@@ -120,7 +120,7 @@ namespace FlightSimulatorApp.ViewModel
             }
         }
         private Location location;*/
-        public Location VM_Locations
+        public string VM_Locations
         {
             get
             {

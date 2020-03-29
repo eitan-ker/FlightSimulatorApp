@@ -20,7 +20,7 @@ namespace FlightSimulatorApp.Model
         double Altimeter_indicated_altitude_ft { get; set; }
         double Latitude_deg { get; set; }
         double Longitude_deg { get; set; }
-        Location Locations { get; set; }
+        string Locations { get; set; }
         void FlyPlane(double elevator, double rudder);
         void moveThrottle(double throttle);
         void moveAileron(double aileron);
