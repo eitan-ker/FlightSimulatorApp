@@ -11,7 +11,8 @@ namespace FlightSimulatorApp.Model
     {
         TcpClient client;
         NetworkStream stream;
-        private Object _object = new object();
+        private readonly object balanceLock = new object();
+        private readonly object balanceLock2 = new object();
         public void connect(string ip, int port)
         {
             try
@@ -44,8 +45,8 @@ namespace FlightSimulatorApp.Model
 
         public void write(string command)
         {
-            lock (_object)
-            {
+         //   lock (balanceLock)
+          //  {
                 if (client != null)
                 {
                     Byte[] data = System.Text.Encoding.ASCII.GetBytes(command);
@@ -60,14 +61,14 @@ namespace FlightSimulatorApp.Model
                 {
                     Console.WriteLine("not connected to tcp");
                 }
-            }
+//            }
 
         }
 
         public string read()
         {
-            lock (_object)
-            {
+           // lock (balanceLock2)
+            //{
                 if (client != null)
                 {
 
@@ -89,7 +90,7 @@ namespace FlightSimulatorApp.Model
                     Console.WriteLine("not connected to tcp");
                     return "";
                 }
-            }
+            //}
         }
 
        

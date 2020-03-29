@@ -124,7 +124,7 @@ namespace FlightSimulatorApp.ViewModel
         {
             get
             {
-                Console.WriteLine(model.Locations);
+               // Console.WriteLine(model.Locations);
                 return model.Locations;
             }
             set
