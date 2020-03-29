@@ -43,8 +43,16 @@ namespace FlightSimulatorApp.controls
                 /*MySimApp myClient = new MySimApp(new MytelnetClient());
                 myClient.connect(ip, port);*/
                 Status.model.connect(ip, port);
-
                 MainWindow mainWind = Application.Current.MainWindow as MainWindow;
+                if (Status.VM_ConnectionStatus == "Connected")
+                {
+                    mainWind.disconnect.IsChecked = true;
+                    mainWind.disconnect.IsEnabled = true;
+                    mainWind.connect.IsEnabled = false;
+                    mainWind.connect.IsChecked = false;
+                }
+
+                
                 mainWind.StackPanelFixed_SP.Children.RemoveAt(0);
             }
         }

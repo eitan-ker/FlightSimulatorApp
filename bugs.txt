@@ -1,5 +1,4 @@
 *Get\set values from simulator after more than  10 sec
-*Disconnect button still grey and not active even after connection was established
 *Exception thrown when thread is getting values from simulator while from other thread we send joystick values to simulator
 *Replace pushpin icon to plane
 *if value send to simulator is greater than \ less than Max\Min value of variable than adjust the value to be Max\Min value
