@@ -24,13 +24,18 @@ namespace FlightSimulatorApp
     /// </summary>
     public partial class MainWindow : Window
     {
-        ViewModelClass vm;
+        private ViewModelClass vm;
         public MainWindow()
         {
             InitializeComponent();
             vm = new ViewModelClass(new MySimApp(new MytelnetClient()));
             this.DataContext = vm;
+            
             //this.JoystickVM = new VM_Joystick(new MySimApp(new MytelnetClient()));
+        }
+        public ViewModelClass getVM() 
+        {
+            return this.vm;
         }
 
         private void connect_Click(object sender, RoutedEventArgs e)
