@@ -340,38 +340,46 @@ namespace FlightSimulatorApp.Model
             }
         }
 
-        public void moveAileron(double aileron)
+        public void moveAileron(string aileron)
         {
-            try
+            if (connectionStatus == "Connected")
             {
-                m.WaitOne();
-                StringBuilder sb = new StringBuilder(this.var_locations_in_simulator_send[3] + " " + aileron + "\n"); //build the command to set the aileron value in sim
-                string aileronCommand = sb.ToString();
-                this._telnetClient.write(aileronCommand);
-                _telnetClient.read();
-                m.ReleaseMutex();
-            } catch (Exception e)
-            {
-                Console.WriteLine("problem with thread2");
-                Console.WriteLine("could not send joystick values to simulator ");
+                try
+                {
+                    m.WaitOne();
+                    StringBuilder sb = new StringBuilder(this.var_locations_in_simulator_send[3] + " " + aileron + "\n"); //build the command to set the aileron value in sim
+                    string aileronCommand = sb.ToString();
+                    this._telnetClient.write(aileronCommand);
+                    _telnetClient.read();
+                    m.ReleaseMutex();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("problem with thread2");
+                    Console.WriteLine("could not send joystick values to simulator ");
+                }
             }
             
         }
 
         public void moveThrottle(double throttle)
         {
-            try
+            if (connectionStatus == "Connected")
             {
-                m.WaitOne();
-                StringBuilder sb = new StringBuilder(this.var_locations_in_simulator_send[0] + " " + throttle + "\n"); //build the command to set the aileron value in sim
-                string throttleCommand = sb.ToString();
-                this._telnetClient.write(throttleCommand);
-                _telnetClient.read();
-                m.ReleaseMutex();
-            } catch (Exception e)
-            {
-                Console.WriteLine("problem with thread2");
-                Console.WriteLine("could not send joystick values to simulator ");
+                try
+                {
+                    m.WaitOne();
+                    StringBuilder sb = new StringBuilder(this.var_locations_in_simulator_send[0] + " " + throttle + "\n"); //build the command to set the aileron value in sim
+                    string throttleCommand = sb.ToString();
+                    this._telnetClient.write(throttleCommand);
+                    _telnetClient.read();
+                    m.ReleaseMutex();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("problem with thread2");
+                    Console.WriteLine("could not send joystick values to simulator ");
+                }
             }
             
         }

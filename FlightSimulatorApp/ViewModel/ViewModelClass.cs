@@ -72,8 +72,8 @@ namespace FlightSimulatorApp.ViewModel
 
 
         /*********************************************this belongs to Joystick*/
-        private double VM_aileron;
-        public double VM_Aileron
+        private string VM_aileron;
+        public string VM_Aileron
         {
             get
             {
@@ -82,8 +82,12 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 VM_aileron = value;
-                model.moveAileron(VM_aileron);
+                model.moveAileron(VM_aileron.ToString());
             }
+        }
+        public void moveAileron(string val)
+        {
+            this.model.moveAileron(val);
         }
         private double VM_throttle;
         public double VM_Throttle

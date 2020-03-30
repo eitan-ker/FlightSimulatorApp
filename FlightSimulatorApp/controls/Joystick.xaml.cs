@@ -19,7 +19,8 @@ namespace FlightSimulatorApp.controls
         public Joystick()
         {
             InitializeComponent();
-            DataContext = ((MainWindow)Application.Current.MainWindow);
+            _vm = ((MainWindow)Application.Current.MainWindow).getVM();
+            DataContext = _vm;
         }
         public ViewModelClass Status { get; set; }
         

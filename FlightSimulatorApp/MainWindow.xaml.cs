@@ -27,10 +27,11 @@ namespace FlightSimulatorApp
         private ViewModelClass vm;
         public MainWindow()
         {
-            InitializeComponent();
+            
             vm = new ViewModelClass(new MySimApp(new MytelnetClient()));
             this.DataContext = vm;
-            
+            InitializeComponent();
+
             //this.JoystickVM = new VM_Joystick(new MySimApp(new MytelnetClient()));
         }
         public ViewModelClass getVM() 

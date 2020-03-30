@@ -17,7 +17,7 @@
                 <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="1">
-                <Slider x:Name="Aileron_value" Value="{Binding VM_Aileron, Mode=TwoWay, NotifyOnTargetUpdated=True}" Minimum="-1" Maximum="1" Margin="-82,206,-93.2,0" VerticalAlignment="Top" TickPlacement="BottomRight" TickFrequency="1" RenderTransformOrigin="0.5,0.5" Height="29" >
+                <Slider x:Name="Aileron_value" Value="{Binding VM_Aileron, Mode=TwoWay, NotifyOnTargetUpdated=True}" Minimum="-1" Maximum="1" Margin="-82,206,-93.2,0" VerticalAlignment="Top" TickPlacement="BottomRight" TickFrequency="1" RenderTransformOrigin="0.5,0.5" Height="29">
                     <Slider.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="0"/>
@@ -52,7 +52,6 @@
                     </Slider.RenderTransform>
                 </Slider>
                 <TextBlock Background="White" HorizontalAlignment="Left" Margin="103,397,-0.2,0" TextWrapping="Wrap" Text="Throttle" VerticalAlignment="Top" Width="42" RenderTransformOrigin="-0.067,-1.737"></TextBlock>
-                <TextBox x:Name="throttle_text" Text="{Binding ElementName=Throttle_value, Path=Value, UpdateSourceTrigger=PropertyChanged}" TextAlignment="Right" Width="40" Height="15" VerticalAlignment="Top" Margin="360,35,10,10" />
                 <TextBox HorizontalAlignment="Left" Height="23" Margin="59,27,0,0" TextWrapping="Wrap" Text="{Binding ElementName=Aileron_value, Path=Value, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="39"/>
             </Grid>
             <Canvas  x:Name="Base" Width="340" Height="340">
