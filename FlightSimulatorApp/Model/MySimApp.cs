@@ -483,7 +483,7 @@ namespace FlightSimulatorApp.Model
                         }
                         
                     }
-                 
+
                     Thread.Sleep(250); // read data in 4Hz
                 }
             }).Start();
