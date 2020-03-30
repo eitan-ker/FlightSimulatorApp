@@ -11,6 +11,7 @@ namespace FlightSimulatorApp.Model
 {
     public class MySimApp : ISimApp
     {
+        private Mutex m = new Mutex();
         public Dictionary<string, object> CodeMapsend;
         public Dictionary<string, object> CodeMaprecieve;
         public Dictionary<string, object> temp;
@@ -378,8 +379,8 @@ namespace FlightSimulatorApp.Model
         public void disconnect()
         {
             
-                stop = true;
-                _telnetClient.disconnect();
+            stop = true;
+            _telnetClient.disconnect();
             this.ConnectionStatus = "Disconnected";
             
         }
@@ -387,12 +388,18 @@ namespace FlightSimulatorApp.Model
         {
             try
             {
+              
+                m.WaitOne();
                 StringBuilder sb = new StringBuilder(this.var_locations_in_simulator_send[2] + " " + elevator + "\n"); //build the command to set the elevator value in sim
                 string elevatorCommand = sb.ToString();
                 this._telnetClient.write(elevatorCommand);
+                _telnetClient.read();
                 sb = new StringBuilder(this.var_locations_in_simulator_send[1] + " " + rudder + "\n"); //build the command to set the rudder value in sim
                 string rudderCommand = sb.ToString();
                 this._telnetClient.write(rudderCommand);
+                _telnetClient.read();
+                m.ReleaseMutex();    
+                
             } catch (Exception e)
             {
                 Console.WriteLine("problem with thread2");
@@ -402,16 +409,38 @@ namespace FlightSimulatorApp.Model
 
         public void moveAileron(double aileron)
         {
-            StringBuilder sb = new StringBuilder(this.var_locations_in_simulator_send[3] + " " + aileron + "\n"); //build the command to set the aileron value in sim
-            string aileronCommand = sb.ToString();
-            this._telnetClient.write(aileronCommand);
+            try
+            {
+                m.WaitOne();
+                StringBuilder sb = new StringBuilder(this.var_locations_in_simulator_send[3] + " " + aileron + "\n"); //build the command to set the aileron value in sim
+                string aileronCommand = sb.ToString();
+                this._telnetClient.write(aileronCommand);
+                _telnetClient.read();
+                m.ReleaseMutex();
+            } catch (Exception e)
+            {
+                Console.WriteLine("problem with thread2");
+                Console.WriteLine("could not send joystick values to simulator ");
+            }
+            
         }
 
         public void moveThrottle(double throttle)
         {
-            StringBuilder sb = new StringBuilder(this.var_locations_in_simulator_send[0] + " " + throttle + "\n"); //build the command to set the aileron value in sim
-            string throttleCommand = sb.ToString();
-            this._telnetClient.write(throttleCommand);
+            try
+            {
+                m.WaitOne();
+                StringBuilder sb = new StringBuilder(this.var_locations_in_simulator_send[0] + " " + throttle + "\n"); //build the command to set the aileron value in sim
+                string throttleCommand = sb.ToString();
+                this._telnetClient.write(throttleCommand);
+                _telnetClient.read();
+                m.ReleaseMutex();
+            } catch (Exception e)
+            {
+                Console.WriteLine("problem with thread2");
+                Console.WriteLine("could not send joystick values to simulator ");
+            }
+            
         }
 
         public void start()
@@ -425,6 +454,7 @@ namespace FlightSimulatorApp.Model
                     {
                         try
                         {
+                            m.WaitOne();
                             _telnetClient.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
                             this.Indicated_heading_deg = Double.Parse(_telnetClient.read());
                             _telnetClient.write("get /instrumentation/gps/indicated-vertical-speed\n");
@@ -446,6 +476,7 @@ namespace FlightSimulatorApp.Model
                             _telnetClient.write("get /position/longitude-deg\n");
                             this.Longitude_deg = Double.Parse(_telnetClient.read());
                             this.Locations = this.Latitude_deg + "," + this.Longitude_deg;
+                             m.ReleaseMutex();
                         } catch (Exception e)
                         {
                             Console.WriteLine("problem with thread running");
