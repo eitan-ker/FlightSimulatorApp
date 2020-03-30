@@ -388,7 +388,6 @@ namespace FlightSimulatorApp.Model
         {
             try
             {
-              
                 m.WaitOne();
                 StringBuilder sb = new StringBuilder(this.var_locations_in_simulator_send[2] + " " + elevator + "\n"); //build the command to set the elevator value in sim
                 string elevatorCommand = sb.ToString();
