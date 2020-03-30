@@ -9,9 +9,13 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <m:Map x:Name="simMap" CredentialsProvider="ie23jE5sEoMv7YdPxCne~3eZIR-IykSa6AksvPxWgvg~AvQb0KdfUln5H_9QQwyhOsxzDjg8kOJVoS5dbFGJo72LNUfc4KvJDAFqz2Y5aS17"
-               Center="32.0055, 34.882030" ZoomLevel="17" Margin="0,0,0,-0.4" Mode="AerialWithLabels" 
+               Center="32.0055, 34.882030" ZoomLevel="10" Margin="0,0,0,-0.4" Mode="Road" 
                BorderThickness="1" BorderBrush="DimGray">
-            <m:Pushpin x:Name="pin" m:MapLayer.Position="32.0055, 34.882030" Location="{Binding VM_Locations}"/>
+            <m:Pushpin x:Name="pin" m:MapLayer.Position="32.0055, 34.882030" Location="{Binding VM_Locations}">
+                <m:Pushpin.Background>
+                    <ImageBrush Stretch="UniformToFill" ImageSource="plane.PNG"/>
+                </m:Pushpin.Background>
+            </m:Pushpin>
             <!--Location="32.068529, 34.842030"-->
         </m:Map>
     </Grid>
