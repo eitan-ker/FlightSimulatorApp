@@ -4,4 +4,4 @@ BUGS
 * Replace pushpin icon to plane - fixed
 * if value's from simulator are incorrect than print ERR instead of value in the appropriate position - fixed
 * if cordinates are out side of map  - deal with it.
-** check throtlle and aileron if they work 
+** check throtlle and aileron if they work - fixed
