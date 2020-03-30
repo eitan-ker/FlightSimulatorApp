@@ -393,9 +393,9 @@ namespace FlightSimulatorApp.Model
                 sb = new StringBuilder(this.var_locations_in_simulator_send[1] + " " + rudder + "\n"); //build the command to set the rudder value in sim
                 string rudderCommand = sb.ToString();
                 this._telnetClient.write(rudderCommand);
-            }
-            catch(Exception e)
+            } catch (Exception e)
             {
+                Console.WriteLine("problem with thread2");
                 Console.WriteLine("could not send joystick values to simulator ");
             }
         }
