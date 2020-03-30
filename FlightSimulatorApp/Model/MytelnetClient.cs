@@ -44,6 +44,7 @@ namespace FlightSimulatorApp.Model
 
         public void write(string command)
         {
+            
             lock (_object)
             {
                 if (client != null)

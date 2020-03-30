@@ -45,12 +45,16 @@ namespace FlightSimulatorApp
             StackPanelFixed_SP.Children.Add(UC1);
             UC1.Visibility = System.Windows.Visibility.Visible;
             UC1.Status = vm;
+            
         }
 
         private void disconnect_Click(object sender, RoutedEventArgs e)
         {
-            vm.model.disconnect();
+            vm.disconnect();
             disconnect.IsChecked = false;
+            disconnect.IsEnabled = false;
+            connect.IsChecked = true;
+            connect.IsEnabled = true;
         }
 
         private void dashboard_Loaded(object sender, RoutedEventArgs e)
@@ -58,16 +62,21 @@ namespace FlightSimulatorApp
 
         }
 
-        private void disconnect_Checked(object sender, RoutedEventArgs e) //toggle button - if there wansnt attempt to connect yet, this button will be grey and not clickable
+        /*private void disconnect_Checked(object sender, RoutedEventArgs e) //toggle button - if there wansnt attempt to connect yet, this button will be grey and not clickable
         {
             if((sender as ToggleButton).IsChecked == false)
             {
-                /*need to implement that button will be clickable when connection established successfully*/
+                
+                if(ConnectionStatus.Text == "Connected")
+                {
+                    disconnect.IsChecked = true;
+                    disconnect.IsEnabled = true;
+                }
             } else
             {
                 disconnect.IsChecked = false;
                 disconnect.IsEnabled = false;
             }
-        }
+        }*/
     }
 }
