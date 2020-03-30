@@ -20,7 +20,7 @@ namespace FlightSimulatorApp.Model
         string[] var_locations_in_simulator_recieve = {"/instrumentation/heading-indicator/indicated-heading-deg", "/instrumentation/gps/indicated-vertical-speed",
             "/instrumentation/gps/indicated-ground-speed-kt", "/instrumentation/airspeed-indicator/indicated-speed-kt", "/instrumentation/attitude-indicator/internal-roll-deg",
             "/instrumentation/attitude-indicator/internal-pitch-deg", "/instrumentation/gps/indicated-altitude-ft", "/position/latitude-deg", "/position/longitude-deg"};
-        private double indicated_heading_deg;
+        private string indicated_heading_deg = "ERR";
         private double gps_indicated_vertical_speed;
         private double gps_indicated_ground_speed_kt;
         private double airspeed_indicator_indicated_speed_kt;
@@ -145,31 +145,18 @@ namespace FlightSimulatorApp.Model
                 NotifyPropertyChanged("Longitude_deg");
             }
         }
-        public double Indicated_heading_deg
+        public string Indicated_heading_deg
         {
 
             get
             {
-                if (CodeMapsend.ContainsKey("get /instrumentation/heading-indicator/indicated-heading-deg\n"))
-                {
-                    if (double.TryParse(CodeMapsend["get /instrumentation/heading-indicator/indicated-heading-deg\n"].ToString(), out indicated_heading_deg))
-                    {
-                        return this.indicated_heading_deg;
-                    }
-                    else
-                    {
-                        throw new Exception("Indicated_heading_deg has a non-numeric value");
-                    }
-                }
-                else
-                {
                     return this.indicated_heading_deg;
-                }
+                
             }
             set
             {
-                //this.indicated_heading_deg = value;
-                CodeMapsend["get /instrumentation/heading-indicator/indicated-heading-deg\n"] = value;
+                this.indicated_heading_deg = value;
+                //CodeMapsend["get /instrumentation/heading-indicator/indicated-heading-deg\n"] = value;
                 NotifyPropertyChanged("Indicated_heading_deg");
             }
         }
@@ -456,7 +443,7 @@ namespace FlightSimulatorApp.Model
                         {
                             m.WaitOne();
                             _telnetClient.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
-                            this.Indicated_heading_deg = Double.Parse(_telnetClient.read());
+                            this.Indicated_heading_deg = Double.Parse(_telnetClient.read()).ToString();
                             _telnetClient.write("get /instrumentation/gps/indicated-vertical-speed\n");
                             this.Gps_indicated_vertical_speed = Double.Parse(_telnetClient.read());
                             _telnetClient.write("get /instrumentation/gps/indicated-ground-speed-kt\n");
@@ -488,5 +475,10 @@ namespace FlightSimulatorApp.Model
                 }
             }).Start();
         }
+        public void restorebackToERR()
+        {
+
+        }
     }
+
 }

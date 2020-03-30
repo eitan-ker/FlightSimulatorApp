@@ -31,7 +31,7 @@ namespace FlightSimulatorApp.ViewModel
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
-        public double VM_Indicated_heading_deg => model.Indicated_heading_deg;
+        public string VM_Indicated_heading_deg => model.Indicated_heading_deg;
         public double VM_Gps_indicated_vertical_speed => model.Gps_indicated_vertical_speed;
         public double VM_Gps_indicated_ground_speed_kt => model.Gps_indicated_ground_speed_kt;
         public double VM_Airspeed_indicator_indicated_speed_kt => model.Airspeed_indicator_indicated_speed_kt;

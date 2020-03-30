@@ -10,7 +10,7 @@ namespace FlightSimulatorApp.Model
 {
     public interface ISimApp : INotifyPropertyChanged
     {
-        double Indicated_heading_deg { get; set; }
+        string Indicated_heading_deg { get; set; }
         double Gps_indicated_vertical_speed { get; set; }
         double Gps_indicated_ground_speed_kt { get; set; }
         double Airspeed_indicator_indicated_speed_kt { get; set; }

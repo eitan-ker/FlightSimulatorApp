@@ -43,7 +43,7 @@ namespace FlightSimulatorApp.ViewModel
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
         }
-        public double VM_Indicated_heading_deg
+        public string VM_Indicated_heading_deg
         {
             get
             {
