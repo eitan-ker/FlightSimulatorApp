@@ -31,18 +31,18 @@ namespace FlightSimulatorApp.ViewModel
 
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propName));
         }
-        public double VM_Indicated_heading_deg => model.Indicated_heading_deg;
-        public double VM_Gps_indicated_vertical_speed => model.Gps_indicated_vertical_speed;
-        public double VM_Gps_indicated_ground_speed_kt => model.Gps_indicated_ground_speed_kt;
-        public double VM_Airspeed_indicator_indicated_speed_kt => model.Airspeed_indicator_indicated_speed_kt;
+        public string VM_Indicated_heading_deg => model.Indicated_heading_deg;
+        public string VM_Gps_indicated_vertical_speed => model.Gps_indicated_vertical_speed;
+        public string VM_Gps_indicated_ground_speed_kt => model.Gps_indicated_ground_speed_kt;
+        public string VM_Airspeed_indicator_indicated_speed_kt => model.Airspeed_indicator_indicated_speed_kt;
 
 
-        public double VM_Gps_indicated_altitude_ft => model.Gps_indicated_altitude_ft;
+        public string VM_Gps_indicated_altitude_ft => model.Gps_indicated_altitude_ft;
 
-        public double VM_Attitude_indicator_internal_roll_deg => model.Attitude_indicator_internal_roll_deg;
+        public string VM_Attitude_indicator_internal_roll_deg => model.Attitude_indicator_internal_roll_deg;
 
-        public double VM_Attitude_indicator_internal_pitch_deg => model.Attitude_indicator_internal_pitch_deg;
+        public string VM_Attitude_indicator_internal_pitch_deg => model.Attitude_indicator_internal_pitch_deg;
 
-        public double VM_Altimeter_indicated_altitude_ft => model.Altimeter_indicated_altitude_ft;
+        public string VM_Altimeter_indicated_altitude_ft => model.Altimeter_indicated_altitude_ft;
     }
 }

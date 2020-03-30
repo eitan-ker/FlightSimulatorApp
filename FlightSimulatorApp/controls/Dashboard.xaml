@@ -25,7 +25,7 @@
                     <GradientStop Color="#FF838383" Offset="1"/>
                 </LinearGradientBrush>
             </TextBlock.Background><Run Text="indicated-heading-deg" FontSize="13"/></TextBlock>
-        <TextBlock Grid.Row="0" Grid.Column="7" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White"><Run Text="{Binding VM_Indicated_heading_deg,Mode=OneWay}"  FontSize="10" /></TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="7" Width="Auto" Height="Auto" HorizontalAlignment="Right" VerticalAlignment="Center" Foreground="White"><Run Text="{Binding VM_Indicated_heading_deg,Mode=OneWay}" FontSize="10" /></TextBlock>
         <TextBlock Grid.Row="1" Grid.Column="0" Width="800" Height="Auto" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0.6,0,0.8" Foreground="White">
             <TextBlock.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
