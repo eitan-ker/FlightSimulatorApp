@@ -1,5 +1,9 @@
-*Get\set values from simulator after more than  10 sec
-*Exception thrown when thread is getting values from simulator while from other thread we send joystick values to simulator
-*Replace pushpin icon to plane
-*if value send to simulator is greater than \ less than Max\Min value of variable than adjust the value to be Max\Min value
-*if value's from simulator are incorrect than print ERR instead of value in the appropriate position
+BUGS
+
+* Get\set values from simulator after more than  10 sec - eitan
+* Replace pushpin icon to plane - eitan
+* if value send to simulator is greater than \ less than Max\Min value of variable than adjust the value to be Max\Min value - meni
+* if value's from simulator are incorrect than print ERR instead of value in the appropriate position - meni
+* if cordinates are out side of map  - deal with it.
+* after disconnecting, cannot connect again and crushes.
+** check throtlle and aileron if they work 
