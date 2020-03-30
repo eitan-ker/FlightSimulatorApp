@@ -423,33 +423,36 @@ namespace FlightSimulatorApp.Model
                 {
                     if (this.ConnectionStatus != "Disconnected")
                     {
-                        //foreach (KeyValuePair<string, object> entry in CodeMapsend)
-                        //{
-                        _telnetClient.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
-                        this.Indicated_heading_deg = Double.Parse(_telnetClient.read());
-                        _telnetClient.write("get /instrumentation/gps/indicated-vertical-speed\n");
-                        this.Gps_indicated_vertical_speed = Double.Parse(_telnetClient.read());
-                        _telnetClient.write("get /instrumentation/gps/indicated-ground-speed-kt\n");
-                        this.Gps_indicated_ground_speed_kt = Double.Parse(_telnetClient.read());
-                        _telnetClient.write("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
-                        this.Airspeed_indicator_indicated_speed_kt = Double.Parse(_telnetClient.read());
-                        _telnetClient.write("get /instrumentation/altimeter/indicated-altitude-ft\n");
-                        this.Gps_indicated_altitude_ft = Double.Parse(_telnetClient.read());
-                        _telnetClient.write("get /instrumentation/attitude-indicator/internal-roll-deg\n");
-                        this.Attitude_indicator_internal_roll_deg = Double.Parse(_telnetClient.read());
-                        _telnetClient.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
-                        this.Attitude_indicator_internal_pitch_deg = Double.Parse(_telnetClient.read());
-                        _telnetClient.write("get /instrumentation/gps/indicated-altitude-ft\n");
-                        this.Altimeter_indicated_altitude_ft = Double.Parse(_telnetClient.read());
-                        _telnetClient.write("get /position/latitude-deg\n");
-                        this.Latitude_deg = Double.Parse(_telnetClient.read());
-                        _telnetClient.write("get /position/longitude-deg\n");
-                        this.Longitude_deg = Double.Parse(_telnetClient.read());
-                        this.Locations = this.Latitude_deg + "," + this.Longitude_deg;
+                        try
+                        {
+                            _telnetClient.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
+                            this.Indicated_heading_deg = Double.Parse(_telnetClient.read());
+                            _telnetClient.write("get /instrumentation/gps/indicated-vertical-speed\n");
+                            this.Gps_indicated_vertical_speed = Double.Parse(_telnetClient.read());
+                            _telnetClient.write("get /instrumentation/gps/indicated-ground-speed-kt\n");
+                            this.Gps_indicated_ground_speed_kt = Double.Parse(_telnetClient.read());
+                            _telnetClient.write("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
+                            this.Airspeed_indicator_indicated_speed_kt = Double.Parse(_telnetClient.read());
+                            _telnetClient.write("get /instrumentation/altimeter/indicated-altitude-ft\n");
+                            this.Gps_indicated_altitude_ft = Double.Parse(_telnetClient.read());
+                            _telnetClient.write("get /instrumentation/attitude-indicator/internal-roll-deg\n");
+                            this.Attitude_indicator_internal_roll_deg = Double.Parse(_telnetClient.read());
+                            _telnetClient.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
+                            this.Attitude_indicator_internal_pitch_deg = Double.Parse(_telnetClient.read());
+                            _telnetClient.write("get /instrumentation/gps/indicated-altitude-ft\n");
+                            this.Altimeter_indicated_altitude_ft = Double.Parse(_telnetClient.read());
+                            _telnetClient.write("get /position/latitude-deg\n");
+                            this.Latitude_deg = Double.Parse(_telnetClient.read());
+                            _telnetClient.write("get /position/longitude-deg\n");
+                            this.Longitude_deg = Double.Parse(_telnetClient.read());
+                            this.Locations = this.Latitude_deg + "," + this.Longitude_deg;
+                        } catch (Exception e)
+                        {
+                            Console.WriteLine("problem with thread running");
+                        }
+                        
                     }
-                    //this.temp["get /instrumentation/heading-indicator/indicated-heading-deg\n"] = Double.Parse(_telnetClient.read());
-                    // }
-                    //CodeMapsend = temp;
+                 
                     Thread.Sleep(250); // read data in 4Hz
                 }
             }).Start();
