@@ -67,7 +67,7 @@ namespace FlightSimulatorApp.Model
         {
             get
             {
-                return connectionStatus;
+                return this.connectionStatus;
             }
             set
             {
@@ -365,6 +365,7 @@ namespace FlightSimulatorApp.Model
             {
                 _telnetClient.connect(ip, port);
                 this.ConnectionStatus = "Connected";
+                this.stop = false;
                 this.start();
             }
             catch (Exception e)
@@ -376,8 +377,11 @@ namespace FlightSimulatorApp.Model
         }
         public void disconnect()
         {
-            stop = true;
-            _telnetClient.disconnect();
+            
+                stop = true;
+                _telnetClient.disconnect();
+            this.ConnectionStatus = "Disconnected";
+            
         }
         public void FlyPlane(double elevator, double rudder)
         {
@@ -392,8 +396,8 @@ namespace FlightSimulatorApp.Model
             } catch (Exception e)
             {
                 Console.WriteLine("problem with thread2");
+                Console.WriteLine("could not send joystick values to simulator ");
             }
-
         }
 
         public void moveAileron(double aileron)
@@ -417,10 +421,10 @@ namespace FlightSimulatorApp.Model
             {
                 while (!stop)
                 {
-                    //foreach (KeyValuePair<string, object> entry in CodeMapsend)
-                    //{
-                    try
+                    if (this.ConnectionStatus != "Disconnected")
                     {
+                        //foreach (KeyValuePair<string, object> entry in CodeMapsend)
+                        //{
                         _telnetClient.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
                         this.Indicated_heading_deg = Double.Parse(_telnetClient.read());
                         _telnetClient.write("get /instrumentation/gps/indicated-vertical-speed\n");
@@ -442,12 +446,7 @@ namespace FlightSimulatorApp.Model
                         _telnetClient.write("get /position/longitude-deg\n");
                         this.Longitude_deg = Double.Parse(_telnetClient.read());
                         this.Locations = this.Latitude_deg + "," + this.Longitude_deg;
-                    } catch (Exception e)
-                    {
-                        Console.WriteLine("problem with thread");
                     }
-                    
-
                     //this.temp["get /instrumentation/heading-indicator/indicated-heading-deg\n"] = Double.Parse(_telnetClient.read());
                     // }
                     //CodeMapsend = temp;

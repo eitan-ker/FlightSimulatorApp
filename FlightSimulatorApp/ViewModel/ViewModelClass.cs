@@ -13,16 +13,8 @@ namespace FlightSimulatorApp.ViewModel
     {
         public ISimApp model;
 
-        /********************************* related to dashboard*/
+        
         public event PropertyChangedEventHandler PropertyChanged;
-        public ViewModelClass(ISimApp simApp)
-        {
-            model = simApp;
-            model.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
-            {
-                NotifyPropertyChanged("VM_" + e.PropertyName);
-            };
-        }
         public void NotifyPropertyChanged(string propName)
         {
             /*var handler = PropertyChanged;
@@ -34,6 +26,22 @@ namespace FlightSimulatorApp.ViewModel
             {
                 PropertyChanged(this, new PropertyChangedEventArgs(propName));
             }
+        }
+        /********************************** related to Main Window */
+        public string VM_ConnectionStatus => model.ConnectionStatus;
+        internal void disconnect()
+        {
+            model.disconnect();
+        }
+
+        /********************************* related to dashboard*/
+        public ViewModelClass(ISimApp simApp)
+        {
+            model = simApp;
+            model.PropertyChanged += delegate (object sender, PropertyChangedEventArgs e)
+            {
+                NotifyPropertyChanged("VM_" + e.PropertyName);
+            };
         }
         public double VM_Indicated_heading_deg
         {
@@ -47,6 +55,9 @@ namespace FlightSimulatorApp.ViewModel
             }
         }
         public double VM_Gps_indicated_vertical_speed => model.Gps_indicated_vertical_speed;
+
+        
+
         public double VM_Gps_indicated_ground_speed_kt => model.Gps_indicated_ground_speed_kt;
         public double VM_Airspeed_indicator_indicated_speed_kt => model.Airspeed_indicator_indicated_speed_kt;
 
