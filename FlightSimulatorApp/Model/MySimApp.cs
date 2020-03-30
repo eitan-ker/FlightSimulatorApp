@@ -14,6 +14,7 @@ namespace FlightSimulatorApp.Model
         private Mutex m = new Mutex();
         public Dictionary<string, object> CodeMapsend;
         public Dictionary<string, object> CodeMaprecieve;
+        public Dictionary<string, double> thresholdValuestoThrottleandAileron;
         public Dictionary<string, object> temp;
         string[] var_locations_in_simulator_send = {"set /controls/engines/current-engine/throttle", "set /controls/flight/rudder", "set /controls/flight/elevator",
         "set /controls/flight/aileron"};
@@ -52,6 +53,10 @@ namespace FlightSimulatorApp.Model
             CodeMapsend.Add("get /instrumentation/gps/indicated-altitude-ft\n", this.Altimeter_indicated_altitude_ft);
             CodeMapsend.Add("get /position/latitude-deg\n", this.Latitude_deg);
             CodeMapsend.Add("get /position/longitude-deg\n", this.Longitude_deg);
+            thresholdValuestoThrottleandAileron = new Dictionary<string, double>();
+            thresholdValuestoThrottleandAileron.Add("min_dashboard_val", this.min_dashboard_val);
+            thresholdValuestoThrottleandAileron.Add("max_dashboard_val", this.max_dashboard_val);
+            
             temp = new Dictionary<string, object>(CodeMapsend);
         }
 
@@ -234,6 +239,60 @@ namespace FlightSimulatorApp.Model
             }
         }
 
+        /*************************************************** max and min values to check if the set command values are between the threshold*/ 
+        private double min_Throttle = 0;
+        private double max_Throttle = 1;
+        private double min_Aileron = -1;
+        private double max_Aileron = 1;
+        private double min_dashboard_val = 1;
+        private double max_dashboard_val = 8;
+        public double Min_dashboard_val => this.min_dashboard_val;
+        public double Max_dashboard_val => this.max_dashboard_val;
+
+
+        public string checkThreshold_For_Dashboard_vars(string val)
+        {
+            /*thresholdValuestoThrottleandAileron[var_name] = val;
+            double min_threshold = thresholdValuestoThrottleandAileron["min" + var_name];
+            double max_threshold = thresholdValuestoThrottleandAileron["max" + var_name];
+            string command;
+            if (val > thresholdValuestoThrottleandAileron["min"+var_name])
+            {
+                if (val < thresholdValuestoThrottleandAileron["max" + var_name])
+                {
+                    command = "set " + var_name + " " + val;
+                } else
+                {
+                    command = "set " + var_name + " " + thresholdValuestoThrottleandAileron["max" + var_name]; ;
+                }
+            } else
+            {
+                command = "set " + var_name + " " + thresholdValuestoThrottleandAileron["min" + var_name];
+            }
+            this._telnetClient.write(command); NEED TO CHECK IF ACCORDING TO REQUIREMENTS DOCUMENT*/
+
+            string double_STR_To_Send;
+            double STR_to_double = Double.Parse(val);
+            if(STR_to_double > this.min_dashboard_val)
+            {
+                if(STR_to_double > this.Max_dashboard_val)
+                {
+                    double_STR_To_Send = max_dashboard_val.ToString();
+                } else
+                {
+                    double_STR_To_Send = val.ToString();
+
+                }
+            } else
+            {
+                double_STR_To_Send = min_dashboard_val.ToString();
+            }
+
+            return double_STR_To_Send;
+        }
+
+        /**********************************/
+
         public void connect(string ip, int port)
         {
             try
@@ -332,20 +391,28 @@ namespace FlightSimulatorApp.Model
                             m.WaitOne();
                             _telnetClient.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
                             this.Indicated_heading_deg = Double.Parse(_telnetClient.read()).ToString();
+                            this.Indicated_heading_deg = checkThreshold_For_Dashboard_vars(Indicated_heading_deg);
                             _telnetClient.write("get /instrumentation/gps/indicated-vertical-speed\n");
                             this.Gps_indicated_vertical_speed = Double.Parse(_telnetClient.read()).ToString();
+                            this.Gps_indicated_vertical_speed = checkThreshold_For_Dashboard_vars(Gps_indicated_vertical_speed);
                             _telnetClient.write("get /instrumentation/gps/indicated-ground-speed-kt\n");
                             this.Gps_indicated_ground_speed_kt = Double.Parse(_telnetClient.read()).ToString();
+                            this.Gps_indicated_ground_speed_kt = checkThreshold_For_Dashboard_vars(Gps_indicated_ground_speed_kt);
                             _telnetClient.write("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
                             this.Airspeed_indicator_indicated_speed_kt = Double.Parse(_telnetClient.read()).ToString();
+                            this.Airspeed_indicator_indicated_speed_kt = checkThreshold_For_Dashboard_vars(Airspeed_indicator_indicated_speed_kt);
                             _telnetClient.write("get /instrumentation/altimeter/indicated-altitude-ft\n");
                             this.Gps_indicated_altitude_ft = Double.Parse(_telnetClient.read()).ToString();
+                            this.Gps_indicated_altitude_ft = checkThreshold_For_Dashboard_vars(Gps_indicated_altitude_ft);
                             _telnetClient.write("get /instrumentation/attitude-indicator/internal-roll-deg\n");
                             this.Attitude_indicator_internal_roll_deg = Double.Parse(_telnetClient.read()).ToString();
+                            this.Attitude_indicator_internal_roll_deg = checkThreshold_For_Dashboard_vars(Attitude_indicator_internal_roll_deg);
                             _telnetClient.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
                             this.Attitude_indicator_internal_pitch_deg = Double.Parse(_telnetClient.read()).ToString();
+                            this.Attitude_indicator_internal_pitch_deg = checkThreshold_For_Dashboard_vars(Attitude_indicator_internal_pitch_deg);
                             _telnetClient.write("get /instrumentation/gps/indicated-altitude-ft\n");
                             this.Altimeter_indicated_altitude_ft = Double.Parse(_telnetClient.read()).ToString();
+                            this.Altimeter_indicated_altitude_ft = checkThreshold_For_Dashboard_vars(Altimeter_indicated_altitude_ft);
                             _telnetClient.write("get /position/latitude-deg\n");
                             this.Latitude_deg = Double.Parse(_telnetClient.read()).ToString();
                             _telnetClient.write("get /position/longitude-deg\n");
