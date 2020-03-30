@@ -58,7 +58,11 @@ namespace FlightSimulatorApp.controls
                 }
                 Window parentWin = Window.GetWindow(this);
                 _vm = ((MainWindow)Application.Current.MainWindow).getVM();
-                _vm.FlyPlane(x, y);
+                //Console.WriteLine(knobPosition.X/(Base.Width/2));
+                //Console.WriteLine(knobPosition.Y/(Base.Height/-2));
+
+                /// the values to send to simulator, the joystick range is between -1 to 1 when the horizontal to the right take value 1 and most vertical up takes vlaue 1
+                _vm.FlyPlane(knobPosition.X / (Base.Width / 2), knobPosition.Y / (Base.Height / -2));
               /*if(Math.Abs(x) < (blackBase.Width / 2))
                 {
                     knobPosition.X = x;
