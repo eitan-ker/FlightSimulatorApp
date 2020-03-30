@@ -365,6 +365,7 @@ namespace FlightSimulatorApp.Model
             {
                 _telnetClient.connect(ip, port);
                 this.ConnectionStatus = "Connected";
+                this.stop = false;
                 this.start();
             }
             catch (Exception e)
@@ -376,17 +377,27 @@ namespace FlightSimulatorApp.Model
         }
         public void disconnect()
         {
-            stop = true;
-            _telnetClient.disconnect();
+            
+                stop = true;
+                _telnetClient.disconnect();
+            this.ConnectionStatus = "Disconnected";
+            
         }
         public void FlyPlane(double elevator, double rudder)
         {
+            try
+            {
                 StringBuilder sb = new StringBuilder(this.var_locations_in_simulator_send[2] + " " + elevator + "\n"); //build the command to set the elevator value in sim
                 string elevatorCommand = sb.ToString();
                 this._telnetClient.write(elevatorCommand);
                 sb = new StringBuilder(this.var_locations_in_simulator_send[1] + " " + rudder + "\n"); //build the command to set the rudder value in sim
                 string rudderCommand = sb.ToString();
                 this._telnetClient.write(rudderCommand);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("could not send joystick values to simulator ");
+            }
         }
 
         public void moveAileron(double aileron)
@@ -410,30 +421,32 @@ namespace FlightSimulatorApp.Model
             {
                 while (!stop)
                 {
-                    //foreach (KeyValuePair<string, object> entry in CodeMapsend)
-                    //{
-                    _telnetClient.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
-                    this.Indicated_heading_deg = Double.Parse(_telnetClient.read());
-                    _telnetClient.write("get /instrumentation/gps/indicated-vertical-speed\n");
-                    this.Gps_indicated_vertical_speed = Double.Parse(_telnetClient.read());
-                    _telnetClient.write("get /instrumentation/gps/indicated-ground-speed-kt\n");
-                    this.Gps_indicated_ground_speed_kt = Double.Parse(_telnetClient.read());
-                    _telnetClient.write("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
-                    this.Airspeed_indicator_indicated_speed_kt = Double.Parse(_telnetClient.read());
-                    _telnetClient.write("get /instrumentation/altimeter/indicated-altitude-ft\n");
-                    this.Gps_indicated_altitude_ft = Double.Parse(_telnetClient.read());
-                    _telnetClient.write("get /instrumentation/attitude-indicator/internal-roll-deg\n");
-                    this.Attitude_indicator_internal_roll_deg = Double.Parse(_telnetClient.read());
-                    _telnetClient.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
-                    this.Attitude_indicator_internal_pitch_deg = Double.Parse(_telnetClient.read());
-                    _telnetClient.write("get /instrumentation/gps/indicated-altitude-ft\n");
-                    this.Altimeter_indicated_altitude_ft = Double.Parse(_telnetClient.read());
-                    _telnetClient.write("get /position/latitude-deg\n");
-                    this.Latitude_deg = Double.Parse(_telnetClient.read());
-                    _telnetClient.write("get /position/longitude-deg\n");
-                    this.Longitude_deg = Double.Parse(_telnetClient.read());
-                    this.Locations = this.Latitude_deg + "," + this.Longitude_deg;
-
+                    if (this.ConnectionStatus != "Disconnected")
+                    {
+                        //foreach (KeyValuePair<string, object> entry in CodeMapsend)
+                        //{
+                        _telnetClient.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
+                        this.Indicated_heading_deg = Double.Parse(_telnetClient.read());
+                        _telnetClient.write("get /instrumentation/gps/indicated-vertical-speed\n");
+                        this.Gps_indicated_vertical_speed = Double.Parse(_telnetClient.read());
+                        _telnetClient.write("get /instrumentation/gps/indicated-ground-speed-kt\n");
+                        this.Gps_indicated_ground_speed_kt = Double.Parse(_telnetClient.read());
+                        _telnetClient.write("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
+                        this.Airspeed_indicator_indicated_speed_kt = Double.Parse(_telnetClient.read());
+                        _telnetClient.write("get /instrumentation/altimeter/indicated-altitude-ft\n");
+                        this.Gps_indicated_altitude_ft = Double.Parse(_telnetClient.read());
+                        _telnetClient.write("get /instrumentation/attitude-indicator/internal-roll-deg\n");
+                        this.Attitude_indicator_internal_roll_deg = Double.Parse(_telnetClient.read());
+                        _telnetClient.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
+                        this.Attitude_indicator_internal_pitch_deg = Double.Parse(_telnetClient.read());
+                        _telnetClient.write("get /instrumentation/gps/indicated-altitude-ft\n");
+                        this.Altimeter_indicated_altitude_ft = Double.Parse(_telnetClient.read());
+                        _telnetClient.write("get /position/latitude-deg\n");
+                        this.Latitude_deg = Double.Parse(_telnetClient.read());
+                        _telnetClient.write("get /position/longitude-deg\n");
+                        this.Longitude_deg = Double.Parse(_telnetClient.read());
+                        this.Locations = this.Latitude_deg + "," + this.Longitude_deg;
+                    }
                     //this.temp["get /instrumentation/heading-indicator/indicated-heading-deg\n"] = Double.Parse(_telnetClient.read());
                     // }
                     //CodeMapsend = temp;

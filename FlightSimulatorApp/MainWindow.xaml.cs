@@ -53,6 +53,8 @@ namespace FlightSimulatorApp
             vm.disconnect();
             disconnect.IsChecked = false;
             disconnect.IsEnabled = false;
+            connect.IsChecked = true;
+            connect.IsEnabled = true;
         }
 
         private void dashboard_Loaded(object sender, RoutedEventArgs e)
