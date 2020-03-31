@@ -45,8 +45,7 @@ namespace FlightSimulatorApp.Model
 
         public void write(string command)
         {
-         //   lock (balanceLock)
-          //  {
+     
                 if (client != null)
                 {
                     Byte[] data = System.Text.Encoding.ASCII.GetBytes(command);
@@ -54,21 +53,17 @@ namespace FlightSimulatorApp.Model
 
                     // Send the message to the connected TcpServer. 
                     stream.Write(data, 0, data.Length);
-
-                    //Console.WriteLine("Sent: {0}", command);
                 }
                 else
                 {
                     Console.WriteLine("not connected to tcp");
                 }
-//            }
 
         }
 
         public string read()
         {
-           // lock (balanceLock2)
-            //{
+
                 if (client != null)
                 {
 
@@ -77,20 +72,34 @@ namespace FlightSimulatorApp.Model
                     // String to store the response ASCII representation.
                     String responseData = String.Empty;
 
+                    var watch = System.Diagnostics.Stopwatch.StartNew();
+                
                     // Read the first batch of the TcpServer response bytes.
                     int bytes = stream.Read(data, 0, data.Length);
+                
+                    watch.Stop();
+                    var elapsedMs = watch.ElapsedMilliseconds;
+               
+
                     responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
 
-                    //Console.WriteLine("Received: {0}", responseData);
-
+                    //if the time to read the data from simulator took less then 10 sec - send data.
+                    if (elapsedMs <= 10000)
+                {
                     return responseData;
+                } 
+                    else // if time read took more then 10 sec - drop information.
+                {
+                    Console.WriteLine("reading data from simulator took more then 10 seconds.");
+                    return "";
+                }
+                    
                 }
                 else
                 {
-                    Console.WriteLine("not connected to tcp");
+                    Console.WriteLine("not connected to tcp.");
                     return "";
                 }
-            //}
         }
 
        
