@@ -72,8 +72,8 @@ namespace FlightSimulatorApp.ViewModel
 
 
         /*********************************************this belongs to Joystick*/
-        private double VM_aileron;
-        public double VM_Aileron
+        private string VM_aileron;
+        public string VM_Aileron
         {
             get
             {
@@ -82,8 +82,12 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 VM_aileron = value;
-                model.moveAileron(VM_aileron);
+                model.moveAileron(VM_aileron.ToString());
             }
+        }
+        public void moveAileron(string val)
+        {
+            this.model.moveAileron(val);
         }
         private double VM_throttle;
         public double VM_Throttle
@@ -98,9 +102,9 @@ namespace FlightSimulatorApp.ViewModel
                 model.moveThrottle(VM_throttle);
             }
         }
-        public void FlyPlane(double elevator, double aileron)
+        public void FlyPlane(double rudder, double elevator)
         {
-            model.FlyPlane(elevator, aileron);
+            model.FlyPlane(rudder, elevator);
         }
         
         /*****************************************/
@@ -135,7 +139,22 @@ namespace FlightSimulatorApp.ViewModel
         {
             get
             {
-               // Console.WriteLine(model.Locations);
+                // Console.WriteLine(model.Locations);
+                double latitude_double_val = 0;
+                bool can_parse_to_double = Double.TryParse(model.Latitude_deg, out latitude_double_val);
+                if(can_parse_to_double == true)
+                {
+                    latitude_double_val = Double.Parse(model.Latitude_deg);
+                    if(latitude_double_val >=85 || latitude_double_val<=(-85))//out of map bounds
+                    {
+                        Console.WriteLine("map coordinates sent from simulator are invalid");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("map coordinates sent from simulator are invalid");
+                }
+               
                 return model.Locations;
             }
             set
