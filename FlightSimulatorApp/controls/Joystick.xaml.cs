@@ -90,6 +90,7 @@ namespace FlightSimulatorApp.controls
             MainWindow mainWind = Application.Current.MainWindow as MainWindow;
             if ( mainWind.connectionIndication.Text != "Connected")
             {
+                Console.WriteLine("you cant change aileron while not connected to simulator");
                 aileron.Value = 0;
             }
             
@@ -101,6 +102,7 @@ namespace FlightSimulatorApp.controls
             MainWindow mainWind = Application.Current.MainWindow as MainWindow;
             if (mainWind.connectionIndication.Text != "Connected")
             {
+                Console.WriteLine("you cant change throttle while not connected to simulator");
                 throttle.Value = 0;
             }
         }
