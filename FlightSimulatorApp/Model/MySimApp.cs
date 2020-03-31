@@ -318,7 +318,7 @@ namespace FlightSimulatorApp.Model
             this.restorebackToERR();
             
         }
-        public void FlyPlane(double elevator, double rudder)
+        public void FlyPlane(double rudder, double elevator)
         {
             try
             {
@@ -330,6 +330,8 @@ namespace FlightSimulatorApp.Model
                 sb = new StringBuilder(this.var_locations_in_simulator_send[1] + " " + rudder + "\n"); //build the command to set the rudder value in sim
                 string rudderCommand = sb.ToString();
                 this._telnetClient.write(rudderCommand);
+                //Console.WriteLine("elevatro:"+elevatorCommand);
+                //Console.WriteLine("rudder"+rudderCommand);
                 _telnetClient.read();
                 m.ReleaseMutex();    
                 

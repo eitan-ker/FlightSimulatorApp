@@ -55,7 +55,7 @@ namespace FlightSimulatorApp.Model
                     // Send the message to the connected TcpServer. 
                     stream.Write(data, 0, data.Length);
 
-                    Console.WriteLine("Sent: {0}", command);
+                    //Console.WriteLine("Sent: {0}", command);
                 }
                 else
                 {
@@ -81,7 +81,7 @@ namespace FlightSimulatorApp.Model
                     int bytes = stream.Read(data, 0, data.Length);
                     responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
 
-                    Console.WriteLine("Received: {0}", responseData);
+                    //Console.WriteLine("Received: {0}", responseData);
 
                     return responseData;
                 }

@@ -102,9 +102,9 @@ namespace FlightSimulatorApp.ViewModel
                 model.moveThrottle(VM_throttle);
             }
         }
-        public void FlyPlane(double elevator, double aileron)
+        public void FlyPlane(double rudder, double elevator)
         {
-            model.FlyPlane(elevator, aileron);
+            model.FlyPlane(rudder, elevator);
         }
         
         /*****************************************/

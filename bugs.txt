@@ -3,5 +3,5 @@ BUGS
 * Get\set values from simulator after more than  10 sec - eitan
 * Replace pushpin icon to plane - fixed
 * if value's from simulator are incorrect than print ERR instead of value in the appropriate position - fixed
-* if cordinates are out side of map  - deal with it.
+* if cordinates are out side of map  - deal with it. - fixed
 ** check throtlle and aileron if they work - fixed
