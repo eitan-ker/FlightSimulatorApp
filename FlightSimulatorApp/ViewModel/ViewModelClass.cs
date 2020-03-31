@@ -139,7 +139,22 @@ namespace FlightSimulatorApp.ViewModel
         {
             get
             {
-               // Console.WriteLine(model.Locations);
+                // Console.WriteLine(model.Locations);
+                double latitude_double_val = 0;
+                bool can_parse_to_double = Double.TryParse(model.Latitude_deg, out latitude_double_val);
+                if(can_parse_to_double == true)
+                {
+                    latitude_double_val = Double.Parse(model.Latitude_deg);
+                    if(latitude_double_val >=85 || latitude_double_val<=(-85))//out of map bounds
+                    {
+                        Console.WriteLine("map coordinates sent from simulator are invalid");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("map coordinates sent from simulator are invalid");
+                }
+               
                 return model.Locations;
             }
             set
