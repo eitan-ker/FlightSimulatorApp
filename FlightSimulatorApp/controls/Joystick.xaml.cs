@@ -83,5 +83,26 @@ namespace FlightSimulatorApp.controls
             _vm = ((MainWindow)Application.Current.MainWindow).getVM();
             _vm.FlyPlane(0, 0);
         }
+
+        private void Aileron_value_MouseLeave(object sender, MouseEventArgs e)
+        {
+            var aileron = sender as Slider;
+            MainWindow mainWind = Application.Current.MainWindow as MainWindow;
+            if ( mainWind.connectionIndication.Text != "Connected")
+            {
+                aileron.Value = 0;
+            }
+            
+        }
+
+        private void Throttle_value_MouseLeave(object sender, MouseEventArgs e)
+        {
+            var throttle = sender as Slider;
+            MainWindow mainWind = Application.Current.MainWindow as MainWindow;
+            if (mainWind.connectionIndication.Text != "Connected")
+            {
+                throttle.Value = 0;
+            }
+        }
     }
 }

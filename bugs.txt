@@ -5,7 +5,7 @@ opened:
 * what happens when cordinates are invalid? ia it ok to print non stop "ivalid"? or should terminate?
 
 fixed:
-
+* the application allows to play with sliders while not connected to simulator
 * Get\set values from simulator after more than  10 sec
 * Replace pushpin icon to plane
 * if value's from simulator are incorrect than print ERR instead of value in the appropriate position
