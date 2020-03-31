@@ -2,7 +2,7 @@ BUGS
 
 opened:
 
-* initializing mainWindow does not suppose to show problem with map
+* what happens when cordinates are invalid? ia it ok to print non stop "ivalid"? or should terminate?
 
 fixed:
 
@@ -11,3 +11,4 @@ fixed:
 * if value's from simulator are incorrect than print ERR instead of value in the appropriate position
 * if cordinates are out side of map  - deal with it.
 * check throtlle and aileron if they work
+* initializing mainWindow does not suppose to show problem with map

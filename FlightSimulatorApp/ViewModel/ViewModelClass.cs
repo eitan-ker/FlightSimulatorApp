@@ -13,7 +13,7 @@ namespace FlightSimulatorApp.ViewModel
     {
         public ISimApp model;
 
-        
+
         public event PropertyChangedEventHandler PropertyChanged;
         public void NotifyPropertyChanged(string propName)
         {
@@ -56,7 +56,7 @@ namespace FlightSimulatorApp.ViewModel
         }
         public string VM_Gps_indicated_vertical_speed => model.Gps_indicated_vertical_speed;
 
-        
+
 
         public string VM_Gps_indicated_ground_speed_kt => model.Gps_indicated_ground_speed_kt;
         public string VM_Airspeed_indicator_indicated_speed_kt => model.Airspeed_indicator_indicated_speed_kt;
@@ -106,7 +106,7 @@ namespace FlightSimulatorApp.ViewModel
         {
             model.FlyPlane(rudder, elevator);
         }
-        
+
         /*****************************************/
 
         /************************ this belongs to map*/
@@ -139,27 +139,31 @@ namespace FlightSimulatorApp.ViewModel
         {
             get
             {
-                // Console.WriteLine(model.Locations);
-                double latitude_double_val = 0;
-                bool can_parse_to_double = Double.TryParse(model.Latitude_deg, out latitude_double_val);
-                if(can_parse_to_double == true)
+                if (model.ConnectionStatus == "Connected")
                 {
-                    latitude_double_val = Double.Parse(model.Latitude_deg);
-                    if(latitude_double_val >=85 || latitude_double_val<=(-85))//out of map bounds
+
+
+                    // Console.WriteLine(model.Locations);
+                    double latitude_double_val = 0;
+                    bool can_parse_to_double = Double.TryParse(model.Latitude_deg, out latitude_double_val);
+                    if (can_parse_to_double == true)
+                    {
+                        latitude_double_val = Double.Parse(model.Latitude_deg);
+                        if (latitude_double_val >= 85 || latitude_double_val <= (-85))//out of map bounds
+                        {
+                            Console.WriteLine("map coordinates sent from simulator are invalid");
+                        }
+                    }
+                    else
                     {
                         Console.WriteLine("map coordinates sent from simulator are invalid");
                     }
                 }
-                else
-                {
-                    Console.WriteLine("map coordinates sent from simulator are invalid");
-                }
-               
                 return model.Locations;
             }
             set
             {
-                
+
             }
         }
 
