@@ -1,7 +1,13 @@
 BUGS
 
-* Get\set values from simulator after more than  10 sec - eitan
-* Replace pushpin icon to plane - fixed
-* if value's from simulator are incorrect than print ERR instead of value in the appropriate position - fixed
-* if cordinates are out side of map  - deal with it. - fixed
-** check throtlle and aileron if they work - fixed
+opened:
+
+* initializing mainWindow does not suppose to show problem with map
+
+fixed:
+
+* Get\set values from simulator after more than  10 sec
+* Replace pushpin icon to plane
+* if value's from simulator are incorrect than print ERR instead of value in the appropriate position
+* if cordinates are out side of map  - deal with it.
+* check throtlle and aileron if they work

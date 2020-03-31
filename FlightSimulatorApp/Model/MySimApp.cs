@@ -42,7 +42,7 @@ namespace FlightSimulatorApp.Model
             this._telnetClient = telnetClient;
             stop = false;
             CodeMapsend = new Dictionary<string, object>();
-            this.restorebackToERR();
+            this.restorebackTo();
             CodeMapsend.Add("get /instrumentation/heading-indicator/indicated-heading-deg\n", this.Indicated_heading_deg);
             CodeMapsend.Add("get /instrumentation/gps/indicated-vertical-speed\n", this.Gps_indicated_vertical_speed);
             CodeMapsend.Add("get /instrumentation/gps/indicated-ground-speed-kt\n", this.Gps_indicated_ground_speed_kt);
@@ -56,7 +56,7 @@ namespace FlightSimulatorApp.Model
             thresholdValuestoThrottleandAileron = new Dictionary<string, double>();
             thresholdValuestoThrottleandAileron.Add("min_dashboard_val", this.min_dashboard_val);
             thresholdValuestoThrottleandAileron.Add("max_dashboard_val", this.max_dashboard_val);
-            
+
             temp = new Dictionary<string, object>(CodeMapsend);
         }
 
@@ -87,7 +87,7 @@ namespace FlightSimulatorApp.Model
         {
             get
             {
-                   return this.locations;
+                return this.locations;
             }
             set
             {
@@ -99,7 +99,7 @@ namespace FlightSimulatorApp.Model
         {
             get
             {
-                    return this.latitude_deg;
+                return this.latitude_deg;
             }
             set
             {
@@ -113,13 +113,13 @@ namespace FlightSimulatorApp.Model
         {
             get
             {
-                    return this.longitude_deg;
-                
+                return this.longitude_deg;
+
             }
             set
             {
                 this.longitude_deg = value;
-               //CodeMapsend["get /position/longitude-deg\n"] = value;
+                //CodeMapsend["get /position/longitude-deg\n"] = value;
                 //Locations.Longitude = value;
                 NotifyPropertyChanged("Longitude_deg");
             }
@@ -129,8 +129,8 @@ namespace FlightSimulatorApp.Model
 
             get
             {
-                    return this.indicated_heading_deg;
-                
+                return this.indicated_heading_deg;
+
             }
             set
             {
@@ -143,9 +143,9 @@ namespace FlightSimulatorApp.Model
         {
             get
             {
-             
-                    return this.gps_indicated_vertical_speed;
-                
+
+                return this.gps_indicated_vertical_speed;
+
             }
             set
             {
@@ -158,9 +158,9 @@ namespace FlightSimulatorApp.Model
         {
             get
             {
-                
-                    return this.gps_indicated_ground_speed_kt;
-                
+
+                return this.gps_indicated_ground_speed_kt;
+
             }
             set
             {
@@ -173,8 +173,8 @@ namespace FlightSimulatorApp.Model
         {
             get
             {
-                    return this.airspeed_indicator_indicated_speed_kt;
-                
+                return this.airspeed_indicator_indicated_speed_kt;
+
             }
             set
             {
@@ -187,8 +187,8 @@ namespace FlightSimulatorApp.Model
         {
             get
             {
-                    return this.gps_indicated_altitude_ft;
-                
+                return this.gps_indicated_altitude_ft;
+
             }
             set
             {
@@ -201,8 +201,8 @@ namespace FlightSimulatorApp.Model
         {
             get
             {
-                    return this.attitude_indicator_internal_roll_deg;
-                
+                return this.attitude_indicator_internal_roll_deg;
+
             }
             set
             {
@@ -215,8 +215,8 @@ namespace FlightSimulatorApp.Model
         {
             get
             {
-                    return this.attitude_indicator_internal_pitch_deg;
-                
+                return this.attitude_indicator_internal_pitch_deg;
+
             }
             set
             {
@@ -239,7 +239,7 @@ namespace FlightSimulatorApp.Model
             }
         }
 
-        /*************************************************** max and min values to check if the set command values are between the threshold*/ 
+        /*************************************************** max and min values to check if the set command values are between the threshold*/
         private double min_Throttle = 0;
         private double max_Throttle = 1;
         private double min_Aileron = -1;
@@ -273,17 +273,19 @@ namespace FlightSimulatorApp.Model
 
             string double_STR_To_Send;
             double STR_to_double = Double.Parse(val);
-            if(STR_to_double > this.min_dashboard_val)
+            if (STR_to_double > this.min_dashboard_val)
             {
-                if(STR_to_double > this.Max_dashboard_val)
+                if (STR_to_double > this.Max_dashboard_val)
                 {
                     double_STR_To_Send = max_dashboard_val.ToString();
-                } else
+                }
+                else
                 {
                     double_STR_To_Send = val.ToString();
 
                 }
-            } else
+            }
+            else
             {
                 double_STR_To_Send = min_dashboard_val.ToString();
             }
@@ -311,12 +313,12 @@ namespace FlightSimulatorApp.Model
         }
         public void disconnect()
         {
-            
+
             stop = true;
             _telnetClient.disconnect();
             this.ConnectionStatus = "Disconnected";
-            this.restorebackToERR();
-            
+            this.restorebackTo();
+
         }
         public void FlyPlane(double rudder, double elevator)
         {
@@ -333,9 +335,10 @@ namespace FlightSimulatorApp.Model
                 //Console.WriteLine("elevatro:"+elevatorCommand);
                 //Console.WriteLine("rudder"+rudderCommand);
                 _telnetClient.read();
-                m.ReleaseMutex();    
-                
-            } catch (Exception e)
+                m.ReleaseMutex();
+
+            }
+            catch (Exception e)
             {
                 Console.WriteLine("problem with thread2");
                 Console.WriteLine("could not send joystick values to simulator ");
@@ -361,7 +364,7 @@ namespace FlightSimulatorApp.Model
                     Console.WriteLine("could not send joystick values to simulator ");
                 }
             }
-            
+
         }
 
         public void moveThrottle(double throttle)
@@ -383,12 +386,12 @@ namespace FlightSimulatorApp.Model
                     Console.WriteLine("could not send joystick values to simulator ");
                 }
             }
-            
+
         }
 
         public void start()
         {
-            
+
             new Thread(delegate ()
             {
                 while (!stop)
@@ -398,58 +401,101 @@ namespace FlightSimulatorApp.Model
                         try
                         {
                             m.WaitOne();
+                            double temp = 0;
+
                             _telnetClient.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
-                            this.Indicated_heading_deg = Double.Parse(_telnetClient.read()).ToString();
-                            this.Indicated_heading_deg = checkThreshold_For_Dashboard_vars(Indicated_heading_deg);
+                            if (Double.TryParse(_telnetClient.read().ToString(), out temp))
+                            {
+                                this.Indicated_heading_deg = temp.ToString();
+                                this.Indicated_heading_deg = checkThreshold_For_Dashboard_vars(Indicated_heading_deg);
+                            }
+
                             _telnetClient.write("get /instrumentation/gps/indicated-vertical-speed\n");
-                            this.Gps_indicated_vertical_speed = Double.Parse(_telnetClient.read()).ToString();
-                            this.Gps_indicated_vertical_speed = checkThreshold_For_Dashboard_vars(Gps_indicated_vertical_speed);
+                            if (Double.TryParse(_telnetClient.read().ToString(), out temp))
+                            {
+                                this.Gps_indicated_vertical_speed = temp.ToString();
+                                this.Gps_indicated_vertical_speed = checkThreshold_For_Dashboard_vars(Gps_indicated_vertical_speed);
+                            }
+
                             _telnetClient.write("get /instrumentation/gps/indicated-ground-speed-kt\n");
-                            this.Gps_indicated_ground_speed_kt = Double.Parse(_telnetClient.read()).ToString();
-                            this.Gps_indicated_ground_speed_kt = checkThreshold_For_Dashboard_vars(Gps_indicated_ground_speed_kt);
+                            if (Double.TryParse(_telnetClient.read().ToString(), out temp))
+                            {
+                                this.Gps_indicated_ground_speed_kt = temp.ToString();
+                                this.Gps_indicated_ground_speed_kt = checkThreshold_For_Dashboard_vars(Gps_indicated_ground_speed_kt);
+                            }
+
                             _telnetClient.write("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
-                            this.Airspeed_indicator_indicated_speed_kt = Double.Parse(_telnetClient.read()).ToString();
-                            this.Airspeed_indicator_indicated_speed_kt = checkThreshold_For_Dashboard_vars(Airspeed_indicator_indicated_speed_kt);
+                            if (Double.TryParse(_telnetClient.read().ToString(), out temp))
+                            {
+                                this.Airspeed_indicator_indicated_speed_kt = temp.ToString();
+                                this.Airspeed_indicator_indicated_speed_kt = checkThreshold_For_Dashboard_vars(Airspeed_indicator_indicated_speed_kt);
+                            }
+
                             _telnetClient.write("get /instrumentation/altimeter/indicated-altitude-ft\n");
-                            this.Gps_indicated_altitude_ft = Double.Parse(_telnetClient.read()).ToString();
-                            this.Gps_indicated_altitude_ft = checkThreshold_For_Dashboard_vars(Gps_indicated_altitude_ft);
+                            if (Double.TryParse(_telnetClient.read().ToString(), out temp))
+                            {
+                                this.Gps_indicated_altitude_ft = temp.ToString();
+                                this.Gps_indicated_altitude_ft = checkThreshold_For_Dashboard_vars(Gps_indicated_altitude_ft);
+                            }
+
                             _telnetClient.write("get /instrumentation/attitude-indicator/internal-roll-deg\n");
-                            this.Attitude_indicator_internal_roll_deg = Double.Parse(_telnetClient.read()).ToString();
-                            this.Attitude_indicator_internal_roll_deg = checkThreshold_For_Dashboard_vars(Attitude_indicator_internal_roll_deg);
+                            if (Double.TryParse(_telnetClient.read().ToString(), out temp))
+                            {
+                                this.Attitude_indicator_internal_roll_deg = temp.ToString();
+                                this.Attitude_indicator_internal_roll_deg = checkThreshold_For_Dashboard_vars(Attitude_indicator_internal_roll_deg);
+                            }
+
                             _telnetClient.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
-                            this.Attitude_indicator_internal_pitch_deg = Double.Parse(_telnetClient.read()).ToString();
-                            this.Attitude_indicator_internal_pitch_deg = checkThreshold_For_Dashboard_vars(Attitude_indicator_internal_pitch_deg);
+                            if (Double.TryParse(_telnetClient.read().ToString(), out temp))
+                            {
+                                this.Attitude_indicator_internal_pitch_deg = temp.ToString();
+                                this.Attitude_indicator_internal_pitch_deg = checkThreshold_For_Dashboard_vars(Attitude_indicator_internal_pitch_deg);
+                            }
+
                             _telnetClient.write("get /instrumentation/gps/indicated-altitude-ft\n");
-                            this.Altimeter_indicated_altitude_ft = Double.Parse(_telnetClient.read()).ToString();
-                            this.Altimeter_indicated_altitude_ft = checkThreshold_For_Dashboard_vars(Altimeter_indicated_altitude_ft);
+                            if (Double.TryParse(_telnetClient.read().ToString(), out temp))
+                            {
+                                this.Altimeter_indicated_altitude_ft = temp.ToString();
+                                this.Altimeter_indicated_altitude_ft = checkThreshold_For_Dashboard_vars(Altimeter_indicated_altitude_ft);
+                            }
+
                             _telnetClient.write("get /position/latitude-deg\n");
-                            this.Latitude_deg = Double.Parse(_telnetClient.read()).ToString();
+                            if (Double.TryParse(_telnetClient.read().ToString(), out temp))
+                            {
+                                this.Latitude_deg = temp.ToString();
+                            }
+
                             _telnetClient.write("get /position/longitude-deg\n");
-                            this.Longitude_deg = Double.Parse(_telnetClient.read()).ToString();
+                            if (Double.TryParse(_telnetClient.read().ToString(), out temp))
+                            {
+                                this.Longitude_deg = temp.ToString();
+                            }
+
                             this.Locations = this.Latitude_deg + "," + this.Longitude_deg;
-                             m.ReleaseMutex();
-                        } catch (Exception e)
+                            m.ReleaseMutex();
+                        }
+                        catch (Exception e)
                         {
                             Console.WriteLine("problem with thread running");
                         }
-                        
+
                     }
 
                     Thread.Sleep(250); // read data in 4Hz
                 }
             }).Start();
         }
-        public void restorebackToERR()
+        public void restorebackTo()
         { // this function restores the value to default value "ERR", in case the client is disconnected from simulator
-           Indicated_heading_deg = "ERR";
-           Gps_indicated_vertical_speed = "ERR";
-           Gps_indicated_ground_speed_kt = "ERR";
-           Airspeed_indicator_indicated_speed_kt = "ERR";
-           Gps_indicated_altitude_ft = "ERR"; //ALTIMETER = '/instrumentation/altimeter/indicated-altitude-ft'?
-           Attitude_indicator_internal_roll_deg = "ERR";
-           Attitude_indicator_internal_pitch_deg = "ERR";
-           Altimeter_indicated_altitude_ft = "ERR";
-    }
+            Indicated_heading_deg = "####";
+            Gps_indicated_vertical_speed = "####";
+            Gps_indicated_ground_speed_kt = "####";
+            Airspeed_indicator_indicated_speed_kt = "####";
+            Gps_indicated_altitude_ft = "####"; //ALTIMETER = '/instrumentation/altimeter/indicated-altitude-ft'?
+            Attitude_indicator_internal_roll_deg = "####";
+            Attitude_indicator_internal_pitch_deg = "####";
+            Altimeter_indicated_altitude_ft = "####";
+        }
     }
 
 }
