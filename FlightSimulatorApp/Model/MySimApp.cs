@@ -332,8 +332,8 @@ namespace FlightSimulatorApp.Model
                 sb = new StringBuilder(this.var_locations_in_simulator_send[1] + " " + rudder + "\n"); //build the command to set the rudder value in sim
                 string rudderCommand = sb.ToString();
                 this._telnetClient.write(rudderCommand);
-                //Console.WriteLine("elevatro:"+elevatorCommand);
-                //Console.WriteLine("rudder"+rudderCommand);
+                Console.WriteLine("elevatro:"+elevatorCommand);
+                Console.WriteLine("rudder"+rudderCommand);
                 _telnetClient.read();
                 m.ReleaseMutex();
 
@@ -355,6 +355,7 @@ namespace FlightSimulatorApp.Model
                     StringBuilder sb = new StringBuilder(this.var_locations_in_simulator_send[3] + " " + aileron + "\n"); //build the command to set the aileron value in sim
                     string aileronCommand = sb.ToString();
                     this._telnetClient.write(aileronCommand);
+                    Console.WriteLine(aileronCommand);
                     _telnetClient.read();
                     m.ReleaseMutex();
                 }
@@ -377,6 +378,7 @@ namespace FlightSimulatorApp.Model
                     StringBuilder sb = new StringBuilder(this.var_locations_in_simulator_send[0] + " " + throttle + "\n"); //build the command to set the aileron value in sim
                     string throttleCommand = sb.ToString();
                     this._telnetClient.write(throttleCommand);
+                    Console.WriteLine(throttleCommand);
                     _telnetClient.read();
                     m.ReleaseMutex();
                 }
