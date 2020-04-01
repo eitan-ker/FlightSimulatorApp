@@ -3,6 +3,7 @@ BUGS
 opened:
 
 * what happens when cordinates are invalid? ia it ok to print non stop "ivalid"? or should terminate?
+* when joystick is moving in some direction and keep on it, the app only sends the X and Y of the joystick only once 
 
 fixed:
 * the application allows to play with sliders while not connected to simulator
