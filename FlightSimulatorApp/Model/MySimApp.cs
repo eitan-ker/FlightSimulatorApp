@@ -240,10 +240,10 @@ namespace FlightSimulatorApp.Model
         }
 
         /*************************************************** max and min values to check if the set command values are between the threshold*/
-        private double min_Throttle = 0;
+        /*private double min_Throttle = 0;
         private double max_Throttle = 1;
         private double min_Aileron = -1;
-        private double max_Aileron = 1;
+        private double max_Aileron = 1;*/
         private double min_dashboard_val = 1;
         private double max_dashboard_val = 8;
         public double Min_dashboard_val => this.min_dashboard_val;
@@ -304,7 +304,7 @@ namespace FlightSimulatorApp.Model
                 this.stop = false;
                 this.start();
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 this.ConnectionStatus = "Disconnected";
 
@@ -338,7 +338,7 @@ namespace FlightSimulatorApp.Model
                 m.ReleaseMutex();
 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("problem with thread2");
                 Console.WriteLine("could not send joystick values to simulator ");
@@ -359,7 +359,7 @@ namespace FlightSimulatorApp.Model
                     _telnetClient.read();
                     m.ReleaseMutex();
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     Console.WriteLine("problem with thread2");
                     Console.WriteLine("could not send joystick values to simulator ");
@@ -382,7 +382,7 @@ namespace FlightSimulatorApp.Model
                     _telnetClient.read();
                     m.ReleaseMutex();
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     Console.WriteLine("problem with thread2");
                     Console.WriteLine("could not send joystick values to simulator ");
@@ -477,7 +477,7 @@ namespace FlightSimulatorApp.Model
                             this.Locations = this.Latitude_deg + "," + this.Longitude_deg;
                             m.ReleaseMutex();
                         }
-                        catch (Exception e)
+                        catch (Exception)
                         {
                             Console.WriteLine("problem with thread running");
                         }

@@ -24,7 +24,7 @@ namespace FlightSimulatorApp.Model
 
                 // FINISHED CONNECTION}
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 Console.WriteLine("could not connect to server.");
             }
@@ -36,7 +36,7 @@ namespace FlightSimulatorApp.Model
                 // Close everything.
                 stream.Close();
                 client.Close();
-            } catch (Exception e)
+            } catch (Exception)
             {
                 Console.WriteLine("could not disconnect from server.");
             }
