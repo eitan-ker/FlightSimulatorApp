@@ -401,61 +401,62 @@ namespace FlightSimulatorApp.Model
                         try
                         {
                             m.WaitOne();
+                            float temp1 = 0;
                             double temp = 0;
 
                             _telnetClient.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
-                            if (Double.TryParse(_telnetClient.read().ToString(), out temp))
+                            if (float.TryParse(_telnetClient.read().ToString(), out temp1))
                             {
-                                this.Indicated_heading_deg = temp.ToString();
+                                this.Indicated_heading_deg = temp1.ToString();
                                 this.Indicated_heading_deg = checkThreshold_For_Dashboard_vars(Indicated_heading_deg);
                             }
 
                             _telnetClient.write("get /instrumentation/gps/indicated-vertical-speed\n");
-                            if (Double.TryParse(_telnetClient.read().ToString(), out temp))
+                            if (float.TryParse(_telnetClient.read().ToString(), out temp1))
                             {
-                                this.Gps_indicated_vertical_speed = temp.ToString();
+                                this.Gps_indicated_vertical_speed = temp1.ToString();
                                 this.Gps_indicated_vertical_speed = checkThreshold_For_Dashboard_vars(Gps_indicated_vertical_speed);
                             }
 
                             _telnetClient.write("get /instrumentation/gps/indicated-ground-speed-kt\n");
-                            if (Double.TryParse(_telnetClient.read().ToString(), out temp))
+                            if (float.TryParse(_telnetClient.read().ToString(), out temp1))
                             {
-                                this.Gps_indicated_ground_speed_kt = temp.ToString();
+                                this.Gps_indicated_ground_speed_kt = temp1.ToString();
                                 this.Gps_indicated_ground_speed_kt = checkThreshold_For_Dashboard_vars(Gps_indicated_ground_speed_kt);
                             }
 
                             _telnetClient.write("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
-                            if (Double.TryParse(_telnetClient.read().ToString(), out temp))
+                            if (float.TryParse(_telnetClient.read().ToString(), out temp1))
                             {
-                                this.Airspeed_indicator_indicated_speed_kt = temp.ToString();
+                                this.Airspeed_indicator_indicated_speed_kt = temp1.ToString();
                                 this.Airspeed_indicator_indicated_speed_kt = checkThreshold_For_Dashboard_vars(Airspeed_indicator_indicated_speed_kt);
                             }
 
                             _telnetClient.write("get /instrumentation/altimeter/indicated-altitude-ft\n");
-                            if (Double.TryParse(_telnetClient.read().ToString(), out temp))
+                            if (float.TryParse(_telnetClient.read().ToString(), out temp1))
                             {
-                                this.Gps_indicated_altitude_ft = temp.ToString();
+                                this.Gps_indicated_altitude_ft = temp1.ToString();
                                 this.Gps_indicated_altitude_ft = checkThreshold_For_Dashboard_vars(Gps_indicated_altitude_ft);
                             }
 
                             _telnetClient.write("get /instrumentation/attitude-indicator/internal-roll-deg\n");
-                            if (Double.TryParse(_telnetClient.read().ToString(), out temp))
+                            if (float.TryParse(_telnetClient.read().ToString(), out temp1))
                             {
-                                this.Attitude_indicator_internal_roll_deg = temp.ToString();
+                                this.Attitude_indicator_internal_roll_deg = temp1.ToString();
                                 this.Attitude_indicator_internal_roll_deg = checkThreshold_For_Dashboard_vars(Attitude_indicator_internal_roll_deg);
                             }
 
                             _telnetClient.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
-                            if (Double.TryParse(_telnetClient.read().ToString(), out temp))
+                            if (float.TryParse(_telnetClient.read().ToString(), out temp1))
                             {
-                                this.Attitude_indicator_internal_pitch_deg = temp.ToString();
+                                this.Attitude_indicator_internal_pitch_deg = temp1.ToString();
                                 this.Attitude_indicator_internal_pitch_deg = checkThreshold_For_Dashboard_vars(Attitude_indicator_internal_pitch_deg);
                             }
 
                             _telnetClient.write("get /instrumentation/gps/indicated-altitude-ft\n");
-                            if (Double.TryParse(_telnetClient.read().ToString(), out temp))
+                            if (float.TryParse(_telnetClient.read().ToString(), out temp1))
                             {
-                                this.Altimeter_indicated_altitude_ft = temp.ToString();
+                                this.Altimeter_indicated_altitude_ft = temp1.ToString();
                                 this.Altimeter_indicated_altitude_ft = checkThreshold_For_Dashboard_vars(Altimeter_indicated_altitude_ft);
                             }
 

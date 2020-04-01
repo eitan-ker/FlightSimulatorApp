@@ -17,7 +17,7 @@
                 <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="1">
-                <Slider x:Name="Aileron_value" Value="{Binding VM_Aileron, Mode=TwoWay, NotifyOnTargetUpdated=True}" Minimum="-1" Maximum="1" Margin="-82,206,-93.2,0" VerticalAlignment="Top" TickPlacement="BottomRight" TickFrequency="1" RenderTransformOrigin="0.5,0.5" Height="29">
+                <Slider x:Name="Aileron_value" Value="{Binding VM_Aileron, Mode=TwoWay, NotifyOnTargetUpdated=True}" Minimum="-1" Maximum="1" Margin="-82,206,-93.2,0" VerticalAlignment="Top" TickPlacement="BottomRight" TickFrequency="1" RenderTransformOrigin="0.5,0.5" Height="29" MouseLeave="Aileron_value_MouseLeave">
                     <Slider.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="0"/>
@@ -35,7 +35,7 @@
                 </Slider>
                 <TextBlock Background="White" HorizontalAlignment="Left" Margin="56,397,0,0" TextWrapping="Wrap" Text="Aileron" VerticalAlignment="Top" Width="42" RenderTransformOrigin="-0.067,-1.737"></TextBlock>
                 <TextBox x:Name="Aileron_text" Text="Aileron" TextAlignment="Right" Width="40" Height="15" VerticalAlignment="Top" Margin="360,0,10,10" />
-                <Slider x:Name="Throttle_value" Value="{Binding VM_Throttle, Mode=TwoWay, NotifyOnTargetUpdated=True}" Minimum="0" Maximum="1" HorizontalAlignment="Left" Margin="-37,207,-140.2,0" VerticalAlignment="Top" Width="322" TickPlacement="BottomRight" TickFrequency="1" RenderTransformOrigin="0.5,0.5" Height="27">
+                <Slider x:Name="Throttle_value" Value="{Binding VM_Throttle, Mode=TwoWay, NotifyOnTargetUpdated=True}" Minimum="0" Maximum="1" HorizontalAlignment="Left" Margin="-37,207,-140.2,0" VerticalAlignment="Top" Width="322" TickPlacement="BottomRight" TickFrequency="1" RenderTransformOrigin="0.5,0.5" Height="27" MouseLeave="Throttle_value_MouseLeave">
                     <Slider.Background>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="0"/>
