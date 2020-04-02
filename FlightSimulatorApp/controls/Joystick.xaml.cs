@@ -19,8 +19,10 @@ namespace FlightSimulatorApp.controls
         public Joystick()
         {
             InitializeComponent();
-            _vm = ((MainWindow)Application.Current.MainWindow).getVM();
-            DataContext = _vm;
+            //_vm = ((MainWindow)Application.Current.MainWindow).getVM();
+            _vm = (ViewModelClass)this.DataContext;
+            //DataContext = _vm;
+            
         }
         public ViewModelClass Status { get; set; }
         
@@ -99,6 +101,7 @@ namespace FlightSimulatorApp.controls
                         knobPosition.Y = 0;
                     }
                 }
+
                 Window parentWin = Window.GetWindow(this);
                 _vm = ((MainWindow)Application.Current.MainWindow).getVM();
                 /// the values to send to simulator, the joystick range is between -1 to 1 when the horizontal to the right take value 1 and most vertical up takes vlaue 1
