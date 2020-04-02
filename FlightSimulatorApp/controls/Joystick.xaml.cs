@@ -30,48 +30,80 @@ namespace FlightSimulatorApp.controls
 
         }
 
-        private void Knob_MouseDown(object sender, MouseButtonEventArgs e)
+         private void Knob_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(e.ChangedButton == MouseButton.Left)
+           if(e.ChangedButton == MouseButton.Left)
             {
                 knobLocation = e.GetPosition(this);
+                (Knob).CaptureMouse();
             }
-
         }
 
         private void Knob_MouseMove(object sender, MouseEventArgs e)
         {
-            if(e.LeftButton == MouseButtonState.Pressed)
+            double slope, absX, absY;
+
+            if (e.LeftButton == MouseButtonState.Pressed)
             {
                 double x = e.GetPosition(this).X - knobLocation.X;
                 double y = e.GetPosition(this).Y - knobLocation.Y;
                 //knobPosition.X = x;
                 //knobPosition.Y = y;
-                if(Math.Sqrt(x*x + y*y) <= Base.Width/2)
+                if(Math.Sqrt(x*x + y*y) <= blackBase.Width/2)
                 {
                     knobPosition.X = x;
                     knobPosition.Y = y;
                 } 
                 else
                 {
-                    knobPosition.X = ((Base.Width / 2) / Math.Sqrt(x * x + y * y)) * x;
-                    knobPosition.Y = ((Base.Width / 2) / Math.Sqrt(x * x + y * y)) * y;
+                    //linear equation to calculate point at radious on same line.
+                    slope = y / x;
+                    absX = Math.Sqrt(Math.Pow(Base.Width / 2, 2) / (Math.Pow(slope, 2) + 1));
+                    absY = absX * slope;
+                    if (x > 0)
+                    {
+                        knobPosition.X = absX;
+                    }
+                    else if (x < 0)
+                    {
+                        knobPosition.X = -absX;
+                    }
+                    else
+                    {
+                        knobPosition.X = 0;
+                    }
+                    if (y > 0)
+                    {
+                        if (x > 0)
+                        {
+                            knobPosition.Y = absY;
+                        }
+                        else
+                        {
+                            knobPosition.Y = -absY;
+                        }
+                    }
+                    else if (y < 0)
+                    {
+                        if (x < 0)
+                        {
+                            knobPosition.Y = -absY;
+                        }
+                        else
+                        {
+                            knobPosition.Y = absY;
+                        }
+                    }
+                    else
+                    {
+                        knobPosition.Y = 0;
+                    }
                 }
                 Window parentWin = Window.GetWindow(this);
                 _vm = ((MainWindow)Application.Current.MainWindow).getVM();
-                //Console.WriteLine(knobPosition.X/(Base.Width/2));
-                //Console.WriteLine(knobPosition.Y/(Base.Height/-2));
-
                 /// the values to send to simulator, the joystick range is between -1 to 1 when the horizontal to the right take value 1 and most vertical up takes vlaue 1
                 _vm.FlyPlane(knobPosition.X / (Base.Width / 2), knobPosition.Y / (Base.Height / -2));
-              /*if(Math.Abs(x) < (blackBase.Width / 2))
-                {
-                    knobPosition.X = x;
-                }
-                if (Math.Abs(y) < (blackBase.Height / 2))
-                {
-                    knobPosition.Y = y;
-                }*/
+          
             }
         }
        
@@ -82,6 +114,8 @@ namespace FlightSimulatorApp.controls
             Window parentWin = Window.GetWindow(this);
             _vm = ((MainWindow)Application.Current.MainWindow).getVM();
             _vm.FlyPlane(0, 0);
+            UIElement element = (UIElement)Knob;
+            element.ReleaseMouseCapture();
         }
 
         private void Aileron_value_MouseLeave(object sender, MouseEventArgs e)
