@@ -407,8 +407,8 @@ namespace FlightSimulatorApp.Model
                             double temp = 0;
 
                             _telnetClient.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
-                            string val = _telnetClient.read().ToString();
-                            if (float.TryParse(val, out temp1))
+                            //string val = _telnetClient.read().ToString();
+                            if (float.TryParse(_telnetClient.read().ToString(), out temp1))
                             {
                                 this.Indicated_heading_deg = temp1.ToString();
                                 this.Indicated_heading_deg = checkThreshold_For_Dashboard_vars(Indicated_heading_deg);
