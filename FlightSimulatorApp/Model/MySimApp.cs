@@ -407,10 +407,16 @@ namespace FlightSimulatorApp.Model
                             double temp = 0;
 
                             _telnetClient.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
+                            //string val = _telnetClient.read().ToString();
                             if (float.TryParse(_telnetClient.read().ToString(), out temp1))
                             {
                                 this.Indicated_heading_deg = temp1.ToString();
                                 this.Indicated_heading_deg = checkThreshold_For_Dashboard_vars(Indicated_heading_deg);
+                            }
+                            else
+                            {
+                                this.Indicated_heading_deg = "ERR"; // there has been an error in parsing proccess of the variable from simulator
+                                Console.WriteLine("there has been an error in parsing proccess of the variable " + this.Indicated_heading_deg + " from simulator");
                             }
 
                             _telnetClient.write("get /instrumentation/gps/indicated-vertical-speed\n");
@@ -419,12 +425,22 @@ namespace FlightSimulatorApp.Model
                                 this.Gps_indicated_vertical_speed = temp1.ToString();
                                 this.Gps_indicated_vertical_speed = checkThreshold_For_Dashboard_vars(Gps_indicated_vertical_speed);
                             }
+                            else
+                            {
+                                this.Gps_indicated_vertical_speed = "ERR"; // there has been an error in parsing proccess of the variable from simulator
+                                Console.WriteLine("there has been an error in parsing proccess of the variable " + this.Gps_indicated_vertical_speed + " from simulator");
+                            }
 
                             _telnetClient.write("get /instrumentation/gps/indicated-ground-speed-kt\n");
                             if (float.TryParse(_telnetClient.read().ToString(), out temp1))
                             {
                                 this.Gps_indicated_ground_speed_kt = temp1.ToString();
                                 this.Gps_indicated_ground_speed_kt = checkThreshold_For_Dashboard_vars(Gps_indicated_ground_speed_kt);
+                            }
+                            else
+                            {
+                                this.Gps_indicated_ground_speed_kt = "ERR"; // there has been an error in parsing proccess of the variable from simulator
+                                Console.WriteLine("there has been an error in parsing proccess of the variable " + this.Gps_indicated_ground_speed_kt + " from simulator");
                             }
 
                             _telnetClient.write("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
@@ -433,12 +449,22 @@ namespace FlightSimulatorApp.Model
                                 this.Airspeed_indicator_indicated_speed_kt = temp1.ToString();
                                 this.Airspeed_indicator_indicated_speed_kt = checkThreshold_For_Dashboard_vars(Airspeed_indicator_indicated_speed_kt);
                             }
+                            else
+                            {
+                                this.Airspeed_indicator_indicated_speed_kt = "ERR"; // there has been an error in parsing proccess of the variable from simulator
+                                Console.WriteLine("there has been an error in parsing proccess of the variable " + this.Airspeed_indicator_indicated_speed_kt + " from simulator");
+                            }
 
                             _telnetClient.write("get /instrumentation/altimeter/indicated-altitude-ft\n");
                             if (float.TryParse(_telnetClient.read().ToString(), out temp1))
                             {
                                 this.Gps_indicated_altitude_ft = temp1.ToString();
                                 this.Gps_indicated_altitude_ft = checkThreshold_For_Dashboard_vars(Gps_indicated_altitude_ft);
+                            }
+                            else
+                            {
+                                this.Gps_indicated_altitude_ft = "ERR"; // there has been an error in parsing proccess of the variable from simulator
+                                Console.WriteLine("there has been an error in parsing proccess of the variable " + this.Gps_indicated_altitude_ft + " from simulator");
                             }
 
                             _telnetClient.write("get /instrumentation/attitude-indicator/internal-roll-deg\n");
@@ -447,12 +473,22 @@ namespace FlightSimulatorApp.Model
                                 this.Attitude_indicator_internal_roll_deg = temp1.ToString();
                                 this.Attitude_indicator_internal_roll_deg = checkThreshold_For_Dashboard_vars(Attitude_indicator_internal_roll_deg);
                             }
+                            else
+                            {
+                                this.Gps_indicated_altitude_ft = "ERR"; // there has been an error in parsing proccess of the variable from simulator
+                                Console.WriteLine("there has been an error in parsing proccess of the variable " + this.Gps_indicated_altitude_ft + " from simulator");
+                            }
 
                             _telnetClient.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
                             if (float.TryParse(_telnetClient.read().ToString(), out temp1))
                             {
                                 this.Attitude_indicator_internal_pitch_deg = temp1.ToString();
                                 this.Attitude_indicator_internal_pitch_deg = checkThreshold_For_Dashboard_vars(Attitude_indicator_internal_pitch_deg);
+                            }
+                            else
+                            {
+                                this.Attitude_indicator_internal_pitch_deg = "ERR"; // there has been an error in parsing proccess of the variable from simulator
+                                Console.WriteLine("there has been an error in parsing proccess of the variable " + this.Attitude_indicator_internal_pitch_deg + " from simulator");
                             }
 
                             _telnetClient.write("get /instrumentation/gps/indicated-altitude-ft\n");
@@ -461,17 +497,34 @@ namespace FlightSimulatorApp.Model
                                 this.Altimeter_indicated_altitude_ft = temp1.ToString();
                                 this.Altimeter_indicated_altitude_ft = checkThreshold_For_Dashboard_vars(Altimeter_indicated_altitude_ft);
                             }
+                            else
+                            {
+                                this.Altimeter_indicated_altitude_ft = "ERR"; // there has been an error in parsing proccess of the variable from simulator
+                                Console.WriteLine("there has been an error in parsing proccess of the variable " + this.Altimeter_indicated_altitude_ft + " from simulator");
+                            }
 
                             _telnetClient.write("get /position/latitude-deg\n");
                             if (Double.TryParse(_telnetClient.read().ToString(), out temp))
                             {
                                 this.Latitude_deg = temp.ToString();
                             }
+                            else
+                            {
+                                this.Latitude_deg = "0"; // there has been an error in parsing proccess of the variable from simulator
+                                Console.WriteLine("there has been an error in parsing proccess of the location of the latitude of the plane"
+                                   + " from simulator, the default is set to 0");
+                            }
 
                             _telnetClient.write("get /position/longitude-deg\n");
                             if (Double.TryParse(_telnetClient.read().ToString(), out temp))
                             {
                                 this.Longitude_deg = temp.ToString();
+                            }
+                            else
+                            {
+                                this.Longitude_deg = "0"; // there has been an error in parsing proccess of the variable from simulator
+                                Console.WriteLine("there has been an error in parsing proccess of the location of the longtitude of the plane"
+                                   + " from simulator, the default is set to 0");
                             }
 
                             this.Locations = this.Latitude_deg + "," + this.Longitude_deg;
