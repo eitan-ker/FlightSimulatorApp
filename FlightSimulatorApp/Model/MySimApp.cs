@@ -300,9 +300,12 @@ namespace FlightSimulatorApp.Model
             try
             {
                 _telnetClient.connect(ip, port);
-                this.ConnectionStatus = "Connected";
-                this.stop = false;
-                this.start();
+                if (!_telnetClient.checkIfClientIsNull())
+                {
+                    this.ConnectionStatus = "Connected";
+                    this.stop = false;
+                    this.start();
+                }
             }
             catch (Exception)
             {
