@@ -42,7 +42,7 @@ namespace FlightSimulatorApp.controls
             {
                 /*MySimApp myClient = new MySimApp(new MytelnetClient());
                 myClient.connect(ip, port);*/
-                Status.model.connect(ip, port);
+                Status.connect(ip, port);
                 MainWindow mainWind = Application.Current.MainWindow as MainWindow;
                 if (Status.VM_ConnectionStatus == "Connected")
                 {

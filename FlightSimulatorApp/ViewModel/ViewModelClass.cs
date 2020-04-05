@@ -43,6 +43,12 @@ namespace FlightSimulatorApp.ViewModel
                 NotifyPropertyChanged("VM_" + e.PropertyName);
             };
         }
+
+        internal void connect(string ip, int port)
+        {
+            this.model.connect(ip, port);
+        }
+
         public string VM_Indicated_heading_deg
         {
             get
