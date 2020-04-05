@@ -27,7 +27,12 @@ namespace FlightSimulatorApp.Model
             catch (Exception)
             {
                 Console.WriteLine("could not connect to server.");
+                this.client = null;
             }
+        }
+        public bool checkIfClientIsNull()
+        {
+            return this.client == null;
         }
         public void disconnect()
         {
