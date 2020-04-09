@@ -3,8 +3,8 @@ BUGS
 opened:
 
 * what happens when cordinates are invalid? ia it ok to print non stop "ivalid"? or should terminate?
-* blocker bug - when connected to simulator, sudden termination of simulator freezes the screen and I\O exceptions is thrown in visual
 * animation of the joystick return to base position
+* critical bug - 10 sec/ if no connection discconect
 
 fixed:
 * the application allows to play with sliders while not connected to simulator

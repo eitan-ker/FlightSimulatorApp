@@ -1,4 +1,6 @@
 ﻿using System;
+using System;
+using System.IO.Ports;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
@@ -41,72 +43,89 @@ namespace FlightSimulatorApp.Model
                 // Close everything.
                 stream.Close();
                 client.Close();
-            } catch (Exception)
+            }
+            catch (Exception)
             {
                 Console.WriteLine("could not disconnect from server.");
             }
-            
+
         }
 
         public void write(string command)
         {
-     
-                if (client != null)
-                {
-                    Byte[] data = System.Text.Encoding.ASCII.GetBytes(command);
+
+            if (client != null)
+            {
+                Byte[] data = System.Text.Encoding.ASCII.GetBytes(command);
 
 
-                    // Send the message to the connected TcpServer. 
-                    stream.Write(data, 0, data.Length);
-                }
-                else
-                {
-                    Console.WriteLine("not connected to tcp");
-                }
+                // Send the message to the connected TcpServer. 
+                stream.Write(data, 0, data.Length);
+            }
+            else
+            {
+                Console.WriteLine("not connected to tcp");
+            }
 
         }
 
         public string read()
         {
 
-                if (client != null)
+            if (client != null)
+            {
+
+                Byte[] data = new Byte[256];
+                // String to store the response ASCII representation.
+                String responseData = String.Empty;
+                // Read the first batch of the TcpServer response bytes
+                try
                 {
-
-                    Byte[] data = new Byte[256];
-
-                    // String to store the response ASCII representation.
-                    String responseData = String.Empty;
-
-                    var watch = System.Diagnostics.Stopwatch.StartNew();
-                
-                    // Read the first batch of the TcpServer response bytes.
+                    // Set the COM1 serial port to speed = 4800 baud, parity = odd, 
+                    // data bits = 8, stop bits = 1.
+                    SerialPort sp = new SerialPort("COM1",
+                                    4800, Parity.Odd, 8, StopBits.One);
+                    // Timeout after 10 seconds.
+                    sp.ReadTimeout = 10000;
+                    sp.Open();
+                    // Read until either the default newline termination string 
+                    // is detected or the read operation times out.
                     int bytes = stream.Read(data, 0, data.Length);
-                
-                    watch.Stop();
-                    var elapsedMs = watch.ElapsedMilliseconds;
-               
-
                     responseData = System.Text.Encoding.ASCII.GetString(data, 0, bytes);
+                    sp.Close();
 
                     //if the time to read the data from simulator took less then 10 sec - send data.
-                    if (elapsedMs <= 10000)
-                {
                     return responseData;
-                } 
-                    else // if time read took more then 10 sec - drop information.
+                }
+                // Only catch timeout exceptions.
+                catch (TimeoutException e)
                 {
-                    Console.WriteLine("reading data from simulator took more then 10 seconds.");
-                    return "";
+                    if (checkIfClientIsNull())
+                    {
+                        Console.WriteLine(e);
+                        // diconnect
+                        throw e;
+                    } 
+                    else
+                    {
+                        return "";
+                    }
                 }
-                    
-                }
-                else
+                // other exceptions
+                catch (Exception e)
                 {
-                    Console.WriteLine("not connected to tcp.");
+                    Console.WriteLine(e);
                     return "";
+
                 }
+            }
+            else
+            {
+                Console.WriteLine("not connected to tcp.");
+                return "";
+            }
         }
 
-       
+
     }
 }
