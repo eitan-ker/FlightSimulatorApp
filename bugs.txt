@@ -3,9 +3,8 @@ BUGS
 opened:
 
 * what happens when cordinates are invalid? ia it ok to print non stop "ivalid"? or should terminate?
-* when joystick is moving in some direction and keep on it, the app only sends the X and Y of the joystick only once 
-* movement of joy stick is ugly, when standing on black base it suddenly jumps to base ellipse
 * blocker bug - when connected to simulator, sudden termination of simulator freezes the screen and I\O exceptions is thrown in visual
+* animation of the joystick return to base position
 
 fixed:
 * the application allows to play with sliders while not connected to simulator
@@ -15,5 +14,6 @@ fixed:
 * if cordinates are out side of map  - deal with it.
 * check throtlle and aileron if they work
 * initializing mainWindow does not suppose to show problem with map
-
+* movement of joy stick is ugly, when standing on black base it suddenly jumps to base ellipse
 * blocker bug - after successful connection and disconnecting ,even if simulator turned off, after pressing connect in app the connection status turns to connected
+* when joystick is moving in some direction and keep on it, the app only sends the X and Y of the joystick only once 
