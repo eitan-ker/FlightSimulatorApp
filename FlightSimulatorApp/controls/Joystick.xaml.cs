@@ -37,7 +37,7 @@ namespace FlightSimulatorApp.controls
            if(e.ChangedButton == MouseButton.Left)
             {
                 knobLocation = e.GetPosition(this);
-                (Knob).CaptureMouse();
+               (Knob).CaptureMouse();
             }
         }
 
@@ -51,12 +51,12 @@ namespace FlightSimulatorApp.controls
                 double y = e.GetPosition(this).Y - knobLocation.Y;
                 //knobPosition.X = x;
                 //knobPosition.Y = y;
-                if(Math.Sqrt(x*x + y*y) <= blackBase.Width/2)
+                if(Math.Sqrt(x*x + y*y) <= Base.Width/2)
                 {
                     knobPosition.X = x;
                     knobPosition.Y = y;
                 } 
-                else
+              else
                 {
                     //linear equation to calculate point at radious on same line.
                     slope = y / x;
