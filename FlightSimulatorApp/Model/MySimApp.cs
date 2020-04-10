@@ -478,8 +478,8 @@ namespace FlightSimulatorApp.Model
                             }
                             else
                             {
-                                this.Gps_indicated_altitude_ft = "ERR"; // there has been an error in parsing proccess of the variable from simulator
-                                Console.WriteLine("there has been an error in parsing proccess of the variable " + this.Gps_indicated_altitude_ft + " from simulator");
+                                this.Attitude_indicator_internal_roll_deg = "ERR"; // there has been an error in parsing proccess of the variable from simulator
+                                Console.WriteLine("there has been an error in parsing proccess of the variable " + this.Attitude_indicator_internal_roll_deg + " from simulator");
                             }
 
                             _telnetClient.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
@@ -533,7 +533,7 @@ namespace FlightSimulatorApp.Model
                             this.Locations = this.Latitude_deg + "," + this.Longitude_deg;
                             m.ReleaseMutex();
                         }
-                        catch (TimeoutException e){
+                        catch (TimeoutException){
                             ConnectionStatus = "Disconnected";
                             disconnect();
                             Console.WriteLine("Client has Disconnected from server, due to server problem.");
