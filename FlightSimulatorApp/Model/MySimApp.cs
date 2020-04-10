@@ -536,11 +536,14 @@ namespace FlightSimulatorApp.Model
                         catch (TimeoutException e){
                             ConnectionStatus = "Disconnected";
                             disconnect();
-                            Console.WriteLine("Client has Disconnected from server, due to server problem.");
+                            Console.WriteLine("Client has Disconnected from server due to server problem.");
                         }
-                        catch (Exception)
+                        // ALL Exceptions are thrown here
+                        catch (Exception e)
                         {
-                            Console.WriteLine("problem with thread running");
+                            ConnectionStatus = "Disconnected";
+                            disconnect();
+                            Console.WriteLine(e);
                         }
 
                     }
