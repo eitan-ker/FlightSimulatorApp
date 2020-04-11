@@ -343,6 +343,7 @@ namespace FlightSimulatorApp.Model
             }
             catch (Exception)
             {
+                m.ReleaseMutex();
                 Console.WriteLine("problem with thread2");
                 Console.WriteLine("could not send joystick values to simulator ");
             }
@@ -364,6 +365,7 @@ namespace FlightSimulatorApp.Model
                 }
                 catch (Exception)
                 {
+                    m.ReleaseMutex();
                     Console.WriteLine("problem with thread2");
                     Console.WriteLine("could not send joystick values to simulator ");
                 }
@@ -387,6 +389,7 @@ namespace FlightSimulatorApp.Model
                 }
                 catch (Exception)
                 {
+                    m.ReleaseMutex();
                     Console.WriteLine("problem with thread2");
                     Console.WriteLine("could not send joystick values to simulator ");
                 }
@@ -535,6 +538,7 @@ namespace FlightSimulatorApp.Model
                         }
                         catch (Exception)
                         {
+                            m.ReleaseMutex();
                             Console.WriteLine("an unexpected problem as accured");
                             if(this._telnetClient.checkConnectionStatus())
                             {
