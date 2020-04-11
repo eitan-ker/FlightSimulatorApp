@@ -351,8 +351,8 @@ namespace FlightSimulatorApp.Model
 
         public void moveAileron(string aileron)
         {
-            if (connectionStatus == "Connected")
-            {
+            //if (connectionStatus == "Connected")
+            //{
                 try
                 {
                     m.WaitOne();
@@ -369,14 +369,14 @@ namespace FlightSimulatorApp.Model
                     Console.WriteLine("problem with thread2");
                     Console.WriteLine("could not send joystick values to simulator ");
                 }
-            }
+            //}
 
         }
 
         public void moveThrottle(double throttle)
         {
-            if (connectionStatus == "Connected")
-            {
+            //if (connectionStatus == "Connected")
+            //{
                 try
                 {
                     m.WaitOne();
@@ -393,7 +393,7 @@ namespace FlightSimulatorApp.Model
                     Console.WriteLine("problem with thread2");
                     Console.WriteLine("could not send joystick values to simulator ");
                 }
-            }
+            //}
 
         }
 
@@ -481,8 +481,8 @@ namespace FlightSimulatorApp.Model
                             }
                             else
                             {
-                                this.Gps_indicated_altitude_ft = "ERR"; // there has been an error in parsing proccess of the variable from simulator
-                                Console.WriteLine("there has been an error in parsing proccess of the variable " + this.Gps_indicated_altitude_ft + " from simulator");
+                                this.Attitude_indicator_internal_roll_deg = "ERR"; // there has been an error in parsing proccess of the variable from simulator
+                                Console.WriteLine("there has been an error in parsing proccess of the variable " + this.Attitude_indicator_internal_roll_deg + " from simulator");
                             }
 
                             _telnetClient.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
