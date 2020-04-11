@@ -1,5 +1,4 @@
 ﻿using System;
-using System;
 using System.IO.Ports;
 using System.Collections.Generic;
 using System.Linq;
@@ -72,12 +71,10 @@ namespace FlightSimulatorApp.Model
 
         }
 
-        public string read()
+        public string read(string value)
         {
-            // **********************************
-            // * what is this? client != null?  *
-            // **********************************
-            if (client != null) // ??
+            
+            if (client != null) 
             {
                 Byte[] data = new Byte[256];
                 // String to store the response ASCII representation.
@@ -95,11 +92,11 @@ namespace FlightSimulatorApp.Model
                     {
                         Console.WriteLine("Connection problems with Server.");
                         // diconnect
-                        throw new DisconnectedException();
+                        throw e;
                     }
                     else
                     {
-                        return "";
+                        return value;
                        
                     }
 
