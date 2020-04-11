@@ -1,11 +1,11 @@
 ﻿using System;
-using System;
 using System.IO.Ports;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace FlightSimulatorApp.Model
 {
@@ -33,9 +33,10 @@ namespace FlightSimulatorApp.Model
                 this.client = null;
             }
         }
-        public bool checkIfClientIsNull()
+        public bool checkConnectionStatus()
         {
-            return this.client == null;
+            // return false when connected
+            return !this.client.Connected;
         }
         public void disconnect()
         {
@@ -70,16 +71,14 @@ namespace FlightSimulatorApp.Model
 
         }
 
-        public string read()
+        public string read(string value)
         {
-
-            if (client != null)
+            
+            if (client != null) 
             {
-
                 Byte[] data = new Byte[256];
                 // String to store the response ASCII representation.
                 String responseData = String.Empty;
-                
                 try
                 {
                     // Read the first batch of the TcpServer response bytes
@@ -89,15 +88,16 @@ namespace FlightSimulatorApp.Model
                 }
                 catch (Exception e)
                 {
-                    if (checkIfClientIsNull())
+                    if (checkConnectionStatus())
                     {
-                        Console.WriteLine(e);
+                        Console.WriteLine("Connection problems with Server.");
                         // diconnect
                         throw e;
                     }
                     else
                     {
-                        return "";
+                        return value;
+                       
                     }
 
                 }
