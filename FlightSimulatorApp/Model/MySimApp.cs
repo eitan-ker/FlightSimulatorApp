@@ -300,7 +300,7 @@ namespace FlightSimulatorApp.Model
             try
             {
                 _telnetClient.connect(ip, port);
-                if (!_telnetClient.checkIfClientIsNull())
+                if (!_telnetClient.checkConnectionStatus())
                 {
                     this.ConnectionStatus = "Connected";
                     this.stop = false;
@@ -533,17 +533,17 @@ namespace FlightSimulatorApp.Model
                             this.Locations = this.Latitude_deg + "," + this.Longitude_deg;
                             m.ReleaseMutex();
                         }
-                        catch (TimeoutException e){
-                            ConnectionStatus = "Disconnected";
+                        catch (DisconnectedException e)
+                        {
                             disconnect();
-                            Console.WriteLine("Client has Disconnected from server due to server problem.");
+
+                            // we need to click on the disconnect button.
+                            
+                            Console.WriteLine("client has Disconnected from Server due to Connection problem with Server.");
                         }
-                        // ALL Exceptions are thrown here
                         catch (Exception e)
                         {
-                            ConnectionStatus = "Disconnected";
-                            disconnect();
-                            Console.WriteLine(e);
+                            Console.WriteLine("an unexpected problem as accured");
                         }
 
                     }
@@ -565,4 +565,17 @@ namespace FlightSimulatorApp.Model
         }
     }
 
+}
+
+
+public class DisconnectedException : Exception
+{
+    public DisconnectedException()
+    {
+    }
+
+    public DisconnectedException(string message)
+        : base(message)
+    {
+    }
 }
