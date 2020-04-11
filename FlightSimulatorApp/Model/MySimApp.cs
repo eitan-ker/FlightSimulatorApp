@@ -533,13 +533,7 @@ namespace FlightSimulatorApp.Model
                             this.Locations = this.Latitude_deg + "," + this.Longitude_deg;
                             m.ReleaseMutex();
                         }
-                        catch (TimeoutException){
-                            ConnectionStatus = "Disconnected";
-                            disconnect();
-                            Console.WriteLine("Client has Disconnected from server due to server problem.");
-                        }
-                        // ALL Exceptions are thrown here
-                        catch (Exception e)
+                        catch (Exception)
                         {
                             ConnectionStatus = "Disconnected";
                             disconnect();
