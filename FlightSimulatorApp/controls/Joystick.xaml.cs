@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Shapes;
+using System.Windows.Media.Animation;
 
 namespace FlightSimulatorApp.controls
 {
@@ -16,9 +17,13 @@ namespace FlightSimulatorApp.controls
     {
         ViewModelClass _vm;
         private Point knobLocation;
+        private Storyboard sb;
         public Joystick()
         {
             InitializeComponent();
+            sb = Knob.FindResource("CenterKnob") as Storyboard;
+            sb.Begin();
+            sb.Stop();
             //_vm = ((MainWindow)Application.Current.MainWindow).getVM();
             _vm = (ViewModelClass)this.DataContext;
             //DataContext = _vm;
@@ -29,10 +34,12 @@ namespace FlightSimulatorApp.controls
 
         private void centerKnob_Completed(object sender, EventArgs e)
         {
+            //   sb = Knob.FindResource("CenterKnob") as Storyboard;
+            sb.Stop();
 
         }
 
-         private void Knob_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Knob_MouseDown(object sender, MouseButtonEventArgs e)
         {
            if(e.ChangedButton == MouseButton.Left)
             {
@@ -40,7 +47,18 @@ namespace FlightSimulatorApp.controls
                (Knob).CaptureMouse();
             }
         }
+        private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
+        {
+            sb.Begin();
 
+            knobPosition.X = 0;
+            knobPosition.Y = 0;
+            Window parentWin = Window.GetWindow(this);
+            _vm = ((MainWindow)Application.Current.MainWindow).getVM();
+            _vm.FlyPlane(0, 0);
+            UIElement element = (UIElement)Knob;
+            element.ReleaseMouseCapture();
+        }
         private void Knob_MouseMove(object sender, MouseEventArgs e)
         {
             double slope, absX, absY;
@@ -51,12 +69,12 @@ namespace FlightSimulatorApp.controls
                 double y = e.GetPosition(this).Y - knobLocation.Y;
                 //knobPosition.X = x;
                 //knobPosition.Y = y;
-                if(Math.Sqrt(x*x + y*y) <= Base.Width/2)
+                if (Math.Sqrt(x * x + y * y) <= Base.Width / 2)
                 {
                     knobPosition.X = x;
                     knobPosition.Y = y;
-                } 
-              else
+                }
+                else
                 {
                     //linear equation to calculate point at radious on same line.
                     slope = y / x;
@@ -106,19 +124,8 @@ namespace FlightSimulatorApp.controls
                 _vm = ((MainWindow)Application.Current.MainWindow).getVM();
                 /// the values to send to simulator, the joystick range is between -1 to 1 when the horizontal to the right take value 1 and most vertical up takes vlaue 1
                 _vm.FlyPlane(knobPosition.X / (Base.Width / 2), knobPosition.Y / (Base.Height / -2));
-          
+
             }
-        }
-       
-        private void Knob_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            knobPosition.X = 0;
-            knobPosition.Y = 0;
-            Window parentWin = Window.GetWindow(this);
-            _vm = ((MainWindow)Application.Current.MainWindow).getVM();
-            _vm.FlyPlane(0, 0);
-            UIElement element = (UIElement)Knob;
-            element.ReleaseMouseCapture();
         }
 
         private void Aileron_value_MouseLeave(object sender, MouseEventArgs e)
