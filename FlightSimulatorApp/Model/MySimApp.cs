@@ -300,7 +300,7 @@ namespace FlightSimulatorApp.Model
             try
             {
                 _telnetClient.connect(ip, port);
-                if (!_telnetClient.checkIfClientIsNull())
+                if (!_telnetClient.checkConnectionStatus())
                 {
                     this.ConnectionStatus = "Connected";
                     this.stop = false;
@@ -331,18 +331,19 @@ namespace FlightSimulatorApp.Model
                 StringBuilder sb = new StringBuilder(this.var_locations_in_simulator_send[2] + " " + elevator + "\n"); //build the command to set the elevator value in sim
                 string elevatorCommand = sb.ToString();
                 this._telnetClient.write(elevatorCommand);
-                _telnetClient.read();
+                _telnetClient.read("");
                 sb = new StringBuilder(this.var_locations_in_simulator_send[1] + " " + rudder + "\n"); //build the command to set the rudder value in sim
                 string rudderCommand = sb.ToString();
                 this._telnetClient.write(rudderCommand);
-                Console.WriteLine("elevatro:"+elevatorCommand);
+                Console.WriteLine("elevator:"+elevatorCommand);
                 Console.WriteLine("rudder"+rudderCommand);
-                _telnetClient.read();
+                _telnetClient.read("");
                 m.ReleaseMutex();
 
             }
             catch (Exception)
             {
+                m.ReleaseMutex();
                 Console.WriteLine("problem with thread2");
                 Console.WriteLine("could not send joystick values to simulator ");
             }
@@ -359,11 +360,12 @@ namespace FlightSimulatorApp.Model
                     string aileronCommand = sb.ToString();
                     this._telnetClient.write(aileronCommand);
                     Console.WriteLine(aileronCommand);
-                    _telnetClient.read();
+                    _telnetClient.read("");
                     m.ReleaseMutex();
                 }
                 catch (Exception)
                 {
+                    m.ReleaseMutex();
                     Console.WriteLine("problem with thread2");
                     Console.WriteLine("could not send joystick values to simulator ");
                 }
@@ -382,11 +384,12 @@ namespace FlightSimulatorApp.Model
                     string throttleCommand = sb.ToString();
                     this._telnetClient.write(throttleCommand);
                     Console.WriteLine(throttleCommand);
-                    _telnetClient.read();
+                    _telnetClient.read("");
                     m.ReleaseMutex();
                 }
                 catch (Exception)
                 {
+                    m.ReleaseMutex();
                     Console.WriteLine("problem with thread2");
                     Console.WriteLine("could not send joystick values to simulator ");
                 }
@@ -411,7 +414,7 @@ namespace FlightSimulatorApp.Model
 
                             _telnetClient.write("get /instrumentation/heading-indicator/indicated-heading-deg\n");
                             //string val = _telnetClient.read().ToString();
-                            if (float.TryParse(_telnetClient.read().ToString(), out temp1))
+                            if (float.TryParse(_telnetClient.read(this.indicated_heading_deg).ToString(), out temp1))
                             {
                                 this.Indicated_heading_deg = temp1.ToString();
                                 this.Indicated_heading_deg = checkThreshold_For_Dashboard_vars(Indicated_heading_deg);
@@ -423,7 +426,7 @@ namespace FlightSimulatorApp.Model
                             }
 
                             _telnetClient.write("get /instrumentation/gps/indicated-vertical-speed\n");
-                            if (float.TryParse(_telnetClient.read().ToString(), out temp1))
+                            if (float.TryParse(_telnetClient.read(this.gps_indicated_vertical_speed).ToString(), out temp1))
                             {
                                 this.Gps_indicated_vertical_speed = temp1.ToString();
                                 this.Gps_indicated_vertical_speed = checkThreshold_For_Dashboard_vars(Gps_indicated_vertical_speed);
@@ -435,7 +438,7 @@ namespace FlightSimulatorApp.Model
                             }
 
                             _telnetClient.write("get /instrumentation/gps/indicated-ground-speed-kt\n");
-                            if (float.TryParse(_telnetClient.read().ToString(), out temp1))
+                            if (float.TryParse(_telnetClient.read(this.gps_indicated_ground_speed_kt).ToString(), out temp1))
                             {
                                 this.Gps_indicated_ground_speed_kt = temp1.ToString();
                                 this.Gps_indicated_ground_speed_kt = checkThreshold_For_Dashboard_vars(Gps_indicated_ground_speed_kt);
@@ -447,7 +450,7 @@ namespace FlightSimulatorApp.Model
                             }
 
                             _telnetClient.write("get /instrumentation/airspeed-indicator/indicated-speed-kt\n");
-                            if (float.TryParse(_telnetClient.read().ToString(), out temp1))
+                            if (float.TryParse(_telnetClient.read(this.airspeed_indicator_indicated_speed_kt).ToString(), out temp1))
                             {
                                 this.Airspeed_indicator_indicated_speed_kt = temp1.ToString();
                                 this.Airspeed_indicator_indicated_speed_kt = checkThreshold_For_Dashboard_vars(Airspeed_indicator_indicated_speed_kt);
@@ -459,7 +462,7 @@ namespace FlightSimulatorApp.Model
                             }
 
                             _telnetClient.write("get /instrumentation/altimeter/indicated-altitude-ft\n");
-                            if (float.TryParse(_telnetClient.read().ToString(), out temp1))
+                            if (float.TryParse(_telnetClient.read(this.gps_indicated_altitude_ft).ToString(), out temp1))
                             {
                                 this.Gps_indicated_altitude_ft = temp1.ToString();
                                 this.Gps_indicated_altitude_ft = checkThreshold_For_Dashboard_vars(Gps_indicated_altitude_ft);
@@ -471,7 +474,7 @@ namespace FlightSimulatorApp.Model
                             }
 
                             _telnetClient.write("get /instrumentation/attitude-indicator/internal-roll-deg\n");
-                            if (float.TryParse(_telnetClient.read().ToString(), out temp1))
+                            if (float.TryParse(_telnetClient.read(this.attitude_indicator_internal_roll_deg).ToString(), out temp1))
                             {
                                 this.Attitude_indicator_internal_roll_deg = temp1.ToString();
                                 this.Attitude_indicator_internal_roll_deg = checkThreshold_For_Dashboard_vars(Attitude_indicator_internal_roll_deg);
@@ -483,7 +486,7 @@ namespace FlightSimulatorApp.Model
                             }
 
                             _telnetClient.write("get /instrumentation/attitude-indicator/internal-pitch-deg\n");
-                            if (float.TryParse(_telnetClient.read().ToString(), out temp1))
+                            if (float.TryParse(_telnetClient.read(this.attitude_indicator_internal_pitch_deg).ToString(), out temp1))
                             {
                                 this.Attitude_indicator_internal_pitch_deg = temp1.ToString();
                                 this.Attitude_indicator_internal_pitch_deg = checkThreshold_For_Dashboard_vars(Attitude_indicator_internal_pitch_deg);
@@ -495,7 +498,7 @@ namespace FlightSimulatorApp.Model
                             }
 
                             _telnetClient.write("get /instrumentation/gps/indicated-altitude-ft\n");
-                            if (float.TryParse(_telnetClient.read().ToString(), out temp1))
+                            if (float.TryParse(_telnetClient.read(this.altimeter_indicated_altitude_ft).ToString(), out temp1))
                             {
                                 this.Altimeter_indicated_altitude_ft = temp1.ToString();
                                 this.Altimeter_indicated_altitude_ft = checkThreshold_For_Dashboard_vars(Altimeter_indicated_altitude_ft);
@@ -507,7 +510,7 @@ namespace FlightSimulatorApp.Model
                             }
 
                             _telnetClient.write("get /position/latitude-deg\n");
-                            if (Double.TryParse(_telnetClient.read().ToString(), out temp))
+                            if (Double.TryParse(_telnetClient.read(this.latitude_deg).ToString(), out temp))
                             {
                                 this.Latitude_deg = temp.ToString();
                             }
@@ -519,7 +522,7 @@ namespace FlightSimulatorApp.Model
                             }
 
                             _telnetClient.write("get /position/longitude-deg\n");
-                            if (Double.TryParse(_telnetClient.read().ToString(), out temp))
+                            if (Double.TryParse(_telnetClient.read(this.longitude_deg).ToString(), out temp))
                             {
                                 this.Longitude_deg = temp.ToString();
                             }
@@ -535,13 +538,18 @@ namespace FlightSimulatorApp.Model
                         }
                         catch (Exception)
                         {
-                            ConnectionStatus = "Disconnected";
-                            disconnect();
-                            Console.WriteLine(e);
+                            m.ReleaseMutex();
+                            Console.WriteLine("an unexpected problem as accured");
+                            if(this._telnetClient.checkConnectionStatus())
+                            {
+                                disconnect();
+
+                                // we need to click on the disconnect button.
+
+                                Console.WriteLine("client has Disconnected from Server due to Connection problem with Server.");
+                            }
                         }
-
                     }
-
                     Thread.Sleep(250); // read data in 4Hz
                 }
             }).Start();
@@ -559,4 +567,17 @@ namespace FlightSimulatorApp.Model
         }
     }
 
+}
+
+
+public class DisconnectedException : Exception
+{
+    public DisconnectedException()
+    {
+    }
+
+    public DisconnectedException(string message)
+        : base(message)
+    {
+    }
 }
