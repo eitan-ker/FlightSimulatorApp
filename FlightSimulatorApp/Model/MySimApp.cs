@@ -350,8 +350,8 @@ namespace FlightSimulatorApp.Model
 
         public void moveAileron(string aileron)
         {
-            if (connectionStatus == "Connected")
-            {
+            //if (connectionStatus == "Connected")
+            //{
                 try
                 {
                     m.WaitOne();
@@ -367,14 +367,14 @@ namespace FlightSimulatorApp.Model
                     Console.WriteLine("problem with thread2");
                     Console.WriteLine("could not send joystick values to simulator ");
                 }
-            }
+            //}
 
         }
 
         public void moveThrottle(double throttle)
         {
-            if (connectionStatus == "Connected")
-            {
+            //if (connectionStatus == "Connected")
+            //{
                 try
                 {
                     m.WaitOne();
@@ -390,7 +390,7 @@ namespace FlightSimulatorApp.Model
                     Console.WriteLine("problem with thread2");
                     Console.WriteLine("could not send joystick values to simulator ");
                 }
-            }
+            //}
 
         }
 
