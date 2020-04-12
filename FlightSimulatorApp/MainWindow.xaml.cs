@@ -54,10 +54,10 @@ namespace FlightSimulatorApp
             joystick.Aileron_value.Value = 0;
             joystick.Throttle_value.Value = 0;
             vm.disconnect();
-            disconnect.IsChecked = false;
+            /*disconnect.IsChecked = false;
             disconnect.IsEnabled = false;
             connect.IsChecked = true;
-            connect.IsEnabled = true;
+            connect.IsEnabled = true;*/
         }
 
         private void dashboard_Loaded(object sender, RoutedEventArgs e)

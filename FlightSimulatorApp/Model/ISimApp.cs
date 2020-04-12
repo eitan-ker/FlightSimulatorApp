@@ -18,6 +18,8 @@ namespace FlightSimulatorApp.Model
         string Attitude_indicator_internal_roll_deg { get; set; }
         string Attitude_indicator_internal_pitch_deg { get; set; }
         string Altimeter_indicated_altitude_ft { get; set; }
+        string Aileron { get; set; }
+        string Throttle { get; set; }
         string Latitude_deg { get; set; }
         string Longitude_deg { get; set; }
         string Locations { get; set; }
@@ -28,5 +30,7 @@ namespace FlightSimulatorApp.Model
         void disconnect();
         void start();
         string ConnectionStatus { get; set; }
+        bool IsConnected { get; set; }
+        bool IsDisconnected { get; set; }
     }
 }

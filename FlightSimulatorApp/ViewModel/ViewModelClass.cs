@@ -29,6 +29,9 @@ namespace FlightSimulatorApp.ViewModel
         }
         /********************************** related to Main Window */
         public string VM_ConnectionStatus => model.ConnectionStatus;
+        public bool VM_IsConnected => model.IsConnected;
+        public bool VM_IsDisconnected => model.IsDisconnected;
+
         internal void disconnect()
         {
             model.disconnect();
