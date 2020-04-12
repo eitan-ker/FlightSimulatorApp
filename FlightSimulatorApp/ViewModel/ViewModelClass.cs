@@ -29,6 +29,9 @@ namespace FlightSimulatorApp.ViewModel
         }
         /********************************** related to Main Window */
         public string VM_ConnectionStatus => model.ConnectionStatus;
+        public bool VM_IsConnected => model.IsConnected;
+        public bool VM_IsDisconnected => model.IsDisconnected;
+
         internal void disconnect()
         {
             model.disconnect();
@@ -88,7 +91,10 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 VM_aileron = value;
-                model.moveAileron(VM_aileron.ToString());
+                if (this.VM_ConnectionStatus == "Connected")
+                {
+                    model.moveAileron(VM_aileron.ToString());
+                }
             }
         }
         public void moveAileron(string val)
@@ -105,7 +111,10 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 VM_throttle = value;
-                model.moveThrottle(VM_throttle);
+                if (this.VM_ConnectionStatus == "Connected")
+                {
+                    model.moveThrottle(VM_throttle);
+                }
             }
         }
         public void FlyPlane(double rudder, double elevator)

@@ -31,7 +31,11 @@ namespace FlightSimulatorApp.Model
         private string altimeter_indicated_altitude_ft;
         private string latitude_deg; //latitude of the plane
         private string longitude_deg; //logtitude of the plane
+        private string aileron;
+        private string throttle;
         private string connectionStatus = "Disconnected";
+        private bool isconnected = false;
+        private bool isdisconnected = true;
 
 
         ItelnetClient _telnetClient;
@@ -69,7 +73,30 @@ namespace FlightSimulatorApp.Model
             }
         }
         private string locations;
-
+        public string Aileron
+        {
+            get
+            {
+                return this.aileron;
+            }
+            set
+            {
+                this.aileron = value;
+                NotifyPropertyChanged("Aileron");
+            }
+        }
+        public String Throttle
+        {
+            get
+            {
+                return this.throttle;
+            }
+            set
+            {
+                this.throttle = value;
+                NotifyPropertyChanged("Throttle");
+            }
+        }
         public string ConnectionStatus
         {
             get
@@ -80,6 +107,30 @@ namespace FlightSimulatorApp.Model
             {
                 this.connectionStatus = value;
                 NotifyPropertyChanged("ConnectionStatus");
+            }
+        }
+        public bool IsConnected
+        {
+            get
+            {
+                return this.isconnected;
+            }
+            set
+            {
+                this.isconnected = value;
+                NotifyPropertyChanged("IsConnected");
+            }
+        }
+        public bool IsDisconnected
+        {
+            get
+            {
+                return this.isdisconnected;
+            }
+            set
+            {
+                this.isdisconnected = value;
+                NotifyPropertyChanged("IsDisconnected");
             }
         }
 
@@ -303,6 +354,8 @@ namespace FlightSimulatorApp.Model
                 if (!_telnetClient.checkConnectionStatus())
                 {
                     this.ConnectionStatus = "Connected";
+                    this.IsDisconnected = false;
+                    this.IsConnected = true;
                     this.stop = false;
                     this.start();
                 }
@@ -310,7 +363,8 @@ namespace FlightSimulatorApp.Model
             catch (Exception)
             {
                 this.ConnectionStatus = "Disconnected";
-
+                this.IsDisconnected = true;
+                this.IsConnected = false;
                 // NEED TO BE IMPLEMENTED THE REST  
             }
         }
@@ -319,7 +373,11 @@ namespace FlightSimulatorApp.Model
 
             stop = true;
             _telnetClient.disconnect();
+            this.throttle = 0.ToString();
+            this.aileron = 0.ToString();
             this.ConnectionStatus = "Disconnected";
+            this.IsDisconnected = true;
+            this.IsConnected = false;
             this.restorebackTo();
 
         }

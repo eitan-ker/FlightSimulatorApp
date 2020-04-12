@@ -130,31 +130,34 @@ namespace FlightSimulatorApp.controls
 
         private void Aileron_value_MouseLeave(object sender, MouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
                 var aileron = sender as Slider;
+            if (aileron.Value != 0)
+            {
                 MainWindow mainWind = Application.Current.MainWindow as MainWindow;
                 if (mainWind.connectionIndication.Text != "Connected")
                 {
                     Console.WriteLine("you cant change aileron while not connected to simulator");
-                    //aileron.Value = 0; //dont need to set aileron to 0 when not connected
+                    aileron.Value = 0; //dont need to set aileron to 0 when not connected
                 }
             }
-            
         }
 
         private void Throttle_value_MouseLeave(object sender, MouseEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
                 var throttle = sender as Slider;
+            if(throttle.Value != 0) { 
                 MainWindow mainWind = Application.Current.MainWindow as MainWindow;
                 if (mainWind.connectionIndication.Text != "Connected")
                 {
                     Console.WriteLine("you cant change throttle while not connected to simulator");
-                    //throttle.Value = 0; //dont need to set throttle to 0 when not connected
+                    throttle.Value = 0; //dont need to set throttle to 0 when not connected
                 }
             }
+        }
+
+        private void Aileron_value_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }
