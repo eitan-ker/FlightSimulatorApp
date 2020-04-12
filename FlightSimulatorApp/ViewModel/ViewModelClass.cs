@@ -91,7 +91,10 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 VM_aileron = value;
-                model.moveAileron(VM_aileron.ToString());
+                if (this.VM_ConnectionStatus == "Connected")
+                {
+                    model.moveAileron(VM_aileron.ToString());
+                }
             }
         }
         public void moveAileron(string val)
@@ -108,7 +111,10 @@ namespace FlightSimulatorApp.ViewModel
             set
             {
                 VM_throttle = value;
-                model.moveThrottle(VM_throttle);
+                if (this.VM_ConnectionStatus == "Connected")
+                {
+                    model.moveThrottle(VM_throttle);
+                }
             }
         }
         public void FlyPlane(double rudder, double elevator)

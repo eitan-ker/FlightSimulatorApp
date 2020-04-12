@@ -73,7 +73,30 @@ namespace FlightSimulatorApp.Model
             }
         }
         private string locations;
-
+        public string Aileron
+        {
+            get
+            {
+                return this.aileron;
+            }
+            set
+            {
+                this.aileron = value;
+                NotifyPropertyChanged("Aileron");
+            }
+        }
+        public String Throttle
+        {
+            get
+            {
+                return this.throttle;
+            }
+            set
+            {
+                this.throttle = value;
+                NotifyPropertyChanged("Throttle");
+            }
+        }
         public string ConnectionStatus
         {
             get
@@ -350,6 +373,8 @@ namespace FlightSimulatorApp.Model
 
             stop = true;
             _telnetClient.disconnect();
+            this.throttle = 0.ToString();
+            this.aileron = 0.ToString();
             this.ConnectionStatus = "Disconnected";
             this.IsDisconnected = true;
             this.IsConnected = false;
